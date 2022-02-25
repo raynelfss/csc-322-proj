@@ -1,4 +1,4 @@
-# CSC 33200: Project
+# CSC 32200: Project
 This will be the github repo for our project.
 ## Team:
 __1. Hussam Marzooq.__
