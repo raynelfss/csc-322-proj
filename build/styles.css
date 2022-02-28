@@ -1,5 +1,12 @@
 h1 {
     font-size: 72px;
-    font-family: sans-serif;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     text-align: center;
+}
+b1 {
+    font: 22px;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    text-shadow: 30px black;
+    color: brown;
 }
