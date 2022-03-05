@@ -1,12 +1,79 @@
-h1 {
-    font-size: 72px;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+h1{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: auto;
+}
+h2{
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    width: auto;
+}
+body {
+    background-color: pink;
+}
+.header1{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
     text-align: center;
 }
-b1 {
-    font: 22px;
-    font-family: 'Times New Roman', Times, serif;
-    text-align: left;
-    text-shadow: 30px black;
-    color: brown;
+p {
+    word-wrap: normal;
+}
+.p2 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    text-align: center;
+}
+.p3 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 700;
+}
+.special {
+    color: blue;
+    background-color: red;
+}
+.blu {
+    background-color: aqua;
+    color : white;
+}
+div {
+    text-align: center;
+    margin: 30px;
+}
+.item-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 30px;
+    flex-wrap: wrap;
+}
+.items {
+    background-color: aliceblue;
+    border-radius: 10px;
+    border: 2px solid aqua;
+    box-shadow: 2px 2px rgba(0,0,0,0.4);
+    margin: 5px 10px;
+    width: 250px;
+    height: 400px;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+.parent {
+    border-radius: 10px;
+    border: 2px solid black;
+    box-shadow: 2px 2px rgba(0,0,0,0.4);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 250px;
+    height: 400px;
+}
+.line {
+    width:200;
+    text-align: center;
+    background-color: black;
 }

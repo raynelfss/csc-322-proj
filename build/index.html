@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Deez Nuts Cafe</title>
-        <link href="./styles.css" rel="stylesheet" type="text/css">
+        <title>Denisse's</title>
+        <link href="./styles.css" rel="stylesheet" type="text/css"/>
+        <script src="./index.js"></script>
     </head>
     <body>
-        <section>
-            <h1>Deez Nuts Cafe</h1>
-            <b1>CHILLER TIME. </b1>
-            <blockquote><b1>I am a sussy baka. Now deal with it.</b1></blockquote>
-        </section>
+        <h1 class="blu">Denisse's Cafe</h1>
+        <h2>Here's the menu</h2>
+        <div class="item-bar" id="item-list">
+        </div>
+        <div>
+            <h1>Create new item:</h1>
+            <h2>Input the name of your new item</h2>
+            <input type="text" id="itemName" name="itemName"> <br>
+            <h2>Input the description of your new item</h2>
+            <input type="text" id="description" name="description"> <br>
+            <h2>Input the image link of your item.</h2>
+            <input type="text" id="imglink" name="imglink"> <br>
+            <h2>Input the price of your item.</h2>
+            <input type="text" id="price" name="price"> <br>
 
-        <section>
-            <h2>Welcome to Rickroll.</h2>
-            <embed> <iframe width="400" height="200" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Rickroll" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            <img src="https://i.kym-cdn.com/entries/icons/mobile/000/017/788/gotem.jpg" width="300" height="200">
-            <!-- Need to figure out a website design -->
-        </section>
-
-        <section>
-            <button type="button" onclick="alert('You\'re fucked!')">
-                CLICK ME, BITCH!
-            </button>
-            <button type="button" onclick="print()">
-                PRINT ME, BITCH!
-            </button>
-        </section>
-
+        </div>
+        <button onclick="addElementtoItemBar()">Add Item.</button>
+        <!--Hello world-->
     </body>
 </html>
