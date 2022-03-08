@@ -10,60 +10,50 @@ function addElementtoItemBar() {
     let desc = document.getElementById("description").value;
     let imgsrc = document.getElementById("imglink").value;
     let price = document.getElementById("price").value;
-    let item = new Item(itemName, desc, price, imgsrc);
+    let item = createElement(itemName, desc, price, imgsrc);
 
-    itembar.appendChild(item.item);
+    itembar.appendChild(item);
 }
 
-class Item {
-    constructor(itemName, description, price, imageSrc) {
-        this.itemName = itemName;
-        this.description = description;
-        this.price = price;
-        this.imageSrc = imageSrc;
-        this.item = this.createElement(itemName, description, price, imageSrc);
+function createElement(itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined ) {
+    let element = document.createElement("div");
+    element.classList = "items";
+
+    let innerdiv = document.createElement("div");
+    
+    if (imageSrc != undefined) {
+        let image =  document.createElement("img");
+        image.src = imageSrc;
+        image.setAttribute("width","200px");
+        image.setAttribute("height","200px");
+        innerdiv.appendChild(image);
     }
 
-    createElement(itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined ) {
-        let element = document.createElement("div");
-        element.classList = "items";
+    let name =  document.createElement("h1");
+    name.appendChild(document.createTextNode(itemName));
+    name.classList = "header1";
+    innerdiv.appendChild(name);
 
-        let innerdiv = document.createElement("div");
-        
-        if (imageSrc != undefined) {
-            let image =  document.createElement("img");
-            image.src = imageSrc;
-            image.setAttribute("width","200px");
-            image.setAttribute("height","200px");
-            innerdiv.appendChild(image);
-        }
+    let div1 =  document.createElement("hr");
+    div1.classList = "line";
+    innerdiv.appendChild(div1);
 
-        let name =  document.createElement("h1");
-        name.appendChild(document.createTextNode(itemName));
-        name.classList = "header1";
-        innerdiv.appendChild(name);
+    let desc = document.createElement("p");
+    desc.appendChild(document.createTextNode(description));
+    desc.classList = "p2";
+    innerdiv.appendChild(desc);
 
-        let div1 =  document.createElement("hr");
-        div1.classList = "line";
-        innerdiv.appendChild(div1);
+    let div2 =  document.createElement("hr");
+    div2.classList = "line";
+    innerdiv.appendChild(div2);
 
-        let desc = document.createElement("p");
-        desc.appendChild(document.createTextNode(description));
-        desc.classList = "p2";
-        innerdiv.appendChild(desc);
+    let pric =  document.createElement("p");
+    pric.appendChild(document.createTextNode(price));
+    pric.classList = "p3";
+    innerdiv.appendChild(pric);
 
-        let div2 =  document.createElement("hr");
-        div2.classList = "line";
-        innerdiv.appendChild(div2);
+    element.appendChild(innerdiv);
+    console.log("Tried to create child.")
 
-        let pric =  document.createElement("p");
-        pric.appendChild(document.createTextNode(price));
-        pric.classList = "p3";
-        innerdiv.appendChild(pric);
-
-        element.appendChild(innerdiv);
-        console.log("Tried to create child.")
-
-        return element;
-    }
+    return element;
 }
