@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Deez Nuts Cafe</title>
-        <link href="./styles.css" rel="stylesheet" type="text/css">
+        <title>Denisse's</title>
+        <link href="./styles.css" rel="stylesheet" type="text/css"/>
         <script src="./index.js"></script>
     </head>
     <body>
-        <h1>Deez Nuts Cafe</h1>
-        <p>fucktards</p>
-        <p class = "special">pushin p</p>
-        <div class = "item">
-            <img src="https://fisher-nuts.s3.amazonaws.com/Recipes/FisherNuts_CobbSalad_027.jpg" alt="">
-            <p>Nut Salad</p> <hr>
-            <p>Our nut salad contains cherry tomatoes, lettuce, avocado, and an assortment of salted nuts for a crunchy texture!</p> <hr>
-            <p>Price: $11.99</p>
+        <h1 class="blu">Denisse's Cafe</h1>
+        <h2>Here's the menu</h2>
+        <div class="item-bar" id="item-list">
         </div>
-        <button onclick="addItem()">add item</button>
-        <!-- Need to figure out a website design -->
+        <div>
+            <h1>Create new item:</h1>
+            <h2>Input the name of your new item</h2>
+            <input type="text" id="itemName" name="itemName"> <br>
+            <h2>Input the description of your new item</h2>
+            <input type="text" id="description" name="description"> <br>
+            <h2>Input the image link of your item.</h2>
+            <input type="text" id="imglink" name="imglink"> <br>
+            <h2>Input the price of your item.</h2>
+            <input type="text" id="price" name="price"> <br>
+
+        </div>
+        <button onclick="addElementtoItemBar()">Add Item.</button>
+        <!--Hello world-->
     </body>
 </html>
