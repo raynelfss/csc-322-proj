@@ -1,18 +1,38 @@
-function getH1() {          // Method gets text from H1. Prints alert.
-    let header = document.getElementsByTagName("h1")[0];
-    let headerContent = header.innerText;
-    alert(headerContent);
-}
-
 function addElementtoItemBar() {        // Function adds an element to the item bar. Uses createElement() function.
-    let itembar = document.getElementById("item-list");     // Uses item-list by calling its id.
     let itemName = document.getElementById("itemName").value;       // Gets itemname from input.
     let desc = document.getElementById("description").value;        // Gets description from input.
     let imgsrc = document.getElementById("imglink").value;      // Gets image link from input (Will be changed in future).
     let price = document.getElementById("price").value;     // Gets price from input.
-    let item = createElement(itemName, desc, price, imgsrc);        // Uses createElement function to create an item using properties.
+    
+    
+    document.getElementById("itemName").value =  '';
+    document.getElementById("description").value = '';
+    document.getElementById("imglink").value = ''; 
+    document.getElementById("price").value = '';
 
-    itembar.appendChild(item);          // Appends this child to the itembar.
+    let current = JSON.parse(localStorage.getItem("Items")) || [];
+    localStorage.removeItem("Items");
+    let data = [itemName, desc, imgsrc, price];    // Gathers all the data into an array.
+    current.push(data);
+    localStorage.setItem("Items", JSON.stringify(current));
+    displayItems();
+}
+
+function displayItems()  {
+    let elements = document.getElementsByClassName("items");
+    while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+    }
+
+    let items = JSON.parse(localStorage.getItem("Items")) || [];
+    let itembar = document.getElementById("item-list");     // Uses item-list by calling its id.
+    //console.log(itembar);
+
+    items.forEach(element => {
+        console.log(element[0]);
+        let frame = createElement(element[0], element[1], element[3], element[2]);
+        itembar.appendChild(frame);
+    });
 }
 
 function createElement(itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined ) {
@@ -57,3 +77,5 @@ function createElement(itemName = "Item-name", description = "No description", p
 
     return element;             // Return item.
 }
+
+displayItems();
