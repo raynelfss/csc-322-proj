@@ -26,7 +26,6 @@ function displayItems()  {
 
     let items = JSON.parse(localStorage.getItem("Items")) || [];
     let itembar = document.getElementById("item-list");     // Uses item-list by calling its id.
-    //console.log(itembar);
 
     items.forEach(element => {
         console.log(element[0]);
