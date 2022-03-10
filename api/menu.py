@@ -1,9 +1,9 @@
 # Will handle all requests for menu in here
 from flask import Blueprint, abort, request
-import menu # import ./menu.py
+import menu # imports from ./menu.py
 
 menuBlueprint = Blueprint('app_menu', __name__, url_prefix='/menu')
-
+ 
 @menuBlueprint.route('/', methods=['GET', 'POST', 'DELETE']) # url would be {address}/api/menu
 def index(): # route to handle requests for menu
     if request.method == 'GET': # Retrieve all items from menu
@@ -21,9 +21,13 @@ def index(): # route to handle requests for menu
             print(e)
             return abort(500) # returns internal server error
 
-    # TODO:
-    # Handle delete request
-    # should delete all items from menu
+    elif request.method == 'DELETE':
+        try:
+            menu.deleteAll()
+            return {'response':'deleted'}
+        except Exception as e:
+            print(e)
+            return abort(500)
 
 # TODO:
 # Add route for calling menu with an id
