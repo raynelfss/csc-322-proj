@@ -39,7 +39,7 @@ p {
     background-color: aqua;
     color : white;
 }
-div {
+.div {
     text-align: center;
     margin: 20px 10px;
 }

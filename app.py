@@ -8,6 +8,10 @@ app = Flask(__name__, static_url_path='', static_folder="build", template_folder
 def index():
     return render_template("index.html")
 
+@app.route('/menu')
+def menupage():
+    return render_template("menu.html")
+
 # all api calls /api
 app.register_blueprint(apiBlueprint)
 

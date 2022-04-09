@@ -19,11 +19,13 @@ def index(): # route to handle requests for menu
             return {'response': menu.getAll()}
         except Exception as e:
             print(e)
+            print("\n")
             return abort(500) # returns internal server error
 
     elif request.method == 'DELETE':
         try:
-            menu.deleteAll()
+            id = request.json
+            menu.deleteById(id)
             return {'response':'deleted'}
         except Exception as e:
             print(e)
