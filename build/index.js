@@ -145,6 +145,7 @@ async function deleteItem(id) {
 async function editItem(id) {
     let diag = document.getElementById("creatediv")
     diag.style.display = "flex"
+    let subject = document.getElementById
     console.log("Attempted edit", id)
     let item = await getfromDBInd()
     console.log(item)
