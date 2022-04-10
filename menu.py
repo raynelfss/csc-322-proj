@@ -64,6 +64,8 @@ def getAll():  # returns all items from Menu
 def updateByID(id, name, img_url, description, price):
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
-    cursor.execute("SET (name, img_url, description, price) VALUES (?,?,?,?) FROM Menu WHERE id=?",
-                    (id, name, img_url, description, price)) 
+    print(id, name, img_url, description, price)
+    cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE id=?",
+                    (name, img_url, description, price, id), ) 
+    connection.commit()
     connection.close()
