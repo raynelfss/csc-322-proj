@@ -1,4 +1,4 @@
-table{
+table {
     position: relative;
     border: 2px solid black;
     border-radius: 10px;
@@ -6,23 +6,28 @@ table{
     left:50%;
     transform: translate(-50%,0%);
 }
-th{
+
+th {
     color:pink;
 }
+
 tr:first-child {
     background-color: magenta;
     color: white;
 }
+
 tr:nth-child(even){
     background-color: white;
     color: magenta;
 }
-tr{
+
+tr {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(245, 158, 245);
     color: white;
 }
-.create-edit{
+
+.create-edit {
     position: fixed;
     border-radius: 10px;
     border: 2px solid black;
@@ -35,7 +40,8 @@ tr{
     justify-content: flex-start;
     padding: 40px;
 }
-#additem{
+
+#additem {
     align-content: center;
     position: relative;
     left: 80%;

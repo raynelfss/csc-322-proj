@@ -4,12 +4,8 @@ import sqlite3
 def createTable():  # creates the table
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
-    command1 = """CREATE TABLE IF NOT EXISTS Menu(
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT NOT NULL, 
-        img_url TEXT, 
-        description TEXT, 
-        price REAL NOT NULL
+    command1 = """CREATE TABLE IF NOT EXISTS Menu( id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL, img_url TEXT, description TEXT, price REAL NOT NULL
     )"""
     cursor.execute(command1)
     connection.commit()
