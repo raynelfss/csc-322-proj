@@ -15,7 +15,7 @@ function addElementtoTable() {        // Function adds an element to the item ba
 }
 
 async function addtoDB(itemArray) {
-    const response = await fetch("http://127.0.0.1:5000/api/menu/", {
+    const response = await fetch("/api/menu/", {
         method: 'POST',
         headers: {
             'Accept' : 'application/json',
@@ -40,13 +40,13 @@ function eraseUniqueElement(id) {
 }
 
 async function getfromDB() {
-    const response = await fetch('http://127.0.0.1:5000/api/menu/')
+    const response = await fetch('/api/menu/')
     const data = await response.json()
     return data['response']
 }
 
 async function getfromDBInd(id) {
-    const response = await fetch('http://127.0.0.1:5000/api/menu/' + id)
+    const response = await fetch('/api/menu/' + id)
     const data = await response.json()
     return data['response']
 }

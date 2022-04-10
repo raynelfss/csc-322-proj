@@ -85,7 +85,7 @@ async function getfromDB() {
 }
 
 async function getfromDBInd(id) {
-    const response = await fetch('http://127.0.0.1:5000/api/menu/' + id)
+    const response = await fetch('/api/menu/' + id)
     const data = await response.json()
     return data['response']
 }
@@ -139,7 +139,7 @@ async function editItem(id) {
     let item = await getfromDBInd(id)
     console.log(item)
     fillTextboxes(item[1], item[3], item[2], item[4])
-    
+
 }
 
 //async function sendEdit(id)
