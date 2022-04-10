@@ -1,15 +1,14 @@
-function addElementtoItemBar() {        // Function adds an element to the item bar. Uses createElement() function.
-    let itemName = document.getElementById("itemName").value        // Gets itemname from input.
-    let desc = document.getElementById("description").value         // Gets description from input.
-    let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
-    let price = document.getElementById("price").value      // Gets price from input.
-    
+function addElementtoItemBar() { // Function adds an element to the item bar. Uses createElement() function.
+    let itemName = document.getElementById("itemName").value  // Gets itemname from input.
+    let desc = document.getElementById("description").value   // Gets description from input.
+    let imgsrc = document.getElementById("imglink").value     // Gets image link from input (Will be changed in future).
+    let price = document.getElementById("price").value    // Gets price from input.
     
     document.getElementById("itemName").value =  '' 
     document.getElementById("description").value = '' 
     document.getElementById("imglink").value = ''  
     document.getElementById("price").value = '' 
-    let data = {'name': itemName, 'description' : desc, 'img_url' : imgsrc, 'price': price}     // Gathers all the data into an array.
+    let data = {'name': itemName, 'description' : desc, 'img_url' : imgsrc, 'price': price} // Gathers all the data into an array.
     addtoDB(data)
 }
 
@@ -29,9 +28,7 @@ async function addtoDB(itemArray) {
 
 function eraseElements() {
     let elements = document.getElementsByClassName("items") 
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]) 
-    }
+    while(elements.length > 0){ elements[0].parentNode.removeChild(elements[0]) }
 }
 
 function eraseUniqueElement(id) {
