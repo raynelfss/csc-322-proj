@@ -23,7 +23,6 @@ def deleteTable(): # only used for testing purposes
     connection.commit()
     connection.close()
 
-
 def add(name, img_url, description, price): # adds items to table
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
@@ -31,7 +30,6 @@ def add(name, img_url, description, price): # adds items to table
                    (name, img_url, description, price))
     connection.commit()
     connection.close()
-
 
 def deleteById(id): # deletes items in the table by id
     connection = sqlite3.connect('main.db')
@@ -62,3 +60,10 @@ def getAll():  # returns all items from Menu
     rowsOutput = [row for row in rows]
     connection.close()
     return rowsOutput
+
+def updateByID(id, name, img_url, description, price):
+    connection = sqlite3.connect('main.db')
+    cursor = connection.cursor()
+    cursor.execute("SET (name, img_url, description, price) VALUES (?,?,?,?) FROM Menu WHERE id=?",
+                    (id, name, img_url, description, price)) 
+    connection.close()
