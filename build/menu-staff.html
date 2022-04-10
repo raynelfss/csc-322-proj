@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Denisse's</title>
-        <link href="./styles.css" rel="stylesheet" type="text/css"/>
+        <title>Item List</title>
+        <link href="/menu-staff.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>
-            <h1 class="blu">Denisse's Cafe</h1>
-            <div>
-                <a href="/menu">Menu</a>
-                <a href="https://www.google.com">Google</a>
-            </div>
-        </div>
-        <div>
-            <h2>Here's the menu</h2>
-            <button id="additem" onclick="openDiag('creatediv')">Add item</button>
-            <div class="item-bar" id="item-list"></div>
-        </div>
+        <h1>List of items:</h1>
+        <button id="additem" onclick="openDiag('creatediv')">Add item</button>
+        <table class="ptable", id="ptable">
+            <tr>
+                <th>ItemId</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Imagelink</th>
+                <th>Price</th>
+                <th></th>
+            </tr>
+        </table>
         <div class="create-edit", id="creatediv">
             <h3>Create new item:</h3>
             <label for="itemName">Name of item</label>
@@ -27,10 +27,9 @@
             <input type="url" id="imglink" name="imglink"> <br>
             <label for="price">Price:</label>
             <input type="text" id="price" name="price"> <br>
-            <button onclick="addElementtoItemBar()">Add</button>
+            <button onclick="addElementtoTable()">Add</button>
             <button onclick="closeDiag('creatediv')">Cancel</button>
         </div>
-        <!--Hello world-->
     </body>
-    <script src="./index.js"></script>
+    <script src="/menu-staff.js"></script>
 </html>

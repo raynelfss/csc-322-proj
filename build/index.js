@@ -1,16 +1,17 @@
-function addElementtoItemBar() {        // Function adds an element to the item bar. Uses createElement() function.
+function addElementtoTable() {        // Function adds an element to the item bar. Uses createElement() function.
     let itemName = document.getElementById("itemName").value        // Gets itemname from input.
     let desc = document.getElementById("description").value         // Gets description from input.
     let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
     let price = document.getElementById("price").value      // Gets price from input.
     
     
-    document.getElementById("itemName").value =  '' 
-    document.getElementById("description").value = '' 
-    document.getElementById("imglink").value = ''  
-    document.getElementById("price").value = '' 
+    itemName.value =  '' 
+    desc.value = '' 
+    imgsrc.value = ''  
+    price.value = '' 
     let data = {'name': itemName, 'description' : desc, 'img_url' : imgsrc, 'price': price}     // Gathers all the data into an array.
     addtoDB(data)
+    closeDiag("creatediv")
 }
 
 async function addtoDB(itemArray) {
@@ -117,6 +118,7 @@ function createElement(id, itemName = "Item-name", description = "No description
     element.appendChild(innerdiv)       // Appends the inner div to the item object.
     console.log("Tried to create item.")       // Prints log message, signaling creation of item.
     element.id = id
+
     return element              // Return item.
 }
 
@@ -137,6 +139,8 @@ async function deleteItem(id) {
 }
 
 async function editItem(id) {
+    let diag = document.getElementById("creatediv")
+    diag.style.display = "flex"
     console.log("Attempted edit", id)
     let item = await getfromDB()
     console.log(item, item[id])
@@ -145,6 +149,20 @@ async function editItem(id) {
     // - Modify attributes from database (if not, erase and replace)
     // - Update Items list.
     displayItems()
+}
+
+function openDiag(id) {
+    let diag = document.getElementById(id)
+    diag.style.display = 'flex'
+}
+
+function closeDiag(id) {
+    document.getElementById("itemName").value =  '' 
+    document.getElementById("description").value = '' 
+    document.getElementById("imglink").value = ''  
+    document.getElementById("price").value = '' 
+    let diag = document.getElementById(id)
+    diag.style.display = 'none'
 }
 
 displayItems() 

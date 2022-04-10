@@ -17,7 +17,7 @@ body {
     font-weight: 700;
     text-align: center;
 }
-p {
+.p {
     word-wrap: normal;
 }
 .p2 {
@@ -76,4 +76,23 @@ p {
     width:200;
     text-align: center;
     background-color: black;
+}
+.create-edit{
+    position: fixed;
+    border-radius: 10px;
+    border: 2px solid black;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+}
+#additem{
+    align-content: center;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%, 0%);
 }

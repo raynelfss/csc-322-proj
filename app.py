@@ -12,6 +12,10 @@ def index():
 def menupage():
     return render_template("menu.html")
 
+@app.route('/menu/edit')
+def menueditpage():
+    return render_template("menu-staff.html")
+
 # all api calls /api
 app.register_blueprint(apiBlueprint)
 

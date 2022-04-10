@@ -1,0 +1,43 @@
+table{
+    position: relative;
+    border: 2px solid black;
+    border-radius: 10px;
+    width: 80%;
+    left:50%;
+    transform: translate(-50%,0%);
+}
+th{
+    color:pink;
+}
+tr:first-child {
+    background-color: magenta;
+    color: white;
+}
+tr:nth-child(even){
+    background-color: white;
+    color: magenta;
+}
+tr{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(245, 158, 245);
+    color: white;
+}
+.create-edit{
+    position: fixed;
+    border-radius: 10px;
+    border: 2px solid black;
+    top: 50%;
+    left: 50%;
+    display: none;
+    transform: translate(-50%, -50%);
+    background-color: aliceblue;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+}
+#additem{
+    align-content: center;
+    position: relative;
+    left: 80%;
+    transform: translate(-50%, 0%);
+}
