@@ -65,7 +65,7 @@ function createElement(id, itemName = "Item-name", description = "No description
 }
 
 async function addtoDB(itemArray) {
-    const response = await fetch("http://127.0.0.1:5000/api/menu/", {
+    const response = await fetch("/api/menu/", {
         method: 'POST',
         headers: {
             'Accept' : 'application/json',
@@ -79,7 +79,13 @@ async function addtoDB(itemArray) {
 }
 
 async function getfromDB() {
-    const response = await fetch('http://127.0.0.1:5000/api/menu/')
+    const response = await fetch('/api/menu/')
+    const data = await response.json()
+    return data['response']
+}
+
+async function getfromDBInd(id) {
+    const response = await fetch('http://127.0.0.1:5000/api/menu/' + id)
     const data = await response.json()
     return data['response']
 }
@@ -112,7 +118,7 @@ async function displayItems()  {
 
 async function deleteItem(id) {
     console.log("Attempted delete", id)
-    const response = await fetch("http://127.0.0.1:5000/api/menu/", {
+    const response = await fetch("/api/menu/"+String(id), {
         method: 'DELETE',
         headers: {
             'Accept' : 'application/json',
@@ -129,21 +135,22 @@ async function deleteItem(id) {
 async function editItem(id) {
     let diag = document.getElementById("creatediv")
     diag.style.display = "flex"
-
-    var item
-
     console.log("Attempted edit", id)
-    let items = await getfromDB()
-    items.forEach(element => {
-        if (element[0] == id) {
-            item = element
-        }
-    })
+    let item = await getfromDBInd(id)
     console.log(item)
-    //TODO:
-    // - Create edit frame (function)
-    // - Modify attributes from database (if not, erase and replace)
-    // - Update Items list.
+    fillTextboxes(item[1], item[3], item[2], item[4])
+    
+}
+
+//async function sendEdit(id)
+
+function fillTextboxes(name, description, imgsrc, price) {
+    document.getElementById("itemName").value = name       // Gets itemname from input.
+    document.getElementById("description").value = description       // Gets description from input.
+    document.getElementById("imglink").value = imgsrc       // Gets image link from input (Will be changed in future).
+    document.getElementById("price").value = price      // Gets price from input.
+
+
 }
 
 function eraseElements() {

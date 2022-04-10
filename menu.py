@@ -49,7 +49,7 @@ def getById(id):
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
     rows = cursor.execute("SELECT * FROM Menu WHERE id=?", (id,)) 
-    row = rows[0]
+    row = [row for row in rows][0]
     connection.close()
     return row
 

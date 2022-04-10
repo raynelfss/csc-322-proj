@@ -45,6 +45,12 @@ async function getfromDB() {
     return data['response']
 }
 
+async function getfromDBInd(id) {
+    const response = await fetch('http://127.0.0.1:5000/api/menu/' + id)
+    const data = await response.json()
+    return data['response']
+}
+
 async function displayItems()  {
     eraseElements()
     let items = await getfromDB() || [] 
@@ -140,14 +146,16 @@ async function editItem(id) {
     let diag = document.getElementById("creatediv")
     diag.style.display = "flex"
     console.log("Attempted edit", id)
-    let item = await getfromDB()
-    console.log(item, item[id])
+    let item = await getfromDBInd()
+    console.log(item)
+    
     //TODO:
-    // - Create edit frame (function)
     // - Modify attributes from database (if not, erase and replace)
     // - Update Items list.
     displayItems()
 }
+
+
 
 function openDiag(id) {
     let diag = document.getElementById(id)
