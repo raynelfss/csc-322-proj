@@ -1,7 +1,6 @@
 # Operations that make changes to menu in database
 import sqlite3
 
-
 def createTable():  # creates the table
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
@@ -16,8 +15,7 @@ def createTable():  # creates the table
     connection.commit()
     connection.close()
 
-
-def deleteTable():  # only used for testing purposes
+def deleteTable(): # only used for testing purposes
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
     command1 = "DROP TABLE Menu"
@@ -25,8 +23,7 @@ def deleteTable():  # only used for testing purposes
     connection.commit()
     connection.close()
 
-
-def add(name, img_url, description, price):  # adds items to table
+def add(name, img_url, description, price): # adds items to table
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
     cursor.execute("INSERT INTO Menu (name, img_url, description, price) VALUES (?,?,?,?)",
@@ -34,8 +31,7 @@ def add(name, img_url, description, price):  # adds items to table
     connection.commit()
     connection.close()
 
-
-def deleteById(id):  # deletes items in the table by id
+def deleteById(id): # deletes items in the table by id
     connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
     cursor.execute("DELETE FROM Menu WHERE id=?", (id,))
@@ -50,9 +46,12 @@ def deleteAll():
     connection.close()
 
 def getById(id):
-    # TODO:
-    # get and return item from Menu with id
-    pass
+    connection = sqlite3.connect('main.db')
+    cursor = connection.cursor()
+    rows = cursor.execute("SELECT * FROM Menu WHERE id=?", (id,)) 
+    row = rows[0]
+    connection.close()
+    return row
 
 def getAll():  # returns all items from Menu
     connection = sqlite3.connect('main.db')
@@ -61,3 +60,12 @@ def getAll():  # returns all items from Menu
     rowsOutput = [row for row in rows]
     connection.close()
     return rowsOutput
+
+def updateByID(id, name, img_url, description, price):
+    connection = sqlite3.connect('main.db')
+    cursor = connection.cursor()
+    print(id, name, img_url, description, price)
+    cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE id=?",
+                    (name, img_url, description, price, id), ) 
+    connection.commit()
+    connection.close()

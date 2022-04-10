@@ -30,9 +30,7 @@ async function addtoDB(itemArray) {
 
 function eraseElements() {
     let elements = document.getElementsByClassName("items") 
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]) 
-    }
+    while(elements.length > 0){ elements[0].parentNode.removeChild(elements[0]) }
 }
 
 function eraseUniqueElement(id) {
