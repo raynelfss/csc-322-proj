@@ -4,7 +4,7 @@ from api.index import apiBlueprint #imports apiBlueprint from ./api/index.py
 app = Flask(__name__, static_url_path='', static_folder="build", template_folder='build')
 
 @app.route('/')
-def index(): return render_template("index.html")
+def index(): return render_template("main.html")
 
 @app.route('/menu')
 def menupage(): return render_template("menu.html")

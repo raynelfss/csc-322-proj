@@ -1,6 +1,6 @@
 body {
     font-family: sans-serif;
-    background: linear-gradient(-45deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
+    background: linear-gradient(-90deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
     position:relative;
     animation: change 10s alternate infinite;
 }
@@ -17,17 +17,17 @@ body {
     }
 }
 .container {
-    margin-top:50px;
-    margin-left:50px;
+    /* margin-top:50px;
+    margin-left:50px; */
     width:300px;
     padding: 30px;
-    position: absolute;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
     transition: hover 0.3s;
     background:white;
     border-radius:24px;
-    
-
-
 }
 
 .box h3 {
@@ -148,7 +148,6 @@ body {
     color: White;
     border-radius: 10px;
     cursor: pointer;
-
 }
 
 .register:hover{
@@ -160,8 +159,6 @@ body {
 }
 
 .pic {
-    border-radius: 100px;
-    margin-left:175px;
-    margin-top:30px;
-    margin-bottom: -30px;
+    margin-left: 50%;
+    transform: translate(-50%,0);
 }
