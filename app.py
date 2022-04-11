@@ -12,6 +12,12 @@ def menupage(): return render_template("menu.html")
 @app.route('/menu/edit')
 def menueditpage(): return render_template("menu-staff.html")
 
+@app.route('/login')
+def login(): return render_template("userlogin.html")
+
+@app.route('/register')
+def register(): return render_template("register.html")
+
 # all api calls /api
 app.register_blueprint(apiBlueprint)
 
