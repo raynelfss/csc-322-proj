@@ -74,6 +74,7 @@ function createElement(id, itemName = "Item-name", description = "No description
         image.src = imageSrc    // Set source of image as url from imagesrc
         image.setAttribute("width","200px")  // Set width to 200px.
         image.setAttribute("height","200px") // Set height to 200px.
+        image.classList.add("menu-img")
         innerdiv.appendChild(image)          // Appends image to the inner div.
     }
 
@@ -82,18 +83,10 @@ function createElement(id, itemName = "Item-name", description = "No description
     name.classList = "header1"   // Sets class of h1 as header1.
     innerdiv.appendChild(name)   // Adds name to inner div.
 
-    let div1 =  document.createElement("hr") // Creates a divider line using "hr"
-    div1.classList.add("line")   // Adds hr to line class.
-    innerdiv.appendChild(div1)   // Appends div1 line to innerdiv.
-
     let desc = document.createElement("p")  // Creates description paragraph using p.
     desc.appendChild(document.createTextNode(description)) // Appends paragraph text from description arg.
     desc.classList = "p2"   // Adds object to p2 class.
     innerdiv.appendChild(desc) // Appends object to innerdiv.
-
-    let div2 =  document.createElement("hr") // Creates a divider line using "hr"
-    div2.classList.add("line")   // Adds hr to line class.
-    innerdiv.appendChild(div2)  // Appends div1 line to innerdiv.
 
     let pric =  document.createElement("p") // Creates price text using p
     pric.appendChild(document.createTextNode(price)) // Appends paragraph text from price arg.
@@ -103,15 +96,11 @@ function createElement(id, itemName = "Item-name", description = "No description
     let div3 = document.createElement("div")
     div3.classList = "div"
     
-    let button1 = document.createElement("button")
-    button1.append(document.createTextNode("Edit"))
-    button1.onclick = function(){ editItem(id) }
-    div3.appendChild(button1)
+    let add = document.createElement("button")
+    add.classList.add("addtocart")
+    add.appendChild(document.createTextNode("Add to cart"))
+    div3.appendChild(add)
 
-    let button2 =  document.createElement("button")
-    button2.append(document.createTextNode("Delete"))
-    button2.onclick = function(){ deleteItem(id) }
-    div3.appendChild(button2)
     innerdiv.appendChild(div3)
 
     element.appendChild(innerdiv)  // Appends the inner div to the item object.
