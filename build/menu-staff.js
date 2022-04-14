@@ -99,6 +99,8 @@ function openDiag(motive, buttonText, id = false) {
         actbutton.onclick = addElementtoTable
     }
     diag.style.display = 'flex'
+
+    let
 }
 
 function closeDiag() {

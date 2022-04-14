@@ -20,19 +20,23 @@
                 <th></th>
             </tr>
         </table>
-        <div class="create-edit", id="creatediv">
-            <h3 id="subject">Create new item:</h3>
-            <label for="itemName">Name of item</label>
-            <input type="text" id="itemName" name="itemName"> <br>
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" rows="4"></textarea> <br>
-            <!-- <input type="text" id="description" name="description" class="desc"> <br> -->
-            <label for="imglink">Image:</label>
-            <input type="url" id="imglink" name="imglink"> <br>
-            <label for="price">Price:</label>
-            <input type="text" id="price" name="price"> <br>
-            <button onclick="addElementtoTable()", id="editorcreate">Add</button>
-            <button onclick="closeDiag()">Cancel</button>
+        <div class="cover">
+            <div class="create-edit", id="creatediv">
+                <h3 id="subject">Create new item:</h3>
+                <label for="itemName">Name of item</label>
+                <input type="text" id="itemName" name="itemName"> <br>
+                <label for="description">Description:</label>
+                <textarea id="description" name="description" rows="4" maxlength="250" inputmode="latin" ></textarea> <br>
+                <!-- <input type="text" id="description" name="description" class="desc"> <br> -->
+                <label for="imglink">Image:</label>
+                <input type="url" id="imglink" name="imglink"> <br>
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price"> <br>
+                <div id="buttons">
+                    <button onclick="addElementtoTable()", id="editorcreate">Add</button>
+                    <button onclick="closeDiag()">Cancel</button>
+                </div>
+            </div>
         </div>
     </body>
     <script src="/menu-staff.js"></script>
