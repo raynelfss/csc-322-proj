@@ -1,0 +1,103 @@
+body {
+    font-family: sans-serif;
+    background: linear-gradient(-45deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: change 10s alternate infinite;
+    text-align: center;
+}
+.frame{
+    margin: 0%;
+    padding: 0%;
+}
+@keyframes change{
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.itembar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1%;
+    background-color: rgb(0,0,0,70%);
+}
+.options{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+}
+a{
+    text-decoration: none;
+    color: white;
+    transition: hover 0.3s;
+    padding: 5px 40px;
+}
+
+a:hover{
+    color: black;
+    border-radius: 10px;
+    background:linear-gradient(-45deg, rgba(255, 255, 255, 0.7), rgba(255, 147, 165, 0.5));
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: change 5s alternate infinite;
+}
+
+.item-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 40px;
+    flex-wrap: wrap;
+}
+
+.items {
+    background-color: rgb(172, 215, 255, 50%);
+    border-radius: 10px;
+    margin: 5px 10px;
+    width: 250px;
+    /* height: 420px; */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: hover 0.7s;
+}
+.items:hover{
+    background:linear-gradient(-45deg, rgba(255, 255, 255, 0.7), rgba(255, 147, 165, 0.5));
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: change 5s alternate infinite;
+}
+.menu-img {
+    border-radius: 100%;
+}
+
+.div {
+    text-align: center;
+    margin: 20px 10px;
+}
+
+.header1 {
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+.addtocart{
+    background-color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    transition: hover 1s;
+}
+.addtocart:hover{
+    background-color: rgb(253, 229, 233);
+}
