@@ -5,8 +5,11 @@
         <link href="/menu-staff.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>List of items:</h1>
-        <button id="additem" onclick="openDiag('Create item:','Create')">Add item</button>
+        <div class="header">
+            <img src="./Img resources/Logo.png" width="200px">
+            <h1>List of items:</h1>
+            <button id="additem" onclick="openDiag('Create item:','Create')">Add item</button>
+        </div>
         <table class="ptable", id="ptable">
             <tr>
                 <th>ItemId</th>
@@ -22,7 +25,8 @@
             <label for="itemName">Name of item</label>
             <input type="text" id="itemName" name="itemName"> <br>
             <label for="description">Description:</label>
-            <input type="text" id="description" name="description"> <br>
+            <textarea id="description" name="description" rows="4"></textarea> <br>
+            <!-- <input type="text" id="description" name="description" class="desc"> <br> -->
             <label for="imglink">Image:</label>
             <input type="url" id="imglink" name="imglink"> <br>
             <label for="price">Price:</label>

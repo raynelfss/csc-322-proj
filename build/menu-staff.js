@@ -33,6 +33,7 @@ function createElement(id, itemName = "Item-name", description = "No description
     element.appendChild(pric)          // Appends price to inner div.
     
     let action = document.createElement("td")
+    action.classList.add("buttonv")
 
     let button1 =  document.createElement("button")
     button1.append(document.createTextNode("Edit"))
