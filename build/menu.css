@@ -40,14 +40,14 @@ body {
     justify-content: space-evenly;
 }
 
-a{
+.navbuttons{
     text-decoration: none;
     color: white;
     transition: hover 0.3s;
     padding: 5px 40px;
 }
 
-a:hover{
+.navbuttons:hover{
     color: black;
     border-radius: 10px;
     background:linear-gradient(-45deg, rgba(255, 255, 255, 0.7), rgba(255, 147, 165, 0.5));

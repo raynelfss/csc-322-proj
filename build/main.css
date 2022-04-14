@@ -68,17 +68,17 @@ body {
 }
 .itembar{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     padding: 1%;
     background-color: rgb(0,0,0,70%);
-    margin: 0%;
 }
+
 .options{
     display: flex;
     flex-direction: row;
-    width: 100%;
+    /* width: 100%; */
     justify-content: space-evenly;
 }
 
@@ -126,14 +126,14 @@ body {
 
 }
 */
-a{
+.navbuttons{
     text-decoration: none;
     color: white;
     transition: hover 0.3s;
     padding: 5px 40px;
 }
 
-a:hover{
+.navbuttons:hover{
     color: black;
     border-radius: 10px;
     background:linear-gradient(-45deg, rgba(255, 255, 255, 0.7), rgba(255, 147, 165, 0.5));
