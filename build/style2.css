@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif;
+    /* font-family: 'Times New Roman', Times, serif; */
     background: linear-gradient(-90deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
     position: relative;
     animation: change 10s alternate infinite;
@@ -65,18 +65,163 @@ body {
 
 }
 .itembar{
-    display: flex;
+    margin-top:-10px;/* fixing space gap for itembar */
     flex-direction: column;
     justify-content: center;
     padding: 1%;
-    background-color: rgb(255,255,255,70%);
+    background-color: rgba(57, 57, 57, 0.7);
 }
 .options{
-    display: flex;
+    display:inline-block;
     flex-direction: column;
     justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+    font-family: "Lucida Console", "Courier New", monospace;
+    
+    
 }
 
+.hometab {
+    border: none;
+    float: left;
+    cursor: pointer;
+    background-color: inherit;
+    font-size: 25px;
+    color: rgba(249, 249, 249, 0.873);
+    transition: 0.3s;
+    margin-right:30px;
+    margin-left:30px;
+    margin-bottom:10px;
+
+}
+
+.hometab:hover{
+    color: rgba(249, 174, 174, 0.873);
+}
+
+
+.menutab {
+    border: none;
+    float: left;
+    cursor: pointer;
+    background-color: inherit;
+    font-size: 25px;
+    color: rgba(249, 249, 249, 0.873);
+    transition: 0.3s;
+    margin-right:30px;
+
+}
+
+.menutab:hover{
+    color: rgba(249, 174, 174, 0.873);
+}
+
+.contacttab {
+    border: none;
+    float: left;
+    cursor: pointer;
+    background-color: inherit;
+    font-size: 25px;
+    color: rgba(249, 249, 249, 0.873);
+    transition: 0.3s;
+    margin-right:30px;
+
+}
+
+.contacttab:hover{
+    color: rgba(249, 174, 174, 0.873);
+}
+
+
+
+.loginregtab {
+    border: none;
+    cursor: pointer;
+    background-color: inherit;
+    font-size: 25px;
+    color: rgba(249, 249, 249, 0.873);
+    transition: 0.3s;
+    margin-right:30px;
+    
+
+}
+
+.loginregtab:hover{
+    color: rgba(249, 174, 174, 0.873);
+}
+
+.img {
+    width: 100%;
+    display: block;
+
+}
+
+.alltext {
+    position:absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color:white;
+    font-size: 70px;
+}
+
+.title {
+    font-weight: bold;
+    text-align:center;
+}
+
+.caption {
+    text-align:center;
+    font-size: 30px;
+}
+
+.whitebar {
+    background-color: white;
+    text-align:center;
+    /* align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    padding: 100px;
+}
+
+.alltext2{
+    
+}
+
+.title2 {
+    font-weight: bold;
+    font-size: 50px;
+    color: rgba(24, 24, 24, 0.818);
+}
+
+.caption2 {
+    font-size: 30px;
+    padding-bottom: 30px;
+    color: rgba(58, 58, 58, 0.818);
+}
+
+.img1 {
+    border-radius: 20px;
+    height:350px;
+    /* transform: translate(-50%,0); */
+
+}
+
+.cap3container{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.caption3 {
+    font-size:20px;
+    color: rgba(58, 58, 58, 0.818);
+    margin-left:30px;
+    /* transform: translate(53%, -600%); */
+    
+}
 /*
 .box input[type = "submit"]{
     border: 0;
