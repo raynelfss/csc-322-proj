@@ -1,19 +1,21 @@
 body {
-    /* font-family: 'Times New Roman', Times, serif; */
-    background: linear-gradient(-90deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
-    position: relative;
+    font-family: sans-serif;
+    background: linear-gradient(-45deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
+    background-size: 400% 400%;
+    background-attachment: fixed;
     animation: change 10s alternate infinite;
+    text-align: center;
 }
 
 @keyframes change{
-    0%{
+    0% {
         background-position: 0% 50%;
     }
-    50%{
+    50% {
         background-position: 100% 50%;
     }
-    100%{
-        background-position: 0 50%;
+    100% {
+        background-position: 0% 50%;
     }
 }
 .container {
@@ -65,86 +67,19 @@ body {
 
 }
 .itembar{
-    margin-top:-10px;/* fixing space gap for itembar */
-    flex-direction: column;
-    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
     padding: 1%;
-    background-color: rgba(57, 57, 57, 0.7);
+    background-color: rgb(0,0,0,70%);
 }
+
 .options{
-    display:inline-block;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    margin: 0 auto;
-    font-family: "Lucida Console", "Courier New", monospace;
-    
-    
-}
-
-.hometab {
-    border: none;
-    float: left;
-    cursor: pointer;
-    background-color: inherit;
-    font-size: 25px;
-    color: rgba(249, 249, 249, 0.873);
-    transition: 0.3s;
-    margin-right:30px;
-    margin-left:30px;
-    margin-bottom:10px;
-
-}
-
-.hometab:hover{
-    color: rgba(249, 174, 174, 0.873);
-}
-
-
-.menutab {
-    border: none;
-    float: left;
-    cursor: pointer;
-    background-color: inherit;
-    font-size: 25px;
-    color: rgba(249, 249, 249, 0.873);
-    transition: 0.3s;
-    margin-right:30px;
-
-}
-
-.menutab:hover{
-    color: rgba(249, 174, 174, 0.873);
-}
-
-.contacttab {
-    border: none;
-    float: left;
-    cursor: pointer;
-    background-color: inherit;
-    font-size: 25px;
-    color: rgba(249, 249, 249, 0.873);
-    transition: 0.3s;
-    margin-right:30px;
-
-}
-
-.contacttab:hover{
-    color: rgba(249, 174, 174, 0.873);
-}
-
-
-
-.loginregtab {
-    border: none;
-    cursor: pointer;
-    background-color: inherit;
-    font-size: 25px;
-    color: rgba(249, 249, 249, 0.873);
-    transition: 0.3s;
-    margin-right:30px;
-    
-
+    display: flex;
+    flex-direction: row;
+    /* width: 100%; */
+    justify-content: space-evenly;
 }
 
 .loginregtab:hover{
@@ -184,10 +119,6 @@ body {
     flex-direction: column;
     justify-content: center; */
     padding: 100px;
-}
-
-.alltext2{
-    
 }
 
 .title2 {
@@ -266,9 +197,22 @@ body {
 
 }
 */
-a{
+.navbuttons{
     text-decoration: none;
+    color: white;
+    transition: hover 0.3s;
+    padding: 5px 40px;
 }
+
+.navbuttons:hover{
+    color: black;
+    border-radius: 10px;
+    background:linear-gradient(-45deg, rgba(255, 255, 255, 0.7), rgba(255, 147, 165, 0.5));
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: change 5s alternate infinite;
+}
+
 .login {
     border: 0;
     background: none;

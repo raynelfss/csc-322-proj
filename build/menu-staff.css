@@ -1,19 +1,26 @@
+body {
+    font-family: sans-serif;
+    background-color:rgb(255, 228, 233);
+    background-size: 100%;
+    background-attachment: fixed;
+    text-align: center;
+}
 table {
     position: relative;
-    border: 2px solid black;
-    border-radius: 10px;
+    border: 2px solid rgb(133, 126, 127);
+    border-radius: 5px;
     width: 80%;
     left:50%;
     transform: translate(-50%,0%);
 }
 
 th {
-    color:pink;
+    color: black;
+    padding: 10px;
 }
 
 tr:first-child {
-    background-color: magenta;
-    color: white;
+    background-color: rgb(255, 106, 188);
 }
 
 tr:nth-child(even){
@@ -22,28 +29,71 @@ tr:nth-child(even){
 }
 
 tr {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: rgb(245, 158, 245);
     color: white;
+    padding: 10px;
 }
 
 .create-edit {
     position: fixed;
     border-radius: 10px;
-    border: 2px solid black;
+    border: 5px solid pink;
+    width: 350px;
     top: 50%;
     left: 50%;
     display: none;
     transform: translate(-50%, -50%);
-    background-color: aliceblue;
+    background-color: rgb(255, 230, 244);
     flex-direction: column;
-    justify-content: flex-start;
-    padding: 40px;
+    justify-content: left;
+    /* align-items: left; */
+    text-align: left;
+    padding: 20px;
 }
 
-#additem {
-    align-content: center;
-    position: relative;
-    left: 80%;
-    transform: translate(-50%, 0%);
+button{
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(66, 51, 54);
+    border-radius: 10px;
+    padding: 5px 10px;
+    transition: hover 1s;
+}
+
+button:hover{
+    background-color: rgb(253, 229, 233);
+}
+
+input{
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+}
+
+textarea{
+    border-radius: 10px;
+    border: none;
+    padding: 5px;
+    resize: none;
+    font-family: sans-serif;
+}
+/* Custom classes */
+.header{
+    margin: 20px;
+}
+.buttonv{
+    padding: 10px;
+}
+.desc{
+    /* height: 100px; */
+}
+#buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.cover{
+    width:100%;
+    height: 100%;
+    color: rgb(66, 51, 54), 40%;
+    display: none;
 }

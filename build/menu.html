@@ -1,36 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Denisse's</title>
-        <link href="./styles.css" rel="stylesheet" type="text/css"/>
+        <meta charset = "utf-8">
+        <title>Menu</title>
+        <link href="./menu.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div>
-            <h1 class="blu">Denisse's Cafe</h1>
-            <div>
-                <a href="/menu">Menu</a>
-                <a href="https://www.google.com">Google</a>
+        <div class="frame">
+            <div class="itembar">
+                <a href="/"><img src="./Img resources/Logo.png" width="200px"></a>
+                <div class="options">
+                    <a href="/" class="navbuttons">Home</a>
+                    <a href="/about" class="navbuttons">About</a>
+                    <a href="/about" class="navbuttons">Shopping Cart</a>
+                    <a href="/login" class="navbuttons">Login / Register</a>
+                </div>
             </div>
         </div>
         <div>
-            <h2>Here's the menu</h2>
-            <button id="additem" onclick="openDiag('creatediv')">Add item</button>
+            <h2>Menu:</h2>
             <div class="item-bar" id="item-list"></div>
         </div>
-        <div class="create-edit", id="creatediv">
-            <h3>Create new item:</h3>
-            <label for="itemName">Name of item</label>
-            <input type="text" id="itemName" name="itemName"> <br>
-            <label for="description">Description:</label>
-            <input type="text" id="description" name="description"> <br>
-            <label for="imglink">Image:</label>
-            <input type="url" id="imglink" name="imglink"> <br>
-            <label for="price">Price:</label>
-            <input type="text" id="price" name="price"> <br>
-            <button onclick="addElementtoItemBar()">Add</button>
-            <button onclick="closeDiag('creatediv')">Cancel</button>
-        </div>
-        <!--Hello world-->
     </body>
     <script src="./index.js"></script>
 </html>
