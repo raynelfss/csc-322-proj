@@ -1,17 +1,18 @@
 body {
     font-family: sans-serif;
-    background-color:rgb(255, 228, 233);
+    background-color: rgb(255, 228, 233);
     background-size: 100%;
     background-attachment: fixed;
     text-align: center;
 }
+
 table {
     position: relative;
     border: 2px solid rgb(133, 126, 127);
     border-radius: 5px;
     width: 80%;
-    left:50%;
-    transform: translate(-50%,0%);
+    left: 50%;
+    transform: translate(-50%, 0%);
 }
 
 th {
@@ -23,7 +24,7 @@ tr:first-child {
     background-color: rgb(255, 106, 188);
 }
 
-tr:nth-child(even){
+tr:nth-child(even) {
     background-color: white;
     color: magenta;
 }
@@ -51,7 +52,7 @@ tr {
     padding: 20px;
 }
 
-button{
+button {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(66, 51, 54);
     border-radius: 10px;
@@ -59,40 +60,44 @@ button{
     transition: hover 1s;
 }
 
-button:hover{
+button:hover {
     background-color: rgb(253, 229, 233);
 }
 
-input{
+input {
     border-radius: 10px;
     border: none;
     padding: 5px;
 }
 
-textarea{
+textarea {
     border-radius: 10px;
     border: none;
     padding: 5px;
     resize: none;
     font-family: sans-serif;
 }
+
 /* Custom classes */
-.header{
+.header {
     margin: 20px;
 }
-.buttonv{
+
+.buttonv {
     padding: 10px;
 }
-.desc{
-    /* height: 100px; */
-}
-#buttons{
+
+/* .desc{
+    height: 100px;
+} */
+#buttons {
     display: flex;
     flex-direction: row;
     justify-content: center;
 }
-.cover{
-    width:100%;
+
+.cover {
+    width: 100%;
     height: 100%;
     color: rgb(66, 51, 54), 40%;
     display: none;
