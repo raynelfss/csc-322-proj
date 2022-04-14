@@ -1,19 +1,30 @@
 import sqlite3
-from colorama import Cursor
 
-def createLoginTable():  # creates the table
-    connection = sqlite3.connect('login.db')
+def getConnection(): # helper function that saves lines
+    connection = sqlite3.connect('main.db')
     cursor = connection.cursor()
+    return connection, cursor
+
+def createUserTable():  # creates a table for all users
+    connection, cursor = getConnection()
     command1 = """CREATE TABLE IF NOT EXISTS login(
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                username TEXT, password TEXT)"""
+                username UNIQUE TEXT, password TEXT)"""
     cursor.execute(command1)
     connection.commit()
     connection.close()
 
-def login():  # backend support for login
-    db = sqlite3.connect('login.sqlite')
-    db.execute('CREATE TABLE IF NOT EXISTS login(username TEXT, password TEXT')
-    db.execute("INSERT INTO login (username, password) VALUES('admin', 'admin')")
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM login where username=? AND password=?", ())
+def login(username): # looks for existing users
+    connection, cursor = getConnection()
+    rows = cursor.execute("SELECT * FROM Menu WHERE username=?", (username,)) 
+    row = [row for row in rows][0]
+    connection.close()
+    return row # returns a user's info based on the username
+
+def register(username, password): # registers new users
+    connection, cursor = getConnection()
+    cursor.execute("INSERT INTO login (username, password) VALUES (?,?)",
+                    (username, password))
+    connection.commit()
+    connection.close()
+    
