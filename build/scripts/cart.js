@@ -90,22 +90,16 @@ const hideCart = () => {
 }
 
 const refreshCart = () => {
-    hideCart();
-    displayCart();
+    hideCart(); displayCart();
 }
 
 const getCart = () => {
     let cart = localStorage.getItem('cart');
     if (!cart) {
-        cart = {
-            items: [],
-            total: 0
-        }
+        cart = { items: [], total: 0 }
         localStorage.setItem('cart', JSON.stringify(cart));
     }
-    else {
-        cart = JSON.parse(cart);
-    }
+    else { cart = JSON.parse(cart); }
     return cart;
 }
 
@@ -128,13 +122,9 @@ const removeCartItem = (itemID) => {
     refreshCart();
 }
 const updateItemQuantity = (itemID, newQuantity) => {
-    if (newQuantity == 0) {
-        removeCartItem(itemID);
-        return;
-    }
-    if (newQuantity > 10) {
-        return;
-    }
+    if (newQuantity == 0) { removeCartItem(itemID); return; }
+    if (newQuantity > 10) { return; }
+
     let cart = getCart();
     let i = cart.items.findIndex(({ id }) => id == itemID);
     if (i > -1) {
@@ -147,9 +137,7 @@ const updateItemQuantity = (itemID, newQuantity) => {
 
 const getCartTotal = (items) => {
     let total = 0;
-    items.forEach(item => {
-        total += item.price * item.quantity;
-    });
+    items.forEach(item => { total += item.price * item.quantity; });
     return total;
 }
 

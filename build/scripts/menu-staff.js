@@ -4,17 +4,13 @@ function addElementtoTable() {        // Function adds an element to the item ba
     closeDiag("creatediv")
 }
 
-
-
 function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined ) {
     let element = document.createElement("tr")         // Creates a div element with class items.
     element.classList = "item"
 
     let ident = document.createElement("td")
     ident.appendChild(document.createTextNode(id))
-    element.appendChild(ident)
-    
-    
+    element.appendChild(ident)    
 
     let name =  document.createElement("td")        // Name will have format h1.
     name.appendChild(document.createTextNode(itemName))         // Appends the text as child.
@@ -91,16 +87,12 @@ function openDiag(motive, buttonText, id = false) {
 
     let diag = document.getElementById('creatediv')
     if (id) {
-        actbutton.onclick = function(){
-            editItem(id)
-        }
+        actbutton.onclick = function(){ editItem(id) }
     }
-    else {
-        actbutton.onclick = addElementtoTable
-    }
+    else { actbutton.onclick = addElementtoTable }
     diag.style.display = 'flex'
 
-    let
+    // let
 }
 
 function closeDiag() {
@@ -156,7 +148,6 @@ async function editDiag(id) {
     fillTextboxes(item[1], item[3], item[2], item[4])
 }
 
-
 async function sendEdittoDB(id, item) {
     const response = await fetch('/api/menu/' + String(id), {
         method: 'PUT',
@@ -177,7 +168,6 @@ function parseIntoDict() {        // Function adds an element to the item bar. U
     let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
     let price = document.getElementById("price").value      // Gets price from input.
     
-    
     itemName.value =  '' 
     desc.value = '' 
     imgsrc.value = ''  
@@ -195,9 +185,7 @@ function fillTextboxes(name, description, imgsrc, price) {
 
 function eraseElements() {
     let elements = document.getElementsByClassName("item") 
-    while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]) 
-    }
+    while(elements.length > 0){ elements[0].parentNode.removeChild(elements[0]) }
 }
 
 function eraseUniqueElement(id) {
