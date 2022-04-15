@@ -80,11 +80,13 @@ const displayCart = () => {
     const overlay = cE('div', { class: 'overlay', onclick: 'hideCart()' });
     const cartContainer = createCartContainer(cart)
     appendChildren(body, [overlay, cartContainer])
+    body.classList.add('noscroll')
 }
 
 const hideCart = () => {
     document.getElementsByClassName('overlay')[0].remove();
     document.getElementsByClassName('cart-container')[0].remove();
+    document.getElementsByTagName('body')[0].classList.remove('noscroll');
 }
 
 const refreshCart = () => {
@@ -121,6 +123,7 @@ const addCartItem = (id, name, price, img_url, quantity) => {
 const removeCartItem = (itemID) => {
     let cart = getCart();
     cart.items = cart.items.filter(({ id }) => id != itemID);
+    cart.total = getCartTotal(cart.items);
     localStorage.setItem('cart', JSON.stringify(cart));
     refreshCart();
 }
