@@ -4,6 +4,8 @@
         <meta charset = "utf-8">
         <title>Menu</title>
         <link href="./styles/menu.css" rel="stylesheet" type="text/css"/>
+        <link href="./styles/cart.css" rel="stylesheet" type="text/css"/>
+
     </head>
     <body>
         <div class="frame">
@@ -12,7 +14,7 @@
                 <div class="options">
                     <a href="/" class="navbuttons">Home</a>
                     <a href="/about" class="navbuttons">About</a>
-                    <a href="/about" class="navbuttons">Shopping Cart</a>
+                    <a class="navbuttons" onclick="displayCart()">Shopping Cart</a>
                     <a href="/login" class="navbuttons">Login / Register</a>
                 </div>
             </div>
@@ -23,4 +25,6 @@
         </div>
     </body>
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/cart.js"></script>
+
 </html>

@@ -1,19 +1,21 @@
-function addElementtoTable(){        // Function adds an element to the item bar. Uses createElement() function.
+// import { addCartItem } from './cart';
+
+function addElementtoTable() {        // Function adds an element to the item bar. Uses createElement() function.
     let itemName = document.getElementById("itemName").value        // Gets itemname from input.
     let desc = document.getElementById("description").value         // Gets description from input.
     let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
     let price = document.getElementById("price").value      // Gets price from input.
-    
-    itemName.value =  '' 
-    desc.value = '' 
-    imgsrc.value = ''  
-    price.value = '' 
-    let data = {'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price}  // Gathers all the data into an array.
+
+    itemName.value = ''
+    desc.value = ''
+    imgsrc.value = ''
+    price.value = ''
+    let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }  // Gathers all the data into an array.
     addtoDB(data)
     closeDiag("creatediv")
 }
 
-async function addtoDB(itemArray){
+async function addtoDB(itemArray) {
     const response = await fetch("/api/menu/", {
         method: 'POST',
         headers: {
@@ -27,58 +29,58 @@ async function addtoDB(itemArray){
     displayItems()
 }
 
-function eraseElements(){
-    let elements = document.getElementsByClassName("items") 
-    while(elements.length > 0){ elements[0].parentNode.removeChild(elements[0]) }
+function eraseElements() {
+    let elements = document.getElementsByClassName("items")
+    while (elements.length > 0) { elements[0].parentNode.removeChild(elements[0]) }
 }
 
-function eraseUniqueElement(id){
+function eraseUniqueElement(id) {
     let element = document.getElementById(id)
     console.log(element)
     element.remove()
 }
 
-async function getfromDB(){
+async function getfromDB() {
     const response = await fetch('/api/menu/')
     const data = await response.json()
     return data['response']
 }
 
-async function getfromDBInd(id){
+async function getfromDBInd(id) {
     const response = await fetch('/api/menu/' + id)
     const data = await response.json()
     return data['response']
 }
 
-async function displayItems(){
+async function displayItems() {
     eraseElements()
-    let items = await getfromDB() || [] 
+    let items = await getfromDB() || []
     let itembar = document.getElementById("item-list")     // Uses item-list by calling its id.
 
     items.forEach(element => {
-        console.log(element[0]) 
-        let frame = createElement(element[0], element[1], element[3], element[4], element[2]) 
-        itembar.appendChild(frame) 
-    }) 
+        console.log(element[0])
+        let frame = createElement(element[0], element[1], element[3], element[4], element[2])
+        itembar.appendChild(frame)
+    })
 }
 
-function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined){
+function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined) {
     let element = document.createElement("div")  // Creates a div element with class items.
     element.classList.add("items", "div")        // div is now part of class items.
 
     let innerdiv = document.createElement("div") // Creates inner diviser for the many object inside item.
     innerdiv.classList = "div"
 
-    if (imageSrc != undefined){ // If imagesrc is not undefined.
-        let image =  document.createElement("img") // An image object is created.
+    if (imageSrc != undefined) { // If imagesrc is not undefined.
+        let image = document.createElement("img") // An image object is created.
         image.src = imageSrc    // Set source of image as url from imagesrc
-        image.setAttribute("width","200px")  // Set width to 200px.
-        image.setAttribute("height","200px") // Set height to 200px.
+        image.setAttribute("width", "200px")  // Set width to 200px.
+        image.setAttribute("height", "200px") // Set height to 200px.
         image.classList.add("menu-img")
         innerdiv.appendChild(image)          // Appends image to the inner div.
     }
 
-    let name =  document.createElement("h1")  // Name will have format h1.
+    let name = document.createElement("h1")  // Name will have format h1.
     name.appendChild(document.createTextNode(itemName)) // Appends the text as child.
     name.classList = "header1"   // Sets class of h1 as header1.
     innerdiv.appendChild(name)   // Adds name to inner div.
@@ -88,17 +90,18 @@ function createElement(id, itemName = "Item-name", description = "No description
     desc.classList = "p2"   // Adds object to p2 class.
     innerdiv.appendChild(desc) // Appends object to innerdiv.
 
-    let pric =  document.createElement("p") // Creates price text using p
+    let pric = document.createElement("p") // Creates price text using p
     pric.appendChild(document.createTextNode(price)) // Appends paragraph text from price arg.
     pric.classList = "p3"  // Adds paragraph to class p3.
     innerdiv.appendChild(pric)  // Appends price to inner div.
 
     let div3 = document.createElement("div")
     div3.classList = "div"
-    
+
     let add = document.createElement("button")
     add.classList.add("addtocart")
     add.appendChild(document.createTextNode("Add to cart"))
+    add.setAttribute('onclick', `addCartItem(${id}, '${itemName}', ${price}, '${imageSrc}', 1)`)
     div3.appendChild(add)
 
     innerdiv.appendChild(div3)
@@ -110,7 +113,7 @@ function createElement(id, itemName = "Item-name", description = "No description
     return element  // Return item.
 }
 
-async function deleteItem(id){
+async function deleteItem(id) {
     console.log("Attempted delete", id)
     const response = await fetch("http://127.0.0.1:5000/api/menu/", {
         method: 'DELETE',
@@ -126,30 +129,30 @@ async function deleteItem(id){
     //displayItems()
 }
 
-async function editItem(id){
+async function editItem(id) {
     let diag = document.getElementById("creatediv")
     diag.style.display = "flex"
     let subject = document.getElementById
     console.log("Attempted edit", id)
     let item = await getfromDBInd()
     console.log(item)
-    
+
     //TODO:
     // - Modify attributes from database (if not, erase and replace)
     // - Update Items list.
     displayItems()
 }
 
-function openDiag(id){
+function openDiag(id) {
     let diag = document.getElementById(id)
     diag.style.display = 'flex'
 }
 
-function closeDiag(id){
-    document.getElementById("itemName").value =  '' 
-    document.getElementById("description").value = '' 
-    document.getElementById("imglink").value = ''  
-    document.getElementById("price").value = '' 
+function closeDiag(id) {
+    document.getElementById("itemName").value = ''
+    document.getElementById("description").value = ''
+    document.getElementById("imglink").value = ''
+    document.getElementById("price").value = ''
     let diag = document.getElementById(id)
     diag.style.display = 'none'
 }
