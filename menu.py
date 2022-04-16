@@ -1,5 +1,5 @@
 # Operations that make changes to menu in database
-import sqlite3
+import sqlite3 # database
 
 def getConnection(): # helper function that saves lines
     connection = sqlite3.connect('main.db')
@@ -29,19 +29,19 @@ def add(name, img_url, description, price): # adds items to table
     connection.commit()
     connection.close()
 
-def deleteById(id): # deletes items in the table by id
+def deleteById(id): # deletes a specific item
     connection, cursor = getConnection()
     cursor.execute("DELETE FROM Menu WHERE id=?", (id,))
     connection.commit()
     connection.close()
 
-def deleteAll():
+def deleteAll(): # deletes all items
     connection, cursor = getConnection()
     cursor.execute("DELETE FROM Menu")
     connection.commit()
     connection.close()
 
-def getById(id):
+def getById(id): # returns a specific item
     connection, cursor = getConnection()
     rows = cursor.execute("SELECT * FROM Menu WHERE id=?", (id,)) 
     row = [row for row in rows][0]
@@ -55,7 +55,7 @@ def getAll():  # returns all items from Menu
     connection.close()
     return rowsOutput
 
-def updateByID(id, name, img_url, description, price):
+def updateByID(id, name, img_url, description, price): # updates specific items
     connection, cursor = getConnection()
     print(id, name, img_url, description, price)
     cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE id=?",
