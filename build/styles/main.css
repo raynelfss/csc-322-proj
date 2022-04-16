@@ -86,19 +86,14 @@ body {
     color: rgba(249, 174, 174, 0.873);
 }
 
-.img {
-    width: 100%;
-    display: block;
-
-}
-
 .alltext {
-    position:absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-image: url("/imgs/homeimg.png");
+    background-attachment: fixed;
+    background-size: cover;
+    height: 450px;
     color:white;
-    font-size: 70px;
+    font-size: 40px;
+    padding: 20px;
 }
 
 .title {
@@ -114,10 +109,6 @@ body {
 .whitebar {
     background-color: white;
     text-align:center;
-    /* align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; */
     padding: 100px;
 }
 
@@ -135,9 +126,7 @@ body {
 
 .img1 {
     border-radius: 20px;
-    height:350px;
-    /* transform: translate(-50%,0); */
-
+    object-fit: cover;
 }
 
 .cap3container{
@@ -150,53 +139,8 @@ body {
     font-size:20px;
     color: rgba(58, 58, 58, 0.818);
     margin-left:30px;
-    /* transform: translate(53%, -600%); */
-    
+    text-align: left;    
 }
-/*
-.box input[type = "submit"]{
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    margin-left:37px;
-    text-align: center;
-    background-color: #4284c9;
-    padding: 10px 10px;
-    width: 99px;
-    outline: none;
-    color: White;
-    border-radius: 10px;
-    cursor: pointer;
-    
-}
-
-.box input[type = "submit"]:hover{
-    background: #719fd1;
-
-}
-.box input[type = "register"]{
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    margin-left:37px;
-    text-align: center;
-    background-color: #4284c9;
-    padding: 10px 10px;
-    width: 80px;
-    outline: none;
-    color: White;
-    border-radius: 10px;
-    cursor: pointer;
-    
-}
-
-.box input[type = "register"]:hover{
-    background: #719fd1;
-
-}
-*/
 .navbuttons{
     text-decoration: none;
     color: white;
@@ -211,49 +155,6 @@ body {
     background-size: 400% 400%;
     background-attachment: fixed;
     animation: change 5s alternate infinite;
-}
-
-.login {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    margin-left:37px;
-    text-align: center;
-    background-color: #4284c9;
-    padding: 10px 10px;
-    width: 80px;
-    outline: none;
-    color: White;
-    border-radius: 10px;
-    cursor: pointer;
-    
-
-}
-
-.login:hover{
-    background: #719fd1;
-}
-
-.register {
-    border: 0;
-    background: none;
-    display: block;
-    margin: 20px auto;
-    margin-left:37px;
-    text-align: center;
-    background-color: #4284c9;
-    padding: 10px 10px;
-    width: 80px;
-    outline: none;
-    color: White;
-    border-radius: 10px;
-    cursor: pointer;
-
-}
-
-.register:hover{
-    background: #719fd1;
 }
 
 .buttons{
