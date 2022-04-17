@@ -7,8 +7,7 @@ authBlueprint = Blueprint('app_login', __name__, url_prefix = '/auth')
 
 @authBlueprint.route('/login', methods = ['POST'])
 def login():
-    if isLoggedIn():
-        redirect('/')
+    if isLoggedIn(): redirect('/')
     if request.method == 'POST':
         if True: 
             data = request.json # get user from db
@@ -24,19 +23,15 @@ def login():
                     employee = employees.getEmployee(user[0])
                     session['employeeID'] = employee[0]
                     session['employeeType'] = employee[2]
-
                 return redirect('/') # redirects to homepage
-            else:
-                return 'password is incorrect'
-            
+            else: return 'password is incorrect'     
         else:
             # print(e, '\n')
-            return abort(500)
+            return abort(500) # doesn't do anything
 
 @authBlueprint.route('/register', methods = ['POST']) # route to register customers
 def register():
-    if isLoggedIn():
-        redirect('/')
+    if isLoggedIn(): redirect('/')
     if request.method == 'POST':
         try: 
             data = request.json

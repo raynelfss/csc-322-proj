@@ -1,26 +1,22 @@
-from helpers import getConnection
+from helpers import getConnection, DatabaseConnection
 
 def createCustomerTable():  # creates a table for all users
-    connection, cursor = getConnection()
-    cursor.execute(
-    """
-    CREATE TABLE IF NOT EXISTS CustomerTable (
-        CustomerID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        UserID INTEGER UNIQUE NOT NULL,
-        Name TEXT NOT NULL,
-        PhoneNumber TEXT UNIQUE NOT NULL,
-        VipStatus BOOLEAN NOT NULL DEFAULT FALSE,
-        Balance DOUBLE NOT NULL DEFAULT 0,
-        NumberOfOrders INTEGER NOT NULL DEFAULT 0,
-        MoneySpent DOUBLE NOT NULL DEFAULT 0,
-        ShoppingCartID INTEGER UNIQUE NOT NULL,
-        Karen BOOLEAN NOT NULL DEFAULT FALSE,
-        DemotionPoints INTEGER NOT NULL DEFAULT 0
-    )
-    """
-    )
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS CustomerTable (
+            CustomerID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            UserID INTEGER UNIQUE NOT NULL,
+            Name TEXT NOT NULL,
+            PhoneNumber TEXT UNIQUE NOT NULL,
+            VipStatus BOOLEAN NOT NULL DEFAULT FALSE,
+            Balance DOUBLE NOT NULL DEFAULT 0,
+            NumberOfOrders INTEGER NOT NULL DEFAULT 0,
+            MoneySpent DOUBLE NOT NULL DEFAULT 0,
+            ShoppingCartID INTEGER UNIQUE NOT NULL,
+            Karen BOOLEAN NOT NULL DEFAULT FALSE,
+            DemotionPoints INTEGER NOT NULL DEFAULT 0
+        )
+        """)
 
 # use this to create user, customer and shopping cart
 def createCustomer(username, passwordHash, name, phoneNumber):

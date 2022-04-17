@@ -1,20 +1,16 @@
-from helpers import getConnection
+from helpers import getConnection, DatabaseConnection
 
 def createEmployeeTable():  # creates a table for all users
-    connection, cursor = getConnection()
-    cursor.execute(
-    """
-    CREATE TABLE IF NOT EXISTS EmployeeTable (
-        EmployeeID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        UserID INTEGER UNIQUE NOT NULL,
-        EmployeeType TEXT NOT NULL,
-        DemotionPoints INTEGER NOT NULL DEFAULT 0,
-        EmploymentStatus BOOLEAN NOT NULL
-    )
-    """
-    )
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS EmployeeTable (
+            EmployeeID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+            UserID INTEGER UNIQUE NOT NULL,
+            EmployeeType TEXT NOT NULL,
+            DemotionPoints INTEGER NOT NULL DEFAULT 0,
+            EmploymentStatus BOOLEAN NOT NULL
+        )
+        """)
 
 # use this to create user and employee
 def createEmployee(username, passwordHash, employeeType):

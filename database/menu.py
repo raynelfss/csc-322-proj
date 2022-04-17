@@ -1,10 +1,9 @@
 # Operations that make changes to menu in database
-from helpers import getConnection
+from helpers import getConnection, DatabaseConnection
 
 def createTable():  # creates food table
-    connection, cursor = getConnection()
-    cursor.execute(
-        """
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""
         CREATE TABLE IF NOT EXISTS FoodTable (
             DishID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             DishName TEXT NOT NULL,
@@ -13,35 +12,24 @@ def createTable():  # creates food table
             ImageURL TEXT,
             ChefID INTEGER UNIQUE NOT NULL
         )
-        """
-    )
-    connection.commit()
-    connection.close()
+        """)
 
 def deleteTable(): # only used for testing purposes
-    connection, cursor = getConnection()
-    cursor.execute("DROP TABLE FoodTable")
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DROP TABLE FoodTable")
 
 def add(dishName, description, price, imageURL, chefID): # adds items to table
-    connection, cursor = getConnection()
-    cursor.execute("INSERT INTO FoodTable (DishName, Description, Price, ImageURL, chefID) VALUES (?,?,?,?,?)",
-                   (dishName, description, price, imageURL, chefID, ))
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("INSERT INTO FoodTable (DishName, Description, Price, ImageURL, chefID) VALUES (?,?,?,?,?)",
+        (dishName, description, price, imageURL, chefID, ))
 
 def deleteById(id): # deletes a specific item
-    connection, cursor = getConnection()
-    cursor.execute("DELETE FROM FoodTable WHERE DishID=?", (id,))
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DELETE FROM FoodTable WHERE DishID=?", (id,))
 
 def deleteAll(): # deletes all items
-    connection, cursor = getConnection()
-    cursor.execute("DELETE FROM FoodTable")
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DELETE FROM FoodTable")
 
 def getById(id): # returns a specific item
     connection, cursor = getConnection()
@@ -58,9 +46,7 @@ def getAll():  # returns all items from Menu
     return rowsOutput
 
 def updateByID(id, name, img_url, description, price): # updates specific items
-    connection, cursor = getConnection()
     print(id, name, img_url, description, price)
-    cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE DishID=?",
-                    (name, img_url, description, price, id, )) 
-    connection.commit()
-    connection.close()
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE DishID=?",
+        (name, img_url, description, price, id, )) 
