@@ -1,7 +1,7 @@
 function addElementtoTable() {        // Function adds an element to the item bar. Uses createElement() function.
     let data = parseIntoDict()
     addtoDB(data)
-    closeDiag("creatediv")
+    closeDiag("cover")
 }
 
 function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined ) {
@@ -81,21 +81,21 @@ function openDiag(motive, buttonText, id = false) {
 
     document.getElementById("subject").innerHTML = motive
 
-    let diag = document.getElementById('creatediv')
+    let diag = document.getElementById('cover')
     if(id){ actbutton.onclick = function(){ editItem(id) } }
     else { actbutton.onclick = addElementtoTable }
-    diag.style.display = 'flex'
+    diag.style.display = 'block'
 
     // let
 }
 
-function closeDiag() {
+function closeDiag(name) {
     document.getElementById("itemName").value =  '' 
     document.getElementById("description").value = '' 
     document.getElementById("imglink").value = ''  
     document.getElementById("price").value = '' 
     
-    let diag = document.getElementById('creatediv')
+    let diag = document.getElementById(name)
     diag.style.display = 'none'
 }
 
