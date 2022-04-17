@@ -1,4 +1,3 @@
-import sqlite3
 from helpers import getConnection
 
 def createEmployeeTable():  # creates a table for all users

@@ -1,5 +1,4 @@
 # Operations that make changes to menu in database
-import sqlite3 # database
 from helpers import getConnection
 
 def createTable():  # creates food table
