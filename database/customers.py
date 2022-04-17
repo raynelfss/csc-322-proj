@@ -1,9 +1,5 @@
 import sqlite3
-
-def getConnection(): # helper function that saves lines
-    connection = sqlite3.connect('./database/database.db')
-    cursor = connection.cursor()
-    return connection, cursor
+from helpers import getConnection
 
 def createCustomerTable():  # creates a table for all users
     connection, cursor = getConnection()

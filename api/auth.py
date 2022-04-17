@@ -11,8 +11,7 @@ def login():
         redirect('/')
     if request.method == 'POST':
         if True: 
-            data = request.json
-            # get user from db
+            data = request.json # get user from db
             user = auth.getUserByUsername(data['username'])
             correct = sha256_crypt.verify(data['password'], user[2]) 
             # verifies the password and returns True if correct
@@ -42,7 +41,7 @@ def register():
         try: 
             data = request.json
             passwordHash = sha256_crypt.encrypt(data['password']) #hashes password
-            userID = customers.createCustomer(data['username'], hashedPassword, data['name'], data['phoneNumber'])
+            userID = customers.createCustomer(data['username'], passwordHash, data['name'], data['phoneNumber'])
             session['loggedIn'] = True
             session['userType'] = 'customer'
             session['userID'] = userID

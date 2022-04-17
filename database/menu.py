@@ -1,10 +1,6 @@
 # Operations that make changes to menu in database
 import sqlite3 # database
-
-def getConnection(): # helper function that saves lines
-    connection = sqlite3.connect('./database/database.db')
-    cursor = connection.cursor()
-    return connection, cursor
+from helpers import getConnection
 
 def createTable():  # creates food table
     connection, cursor = getConnection()
