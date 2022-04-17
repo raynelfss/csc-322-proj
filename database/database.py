@@ -17,7 +17,7 @@ cur.execute( # Create the Authentication
     """
     CREATE TABLE IF NOT EXISTS AuthenticationTable (
         UserID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        Username TEXT NOT NULL,
+        Username TEXT UNIQUE NOT NULL,
         PasswordHash TEXT NOT NULL,
         Role TEXT NOT NULL
     )
@@ -70,7 +70,7 @@ cur.execute( # Create Food Table
         DishID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         DishName TEXT NOT NULL,
         Description TEXT,
-        Price DOUBLE NOT NULL DEFAULT 1,
+        Price DOUBLE NOT NULL,
         ImageURL TEXT,
         ChefID INTEGER UNIQUE NOT NULL
     )

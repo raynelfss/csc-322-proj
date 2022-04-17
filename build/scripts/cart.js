@@ -75,7 +75,7 @@ const createCartContainer = ({ items, total }) => {
 }
 const displayCart = () => {
     const cart = getCart();
-    const body = document.getElementsByTagName('body')[0];
+    const body = document.body;
     const overlay = cE('div', { class: 'overlay', onclick: 'hideCart()' });
     const cartContainer = createCartContainer(cart)
     appendChildren(body, [overlay, cartContainer])
@@ -85,7 +85,8 @@ const displayCart = () => {
 const hideCart = () => {
     document.getElementsByClassName('overlay')[0].remove();
     document.getElementsByClassName('cart-container')[0].remove();
-    document.getElementsByTagName('body')[0].classList.remove('noscroll');
+    document.body.classList.remove('noscroll');
+
 }
 
 const refreshCart = () => { hideCart(); displayCart(); }

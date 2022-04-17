@@ -1,14 +1,12 @@
 function readlogininfo() {
-    let user = document.getElementById("username").value
-    let pass = document.getElementById("password").value
-
-    let info = { "username": user, "password" : pass }
-    console.log(info)
-    return info
+    let username = document.getElementById("username").value
+    let password = document.getElementById("password").value
+    return { username, password };
 }
 
-async function requestToDB(info) {
-    const response = await fetch("/api/login/", {
+async function login() {
+    const info = readlogininfo();
+    const response = await fetch("/api/auth/login", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -16,13 +14,9 @@ async function requestToDB(info) {
         },
         body: JSON.stringify(info),
     })
-    const content = await response.json()
-    return content
+    if (response.redirected) {
+        location.href = response.url;
+    } else {
+        // handle errors
+    }
 }
-
-async function login(){
-    let response = requestToDB(readlogininfo())
-    console.log(response)
-}
-
-//TO-DO: Implement login functionality using Js.
