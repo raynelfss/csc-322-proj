@@ -3,6 +3,7 @@ from api.index import apiBlueprint #imports apiBlueprint from ./api/index.py
 from helpers import isChef, isLoggedIn
 
 app = Flask(__name__, static_url_path='', static_folder="build", template_folder='build')
+app.secret_key = 'deezNuts' 
 
 @app.route('/')
 def index(): 
@@ -39,5 +40,4 @@ def register():
 app.register_blueprint(apiBlueprint)
 
 if __name__ == '__main__': 
-    app.secret_key = 'deezNuts' 
     app.run(debug = True, use_reloader = True)
