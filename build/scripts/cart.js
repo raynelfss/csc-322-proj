@@ -10,7 +10,6 @@ const cE = (tag, attributes = {}) => {
                     element.setAttribute(attribute, attributes[attribute]);
                     break;
                 }
-
         }
     })
     return element
@@ -89,9 +88,7 @@ const hideCart = () => {
     document.getElementsByTagName('body')[0].classList.remove('noscroll');
 }
 
-const refreshCart = () => {
-    hideCart(); displayCart();
-}
+const refreshCart = () => { hideCart(); displayCart(); }
 
 const getCart = () => {
     let cart = localStorage.getItem('cart');
@@ -107,13 +104,13 @@ const addCartItem = (id, name, price, img_url, quantity) => {
     let cart = getCart();
     let item = cart.items.find(item => item.id == id);
     if (item) {
-        updateItemQuantity(id, Number(item.quantity) + 1);
-        return;
+        updateItemQuantity(id, Number(item.quantity) + 1); return;
     }
     cart.items.push({ id, name, price, img_url, quantity });
     cart.total += quantity * price;
     localStorage.setItem('cart', JSON.stringify(cart));
 }
+
 const removeCartItem = (itemID) => {
     let cart = getCart();
     cart.items = cart.items.filter(({ id }) => id != itemID);
@@ -121,6 +118,7 @@ const removeCartItem = (itemID) => {
     localStorage.setItem('cart', JSON.stringify(cart));
     refreshCart();
 }
+
 const updateItemQuantity = (itemID, newQuantity) => {
     if (newQuantity == 0) { removeCartItem(itemID); return; }
     if (newQuantity > 10) { return; }

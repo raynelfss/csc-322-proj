@@ -33,16 +33,12 @@ function createElement(id, itemName = "Item-name", description = "No description
 
     let button1 =  document.createElement("button")
     button1.append(document.createTextNode("Edit"))
-    button1.onclick = function(){
-        editDiag(id)
-    }
+    button1.onclick = function(){ editDiag(id) }
     action.appendChild(button1)
 
     let button2 =  document.createElement("button")
     button2.append(document.createTextNode("Delete"))
-    button2.onclick = function(){
-        deleteItem(id)
-    }
+    button2.onclick = function(){ deleteItem(id) }
 
     action.appendChild(button2)
     element.appendChild(action)
@@ -86,9 +82,7 @@ function openDiag(motive, buttonText, id = false) {
     document.getElementById("subject").innerHTML = motive
 
     let diag = document.getElementById('creatediv')
-    if (id) {
-        actbutton.onclick = function(){ editItem(id) }
-    }
+    if(id){ actbutton.onclick = function(){ editItem(id) } }
     else { actbutton.onclick = addElementtoTable }
     diag.style.display = 'flex'
 

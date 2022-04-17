@@ -1,12 +1,10 @@
 import sqlite3
 
-# You can change the name of the database
-DATABSE_NAME = "database.db"
-conn = sqlite3.connect(DATABSE_NAME)
+DenisseDB = "database.db"
+conn = sqlite3.connect(DenisseDB)
 cur = conn.cursor()
 
-# Create the Blacklist Table
-cur.execute(
+cur.execute( # Create the Blacklist Table
     """
     CREATE TABLE IF NOT EXISTS BlacklistTable (
         BlacklistID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -15,8 +13,7 @@ cur.execute(
     """
 )
 
-# Create the Authentication
-cur.execute(
+cur.execute( # Create the Authentication
     """
     CREATE TABLE IF NOT EXISTS AuthenticationTable (
         UserID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -27,8 +24,7 @@ cur.execute(
     """
 )
 
-# Create Customer Table
-cur.execute(
+cur.execute( # Create Customer Table
     """
     CREATE TABLE IF NOT EXISTS CustomerTable (
         CustomerID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -46,8 +42,7 @@ cur.execute(
     """
 )
 
-# Create Employee Table
-cur.execute(
+cur.execute( # Create Employee Table
     """
     CREATE TABLE IF NOT EXISTS EmployeeTable (
         EmployeeID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -59,8 +54,7 @@ cur.execute(
     """
 )
 
-# Create Shopping Cart Table
-cur.execute(
+cur.execute( # Create Shopping Cart Table
     """
     CREATE TABLE IF NOT EXISTS ShoppingCartTable (
         ShoppingCartID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -70,8 +64,7 @@ cur.execute(
     """
 )
 
-# Create Food Table
-cur.execute(
+cur.execute( # Create Food Table
     """
     CREATE TABLE IF NOT EXISTS FoodTable (
         DishID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -84,8 +77,7 @@ cur.execute(
     """
 )
 
-# Create Orders Table
-cur.execute(
+cur.execute( # Create Orders Table
     """
     CREATE TABLE IF NOT EXISTS OrderTable (
         OrderID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -101,8 +93,7 @@ cur.execute(
     """
 )
 
-# Create Rating System Table
-cur.execute(
+cur.execute( # Create Rating System Table
     """
     CREATE TABLE IF NOT EXISTS RatingSystemTable (
         RatingID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
@@ -113,8 +104,7 @@ cur.execute(
     """
 )
 
-# Create Bidding System Table
-cur.execute(
+cur.execute( # Create Bidding System Table
     """
     CREATE TABLE IF NOT EXISTS BiddingSystemTable (
         BidID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,

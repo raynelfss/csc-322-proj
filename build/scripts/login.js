@@ -2,7 +2,7 @@ function readlogininfo() {
     let user = document.getElementById("username").value
     let pass = document.getElementById("password").value
 
-    let info = { "username": user, "password" : pass}
+    let info = { "username": user, "password" : pass }
     console.log(info)
     return info
 }
@@ -11,7 +11,7 @@ async function requestToDB(info) {
     const response = await fetch("/api/login/", {
         method: 'POST',
         headers: {
-            'Accept' : 'application/json',
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(info),

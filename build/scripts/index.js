@@ -1,10 +1,10 @@
 // import { addCartItem } from './cart';
 
-function addElementtoTable() {        // Function adds an element to the item bar. Uses createElement() function.
-    let itemName = document.getElementById("itemName").value        // Gets itemname from input.
-    let desc = document.getElementById("description").value         // Gets description from input.
-    let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
-    let price = document.getElementById("price").value      // Gets price from input.
+function addElementtoTable() {  // Function adds an element to the item bar. Uses createElement() function.
+    let itemName = document.getElementById("itemName").value    // Gets itemname from input.
+    let desc = document.getElementById("description").value     // Gets description from input.
+    let imgsrc = document.getElementById("imglink").value    // Gets image link from input (Will be changed in future).
+    let price = document.getElementById("price").value   // Gets price from input.
 
     itemName.value = ''
     desc.value = ''
