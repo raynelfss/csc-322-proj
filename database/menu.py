@@ -39,11 +39,11 @@ def getById(id): # returns a specific item
     return row
 
 def getAll():  # returns all items from Menu
-    connection, cursor = getConnection()
-    rows = cursor.execute("SELECT * FROM FoodTable")
-    rowsOutput = [row for row in rows]
-    connection.close()
-    return rowsOutput
+    # connection, cursor = getConnection()
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM FoodTable")
+        rowsOutput = [row for row in rows]
+        return rowsOutput
 
 def updateByID(id, name, img_url, description, price): # updates specific items
     print(id, name, img_url, description, price)

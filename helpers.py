@@ -2,7 +2,7 @@ import sqlite3 # database
 from flask import session
 
 # helper functions and classes
-class DatabaseConnection():
+class DatabaseConnection:
     def __init__(self, file_name):
         self.file_name = file_name
 
@@ -11,12 +11,9 @@ class DatabaseConnection():
         self.cursor = self.connection.cursor()
         return self.cursor
     
-    def __exit__(self):
+    def __exit__(self, exc_type, exc_value, exc_traceback):
         self.connection.commit()
         self.connection.close()
-
-with DatabaseConnection('somedb.db') as cursor:
-    cursor.execute('Some Query')
     
 def getConnection(): # bouta be obsolete real fast
     connection = sqlite3.connect('./database/database.db')
