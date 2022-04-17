@@ -5,8 +5,10 @@
         <link href="/styles/menu-staff.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div class="header">
+        <div class = "toolbar">
             <img src="/imgs/Logo.png" href="/" width="200px">
+        </div>
+        <div class="header">
             <h1>List of items:</h1>
             <button id="additem" onclick="openDiag('Create item:','Create')">Add item</button>
         </div>
@@ -27,7 +29,6 @@
                 <input type="text" id="itemName" name="itemName"> <br>
                 <label for="description">Description:</label>
                 <textarea id="description" name="description" rows="4" maxlength="250" inputmode="latin" ></textarea> <br>
-                <!-- <input type="text" id="description" name="description" class="desc"> <br> -->
                 <label for="imglink">Image:</label>
                 <input type="url" id="imglink" name="imglink"> <br>
                 <label for="price">Price:</label>
