@@ -36,6 +36,10 @@ def register():
         return redirect('/') 
     return render_template("register.html")
 
+@app.errorhandler(404)
+def not_found(e):
+  return render_template("404.html")
+
 # all api calls /api
 app.register_blueprint(apiBlueprint)
 
