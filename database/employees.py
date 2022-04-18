@@ -18,12 +18,12 @@ def createEmployee(username, passwordHash, employeeType):
 
     # Add User
     rows = cursor.execute("INSERT INTO AuthenticationTable (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID",
-                                            (username, passwordHash, 'employee',))
+        (username, passwordHash, 'employee',))
     userID = [row for row in rows][0][0]
 
     # Add Customer
     cursor.execute("INSERT INTO EmployeeTable (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)",
-                                                (userID, employeeType, True,))
+        (userID, employeeType, True,))
 
     connection.commit()
     connection.close()

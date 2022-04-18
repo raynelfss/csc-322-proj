@@ -27,7 +27,7 @@ def login():
             else: return 'password is incorrect'     
         else:
             # print(e, '\n')
-            return abort(500) # doesn't do anything
+            return abort(500) # doesn't do anything??
 
 @authBlueprint.route('/register', methods = ['POST']) # route to register customers
 def register():

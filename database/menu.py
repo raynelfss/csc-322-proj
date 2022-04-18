@@ -32,14 +32,12 @@ def deleteAll(): # deletes all items
         cursor.execute("DELETE FROM FoodTable")
 
 def getById(id): # returns a specific item
-    connection, cursor = getConnection()
-    rows = cursor.execute("SELECT * FROM FoodTable WHERE DishID=?", (id,)) 
-    row = [row for row in rows][0]
-    connection.close()
-    return row
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM FoodTable WHERE DishID=?", (id,)) 
+        row = [row for row in rows][0]
+        return row
 
 def getAll():  # returns all items from Menu
-    # connection, cursor = getConnection()
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM FoodTable")
         rowsOutput = [row for row in rows]
