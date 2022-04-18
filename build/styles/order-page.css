@@ -1,0 +1,37 @@
+body {
+    font-family: sans-serif;
+    background-color: rgb(255, 228, 233);
+    background-size: 100%;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+table {
+    position: relative;
+    border: 2px solid rgb(133, 126, 127);
+    border-radius: 5px;
+    width: 80%;
+    /* margin: 20px 0px; */
+    left: 50%;
+    transform: translate(-50%, 0%);
+}
+
+th {
+    color: black;
+    padding: 10px;
+}
+
+tr:first-child {
+    background-color: rgb(255, 106, 188);
+}
+
+tr:nth-child(even) {
+    background-color: white;
+    color: magenta;
+}
+
+tr {
+    background-color: rgb(245, 158, 245);
+    color: white;
+    padding: 10px;
+}
