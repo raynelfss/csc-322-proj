@@ -10,7 +10,7 @@ def createTable():  # creates food table
             Description TEXT,
             Price DOUBLE NOT NULL,
             ImageURL TEXT,
-            ChefID INTEGER UNIQUE NOT NULL
+            ChefID INTEGER NOT NULL
         )
         """)
 

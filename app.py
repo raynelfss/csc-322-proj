@@ -10,7 +10,7 @@ def index():
     return render_template("main.html", currentUrl="/")
 
 @app.route('/menu')
-def menupage(): return render_template("menu.html")
+def menupage(): return render_template("menu.html", currentUrl="/menu")
 
 @app.route('/menu/edit')
 def menueditpage(): 
