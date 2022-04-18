@@ -1,53 +1,12 @@
 // import { addCartItem } from './cart';
 
-function addElementtoTable() {  // Function adds an element to the item bar. Uses createElement() function.
-    let itemName = document.getElementById("itemName").value    // Gets itemname from input.
-    let desc = document.getElementById("description").value     // Gets description from input.
-    let imgsrc = document.getElementById("imglink").value    // Gets image link from input (Will be changed in future).
-    let price = document.getElementById("price").value   // Gets price from input.
-
-    itemName.value = ''
-    desc.value = ''
-    imgsrc.value = ''
-    price.value = ''
-    let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }  // Gathers all the data into an array.
-    addtoDB(data)
-    closeDiag("creatediv")
-}
-
-async function addtoDB(itemArray) {
-    const response = await fetch("/api/menu/", {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(itemArray),
-    })
-    const content = await response.json()
-    console.log(content)
-    displayItems()
-}
-
 function eraseElements() {
     let elements = document.getElementsByClassName("items")
     while (elements.length > 0) { elements[0].parentNode.removeChild(elements[0]) }
 }
 
-function eraseUniqueElement(id) {
-    let element = document.getElementById(id)
-    console.log(element)
-    element.remove()
-}
-
 async function getfromDB() {
     const response = await fetch('/api/menu/')
-    const data = await response.json()
-    return data['response']
-}
-
-async function getfromDBInd(id) {
-    const response = await fetch('/api/menu/' + id)
     const data = await response.json()
     return data['response']
 }
@@ -59,7 +18,7 @@ async function displayItems() {
 
     items.forEach(element => {
         console.log(element[0])
-        let frame = createElement(element[0], element[1], element[3], element[4], element[2])
+        let frame = createElement(element[0], element[1], element[2], element[3], element[4])
         itembar.appendChild(frame)
     })
 }
@@ -111,50 +70,6 @@ function createElement(id, itemName = "Item-name", description = "No description
     element.id = id
 
     return element  // Return item.
-}
-
-async function deleteItem(id) {
-    console.log("Attempted delete", id)
-    const response = await fetch("http://127.0.0.1:5000/api/menu/", {
-        method: 'DELETE',
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
-        body: id,
-    })
-    const content = await response.json()
-    console.log(content)
-    eraseUniqueElement(id)
-    //displayItems()
-}
-
-async function editItem(id) {
-    let diag = document.getElementById("creatediv")
-    diag.style.display = "flex"
-    let subject = document.getElementById
-    console.log("Attempted edit", id)
-    let item = await getfromDBInd()
-    console.log(item)
-
-    //TODO:
-    // - Modify attributes from database (if not, erase and replace)
-    // - Update Items list.
-    displayItems()
-}
-
-function openDiag(id) {
-    let diag = document.getElementById(id)
-    diag.style.display = 'flex'
-}
-
-function closeDiag(id) {
-    document.getElementById("itemName").value = ''
-    document.getElementById("description").value = ''
-    document.getElementById("imglink").value = ''
-    document.getElementById("price").value = ''
-    let diag = document.getElementById(id)
-    diag.style.display = 'none'
 }
 
 displayItems() 

@@ -1,0 +1,50 @@
+body {
+    font-family: sans-serif;
+    background: linear-gradient(-45deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: change 10s alternate infinite;
+    text-align: center;
+}
+
+@keyframes change{
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.itembar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 1%;
+    background-color: rgb(0,0,0,70%);
+}
+
+.options{
+    display: flex;
+    flex-direction: row;
+    /* width: 100%; */
+    justify-content: space-evenly;
+}
+.navbuttons{
+    text-decoration: none;
+    color: white;
+    transition: hover 0.3s;
+    padding: 5px 40px;
+}
+
+.navbuttons:hover{
+    color: black;
+    border-radius: 10px;
+    background:linear-gradient(-45deg, rgba(255, 255, 255, 0.7), rgba(255, 147, 165, 0.5));
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    animation: change 5s alternate infinite;
+}

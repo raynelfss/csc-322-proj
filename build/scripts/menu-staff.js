@@ -1,5 +1,6 @@
 function addElementtoTable() {        // Function adds an element to the item bar. Uses createElement() function.
     let data = parseIntoDict()
+    console.log(data)
     addtoDB(data)
     closeDiag("cover")
 }
@@ -106,7 +107,7 @@ async function displayItems() {
 
     items.forEach(element => {
         console.log(element[0])
-        let frame = createElement(element[0], element[1], element[3], element[4], element[2])
+        let frame = createElement(element[0], element[1], element[2], element[3], element[4])
         table.appendChild(frame)
     })
 }
@@ -139,7 +140,7 @@ async function editDiag(id) {
     let item = await getfromDBInd(id)
     console.log(item)
 
-    fillTextboxes(item[1], item[3], item[2], item[4])
+    fillTextboxes(item[1], item[2], item[3], item[4])
 }
 
 async function sendEdittoDB(id, item) {
@@ -166,11 +167,12 @@ function parseIntoDict() {        // Function adds an element to the item bar. U
     desc.value = ''
     imgsrc.value = ''
     price.value = ''
+    
     let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }     // Gathers all the data into an array.
     return data
 }
 
-function fillTextboxes(name, description, imgsrc, price) {
+function fillTextboxes(name, description, price, imgsrc) {
     document.getElementById("itemName").value = name       // Gets itemname from input.
     document.getElementById("description").value = description       // Gets description from input.
     document.getElementById("imglink").value = imgsrc       // Gets image link from input (Will be changed in future).
