@@ -19,7 +19,7 @@ import requests
 # r = requests.put('http://127.0.0.1:5000/api/menu/20', json=item)
 
 # r = requests.get('http://127.0.0.1:5000/api/menu')
-print(r.text)
+# print(r.text)
 # r = requests.post('http://127.0.0.1:5000/api/menu/', json=item)
 # r = requests.delete('http://127.0.0.1:5000/api/menu/')
 # print(r.text)

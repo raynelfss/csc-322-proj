@@ -44,7 +44,6 @@ def getAll():  # returns all items from Menu
         return rowsOutput
 
 def updateByID(id, name, img_url, description, price): # updates specific items
-    print(id, name, img_url, description, price)
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE DishID=?",
+        cursor.execute("UPDATE FoodTable SET name=?, img_url=?, description=?, price=? WHERE DishID=?",
         (name, img_url, description, price, id,)) 
