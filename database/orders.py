@@ -20,11 +20,13 @@ def deleteTable(): # testing
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DROP TABLE OrderTable")
 
-def addOrderToTable(DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID, DeliveryMethod, Status):
+def addOrderToTable(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, Address, Cost, Datetime,
-        EmployeeID, DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?,?)""",
-        (DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID, DeliveryMethod, Status))
+        rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, Address, Cost, Datetime,
+                DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?) RETURNING *""",
+                (DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status))
+        row = [row for row in rows][0]
+        return row
 
 def viewAllOrders(): # returns all orders
     with DatabaseConnection('./database/database.db') as cursor:

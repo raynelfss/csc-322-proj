@@ -1,4 +1,3 @@
-from logging import exception
 from passlib.hash import sha256_crypt
 from flask import Blueprint, abort, request, session, redirect
 from database import auth, customers, employees

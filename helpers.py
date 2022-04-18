@@ -1,5 +1,7 @@
+from dis import dis
 import sqlite3 # database
 from flask import session
+from database import menu
 
 # helper functions and classes
 class DatabaseConnection:
@@ -22,3 +24,16 @@ def isChef():
     
 def isLoggedIn():
     return session.get('loggedIn') == True
+
+def calcPrices(dishIDs, deliveryStatus):
+    totalPrice = 0
+    for dishID in dishIDs:
+        dish = menu.getById(dishID)
+        totalPrice += dish[3]
+
+    if deliveryStatus: # additional delivery cost
+        totalPrice += 7.99 # base delivery fee
+    
+    totalPrice *= 1.08875 # 8.875% tax rate
+    roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth
+    return roundedPrice
