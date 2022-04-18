@@ -1,0 +1,32 @@
+.checkout-container {
+    max-width: 1000px;
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.delivery-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.address-section {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-item {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-item img {
+    width: 100px;
+    height: 100px;
+}

@@ -36,6 +36,10 @@ def register():
         return redirect('/') 
     return render_template("register.html")
 
+@app.route('/checkout')
+def checkout():
+    return render_template("checkout.html")
+
 @app.errorhandler(404)
 def not_found(e):
   return render_template("404.html")

@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+    <link href="./styles/checkout.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <div class="checkout-container">
+        <h1>Checkout</h1>
+        <div class="items-section">
+            <!--Cart items here-->
+            <h2>Items</h2>
+        </div>
+        <div class="delivery-section">
+            <h2>Delivery Method</h2>
+            <label>
+                <input type="radio" name="deliveryMethod" value="pickUp" checked onclick="handleClick(event)"/>
+                Pick Up
+            </label>
+            <label>
+                <input type="radio" name="deliveryMethod" value="Deliver" onclick="handleClick(event)"/>
+                Deliver
+            </label>
+            <div class="address-section">
+                <label for="address1">
+                    Address 1
+                    <input type="text" name="address1" id="address1" required/>
+                </label>
+                <label for="address2">
+                    Address 2
+                    <input type="text" name="address2" id="address2" />
+                </label>
+                <label for="city">
+                    City
+                    <input type="text" name="city" id="city" required/>
+                </label>
+                <label for="country">Country
+                    <input type="text" name="country" id="country" required/>
+                </label>
+                <label for="zipcode">Zipcode
+                    <input type="text" name="zipcode" id="zipcode" required>
+                </label>
+            </div>
+            <!--Delivery method here-->
+        </div>
+        <div>
+            <h2>Price</h2>
+            <p>subtotal: $<span id="subtotal"></span></p>
+            <p>tax: $<span id="taxes"></span></p>
+            <p>delivery fee: $<span id="deliveryFee"></span></p>
+            <p>total: $<span id="total"></span></p>
+                
+            <!--price, checkout-->
+        </div>
+        <button id="checkout-button">Place Order</button>
+    </div>
+    <script src="./scripts/checkout.js"></script>
+
+{% endblock %}
