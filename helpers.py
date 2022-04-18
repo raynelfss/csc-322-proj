@@ -15,11 +15,6 @@ class DatabaseConnection:
         self.connection.commit()
         self.connection.close()
     
-def getConnection(): # bouta be obsolete real fast
-    connection = sqlite3.connect('./database/database.db')
-    cursor = connection.cursor()
-    return connection, cursor
-
 def isChef():
     return (session.get('loggedIn') == True
         and session.get('userType') == 'employee' 

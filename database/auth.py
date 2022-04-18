@@ -21,5 +21,5 @@ def getUserByUsername(username): # looks for existing users
 def addUser(username, password, role): # registers new users
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("INSERT INTO login (Username, Password, Role) VALUES (?,?, ?)",
-        (username, password, role, ))
+            (username, password, role,))
     

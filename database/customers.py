@@ -1,4 +1,4 @@
-from helpers import getConnection, DatabaseConnection
+from helpers import DatabaseConnection
 
 def createCustomerTable():  # creates a table for all users
     with DatabaseConnection('./database/database.db') as cursor:
@@ -23,7 +23,7 @@ def createCustomer(username, passwordHash, name, phoneNumber):
     with DatabaseConnection('./database/database.db') as cursor:
         # Add User
         rows = cursor.execute("INSERT INTO AuthenticationTable (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID",
-            (username, passwordHash, 'customer'),)
+            (username, passwordHash, 'customer',))
         userID = [row for row in rows][0][0]
 
         # Add Shopping Cart
@@ -32,7 +32,7 @@ def createCustomer(username, passwordHash, name, phoneNumber):
 
         # Add Customer
         cursor.execute("INSERT INTO CustomerTable (UserID, Name, PhoneNumber, ShoppingCartID) VALUES (?,?,?,?)",
-            (userID, name, phoneNumber, shoppingCartID),)
+            (userID, name, phoneNumber, shoppingCartID,))
         return userID
 
 

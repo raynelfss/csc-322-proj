@@ -1,5 +1,5 @@
 # Operations that make changes to menu in database
-from helpers import getConnection, DatabaseConnection
+from helpers import DatabaseConnection
 
 def createTable():  # creates food table
     with DatabaseConnection('./database/database.db') as cursor:
@@ -21,7 +21,7 @@ def deleteTable(): # only used for testing purposes
 def add(dishName, description, price, imageURL, chefID): # adds items to table
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("INSERT INTO FoodTable (DishName, Description, Price, ImageURL, chefID) VALUES (?,?,?,?,?)",
-        (dishName, description, price, imageURL, chefID, ))
+        (dishName, description, price, imageURL, chefID,))
 
 def deleteById(id): # deletes a specific item
     with DatabaseConnection('./database/database.db') as cursor:
@@ -47,4 +47,4 @@ def updateByID(id, name, img_url, description, price): # updates specific items
     print(id, name, img_url, description, price)
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("UPDATE Menu SET name=?, img_url=?, description=?, price=? WHERE DishID=?",
-        (name, img_url, description, price, id, )) 
+        (name, img_url, description, price, id,)) 

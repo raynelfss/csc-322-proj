@@ -1,3 +1,4 @@
+from logging import exception
 from passlib.hash import sha256_crypt
 from flask import Blueprint, abort, request, session, redirect
 from database import auth, customers, employees
@@ -9,7 +10,7 @@ authBlueprint = Blueprint('app_login', __name__, url_prefix = '/auth')
 def login():
     if isLoggedIn(): redirect('/')
     if request.method == 'POST':
-        if True: 
+        try: 
             data = request.json # get user from db
             user = auth.getUserByUsername(data['username'])
             correct = sha256_crypt.verify(data['password'], user[2]) 
@@ -25,9 +26,9 @@ def login():
                     session['employeeType'] = employee[2]
                 return redirect('/') # redirects to homepage
             else: return 'password is incorrect'     
-        else:
-            # print(e, '\n')
-            return abort(500) # doesn't do anything??
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)
 
 @authBlueprint.route('/register', methods = ['POST']) # route to register customers
 def register():
@@ -35,7 +36,7 @@ def register():
     if request.method == 'POST':
         try: 
             data = request.json
-            passwordHash = sha256_crypt.encrypt(data['password']) #hashes password
+            passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
             userID = customers.createCustomer(data['username'], passwordHash, data['name'], data['phoneNumber'])
             session['loggedIn'] = True
             session['userType'] = 'customer'

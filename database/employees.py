@@ -1,4 +1,4 @@
-from helpers import getConnection, DatabaseConnection
+from helpers import DatabaseConnection
 
 def createEmployeeTable():  # creates a table for all users
     with DatabaseConnection('./database/database.db') as cursor:
@@ -14,40 +14,27 @@ def createEmployeeTable():  # creates a table for all users
 
 # use this to create user and employee
 def createEmployee(username, passwordHash, employeeType):
-    connection, cursor = getConnection()
-
-    # Add User
-    rows = cursor.execute("INSERT INTO AuthenticationTable (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID",
-        (username, passwordHash, 'employee',))
-    userID = [row for row in rows][0][0]
-
-    # Add Customer
-    cursor.execute("INSERT INTO EmployeeTable (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)",
-        (userID, employeeType, True,))
-
-    connection.commit()
-    connection.close()
-    return userID
+    with DatabaseConnection('./database/database.db') as cursor:
+        # Add User
+        rows = cursor.execute("INSERT INTO AuthenticationTable (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID",
+            (username, passwordHash, 'employee',))
+        userID = [row for row in rows][0][0]
+    
+        # Add Customer
+        cursor.execute("INSERT INTO EmployeeTable (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)",
+            (userID, employeeType, True,))
+        
+        return userID
 
 def getEmployees():
-    connection, cursor = getConnection()
-    rows = cursor.execute("SELECT * FROM EmployeeTable")
-    employees = [row for row in rows]
-    connection.commit()
-    connection.close()
-    return employees
-    
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM EmployeeTable")
+        employees = [row for row in rows]
+        return employees
+        
 
 def getEmployee(userID):
-    connection, cursor = getConnection()
-    rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?", (userID,))
-    employee = [row for row in rows][0]
-    connection.commit()
-    connection.close()
-    return employee
-
-
-# from passlib.hash import sha256_crypt
-# passHash = sha256_crypt.hash('password')
-# createEmployee('chefHusan', passHash, 'chef')
-# print(getEmployees())
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?", (userID,))
+        employee = [row for row in rows][0]
+        return employee
