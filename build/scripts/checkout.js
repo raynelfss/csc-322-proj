@@ -23,11 +23,10 @@ const appendChildren = (parent, children = []) => {
 
 function handleClick(e) {
     if (e.target.value == 'pickUp') {
-        isDelivery = false;
-        hideLocationForm();
-    } else {
-        isDelivery = true;
-        displayLocationForm();
+        isDelivery = false; hideLocationForm();
+    } 
+    else {
+        isDelivery = true; displayLocationForm();
     }
     displayPrice();
 }
@@ -35,9 +34,11 @@ function handleClick(e) {
 function hideLocationForm() {
     document.getElementsByClassName('address-section')[0].style.display = 'None';
 }
+
 function displayLocationForm() {
     document.getElementsByClassName('address-section')[0].style.display = 'Flex';
 }
+
 const createSelectField = (id, quantity) => {
     const select = cE('select', { onchange: `onSelect('${id}')`, id: `${id}-quantity` });
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -59,6 +60,7 @@ function createCheckoutItem(item) {
     appendChildren(checkoutItem, [select, infoContainer, img]);
     return checkoutItem;
 }
+
 const onSelect = (id) => {
     const select = document.getElementById(`${id}-quantity`);
     updateItemQuantity(id, select.value);
@@ -75,6 +77,7 @@ function displayCart() {
     itemsSection.appendChild(checkoutItems);
     displayPrice();
 }
+
 function hideCart() {
     document.getElementsByClassName('checkout-items')[0].remove();
 }
@@ -139,9 +142,7 @@ function calculateCartPrice(items, isDelivery) {
     let taxes = 0;
     let deliveryFee = 0;
     let total = 0;
-    items.forEach(item => {
-        subtotal = item.price * item.quantity;
-    })
+    items.forEach(item => { subtotal = item.price * item.quantity; })
     taxes = subtotal * 0.08875;
     isDelivery && (deliveryFee = 7.99);
     total = subtotal + taxes + deliveryFee;

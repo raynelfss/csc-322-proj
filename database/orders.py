@@ -22,9 +22,11 @@ def deleteTable(): # testing
 
 def addOrderToTable(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, Address, Cost, Datetime,
-                DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?) RETURNING *""",
-                (DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status))
+        rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, 
+            Address, Cost, Datetime, DeliveryMethod, Status) 
+            VALUES (?,?,?,?,?,?,?,?) RETURNING *""",
+            (DishIDs, CustomerID, Address, Cost, Datetime,
+                DeliveryMethod, Status))
         row = [row for row in rows][0]
         return row
 
@@ -48,9 +50,10 @@ def getOrdersByCustomerID(id): # returns all orders of one customer
 
 def updateOrder(id, DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID, DeliveryMethod, Status):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE OrderTable (DishIDs, CustomerID, Address, Cost, Datetime,
-        EmployeeID, DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?,?) WHERE OrderID=?""",
-        (DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID, DeliveryMethod, Status, id,))
+        cursor.execute("""UPDATE OrderTable (DishIDs, CustomerID, Address, Cost,
+            Datetime, EmployeeID, DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?,?)
+            WHERE OrderID=?""",(DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID,
+            DeliveryMethod, Status, id,))
 
 def deleteOrder(id):
     with DatabaseConnection('./database/database.db') as cursor:

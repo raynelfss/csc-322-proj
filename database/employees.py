@@ -16,12 +16,14 @@ def createEmployeeTable():  # creates a table for all users
 def createEmployee(username, passwordHash, employeeType):
     with DatabaseConnection('./database/database.db') as cursor:
         # Add User
-        rows = cursor.execute("INSERT INTO AuthenticationTable (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID",
+        rows = cursor.execute("""INSERT INTO AuthenticationTable 
+            (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID""",
             (username, passwordHash, 'employee',))
         userID = [row for row in rows][0][0]
     
         # Add Customer
-        cursor.execute("INSERT INTO EmployeeTable (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)",
+        cursor.execute("""INSERT INTO EmployeeTable 
+            (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)""",
             (userID, employeeType, True,))
         
         return userID
@@ -35,6 +37,7 @@ def getEmployees():
 
 def getEmployee(userID):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?", (userID,))
+        rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?",
+            (userID,))
         employee = [row for row in rows][0]
         return employee

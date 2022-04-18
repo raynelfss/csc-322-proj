@@ -22,16 +22,19 @@ def createCustomerTable():  # creates a table for all users
 def createCustomer(username, passwordHash, name, phoneNumber):
     with DatabaseConnection('./database/database.db') as cursor:
         # Add User
-        rows = cursor.execute("INSERT INTO AuthenticationTable (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID",
+        rows = cursor.execute("""INSERT INTO AuthenticationTable 
+            (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID""",
             (username, passwordHash, 'customer',))
         userID = [row for row in rows][0][0]
 
         # Add Shopping Cart
-        rows = cursor.execute("INSERT INTO ShoppingCartTable DEFAULT VALUES RETURNING ShoppingCartID")
+        rows = cursor.execute("""INSERT INTO ShoppingCartTable 
+            DEFAULT VALUES RETURNING ShoppingCartID""")
         shoppingCartID = [row for row in rows][0][0]
 
         # Add Customer
-        cursor.execute("INSERT INTO CustomerTable (UserID, Name, PhoneNumber, ShoppingCartID) VALUES (?,?,?,?)",
+        cursor.execute("""INSERT INTO CustomerTable 
+            (UserID, Name, PhoneNumber, ShoppingCartID) VALUES (?,?,?,?)""",
             (userID, name, phoneNumber, shoppingCartID,))
         return userID
 

@@ -29,14 +29,15 @@ def login():
             print(e, '\n')
             return abort(500)
 
-@authBlueprint.route('/register', methods = ['POST']) # route to register customers
+@authBlueprint.route('/register', methods = ['POST']) # register customers
 def register():
     if isLoggedIn(): redirect('/')
     if request.method == 'POST':
         try: 
             data = request.json
             passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
-            userID = customers.createCustomer(data['username'], passwordHash, data['name'], data['phoneNumber'])
+            userID = customers.createCustomer(data['username'], passwordHash,
+                data['name'], data['phoneNumber'])
             session['loggedIn'] = True
             session['userType'] = 'customer'
             session['userID'] = userID

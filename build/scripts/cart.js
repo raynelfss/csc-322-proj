@@ -14,9 +14,11 @@ const cE = (tag, attributes = {}) => {
     })
     return element
 }
+
 const appendChildren = (parent, children = []) => {
     children.forEach(child => parent.appendChild(child));
 }
+
 const createSelectField = (id, quantity) => {
     const select = cE('select', { onchange: `onSelect('${id}')`, id: `${id}-quantity` });
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
@@ -26,10 +28,12 @@ const createSelectField = (id, quantity) => {
         })
     return select;
 }
+
 const onSelect = (id) => {
     const select = document.getElementById(`${id}-quantity`);
     updateItemQuantity(id, select.value);
 }
+
 const createItemInfo = (name, price) => {
     const cartItemInfo = cE('div', { class: 'cart-item-info' });
     const itemName = cE('p', { class: 'item-name', text: name });
@@ -73,6 +77,7 @@ const createCartContainer = ({ items, total }) => {
     appendChildren(cartContainer, [h2, img, cartItems, button]);
     return cartContainer;
 }
+
 const displayCart = () => {
     const cart = getCart();
     const body = document.body;

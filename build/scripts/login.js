@@ -14,9 +14,8 @@ async function login() {
         },
         body: JSON.stringify(info),
     })
-    if (response.redirected) {
-        location.href = response.url;
-    } else {
+    if (response.redirected) { location.href = response.url; } 
+    else {
         // handle errors
     }
 }

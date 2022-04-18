@@ -1,5 +1,4 @@
 // Functions for the clock
-
 function currentTime() {
     let clock = document.getElementById("currentTime")
     var today = new Date()
@@ -13,36 +12,21 @@ function currentTime() {
 
 function hourParse(today) {
     let hour = today.getHours()
-    if (hour%12 == 0) {
-        return 12
-    }
-    else {
-        return hour%12
-    }
+    if (hour%12 == 0) { return 12 }
+    else { return hour%12 }
 }
 
 function ampm(today) {
     let hour = today.getHours()
-    if (hour < 12) {
-        return "AM"
-    }
-    else {
-        return "PM"
-    }
+    if (hour < 12) { return "AM" }
+    else { return "PM" }
 }
 
 function parseTime(temp) {
-    if (temp < 10) {
-        return "0" + temp
-    }
-    else {
-        return temp
-    }
+    if (temp < 10) { return "0" + temp }
+    else { return temp }
 }
 
 currentTime()
 
-setInterval(() => {
-    currentTime()    
-}, 1000);
-
+setInterval(() => { currentTime() }, 1000);

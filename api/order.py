@@ -56,7 +56,8 @@ def order(id):
             data = request.json
             dishes = ','.join([str(dishID) for dishID in data['dishIDs']])
             price = calcPrices(data['dishIDs'], data['DeliveryMethod']) 
-            orders.updateOrder(id, dishes, data['CustomerID'], data['Address'], price, data['Datetime'], data['deliveryMethod'], 'status')
+            orders.updateOrder(id, dishes, data['CustomerID'], data['Address'], price,
+                data['Datetime'], data['deliveryMethod'], 'status')
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
             print(e, '\n')

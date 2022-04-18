@@ -38,15 +38,18 @@ def index():    # route to handle requests for menu
             print(e, '\n')
             return abort(500)
 
-@menuBlueprint.route('/<id>', methods = ['GET', 'DELETE', 'PUT']) # url would be {address}/api/menu/<id> 
+@menuBlueprint.route('/<id>', methods = ['GET', 'DELETE', 'PUT'])
+# url would be {address}/api/menu/<id> 
 def menuItems(id):
-    if request.method == 'GET':     # Retrieve a specific item from menu
-        try: return { 'response': menu.getById(id) }    # returns row in JSON format
+    if request.method == 'GET':  # Retrieve a specific item from menu
+        try: return { 'response': menu.getById(id) } 
+        # returns row in JSON format
         except Exception as e: 
             print(e, '\n')
-            return abort(500)   # returns internal server error
+            return abort(500) # returns internal server error
     
-    elif request.method == 'DELETE':    # deletes specific items from table by ID
+    elif request.method == 'DELETE':  
+        # deletes specific items from table by ID
         if not isChef(): abort(403) # not authorized
         try:
             menu.deleteById(id)
@@ -59,7 +62,8 @@ def menuItems(id):
         if not isChef(): abort(403) # not authorized
         try:
             data = request.json 
-            menu.updateByID(id, data['name'], data['img_url'], data['description'], data['price'])
+            menu.updateByID(id, data['name'], data['img_url'],
+                data['description'], data['price'])
             return { 'response': menu.getAll() }
         except Exception as e:
             print(e, '\n')
