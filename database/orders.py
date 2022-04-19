@@ -29,12 +29,29 @@ def addOrderToTable(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod
                 DeliveryMethod, Status))
         row = [row for row in rows][0]
         return row
+# Place Order and updates User
+def placeOrder(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status, newBalance, newOrderCount):
+    print(DishIDs)
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, 
+            Address, Cost, Datetime, DeliveryMethod, Status) 
+            VALUES (?,?,?,?,?,?,?) RETURNING OrderID""",
+            (DishIDs, CustomerID, Address, Cost, Datetime,
+                DeliveryMethod, Status))
+        OrderID = [row for row in rows][0][0]
+        cursor.execute("UPDATE CustomerTable SET Balance=?, NumberOfOrders=? WHERE CustomerID=?", (newBalance, newOrderCount, CustomerID))
+        return OrderID
 
 def viewAllOrders(): # returns all orders
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM OrderTable")
         rowsOutput = [row for row in rows]
         return rowsOutput
+
+def getOrdersInProgress():
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM OrderTable WHERE Status!='complete'")
+        return [row for row in rows]
 
 def getOrderByID(id): # returns specific order
     with DatabaseConnection('./database/database.db') as cursor:

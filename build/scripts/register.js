@@ -1,6 +1,6 @@
 function getRegisterInfo() {
-    let name = '';
-    let phoneNumber = '';
+    let name = document.getElementById("name").value;
+    let phoneNumber = document.getElementById("phoneNumber").value;
     let username = document.getElementById("username").value
     let password = document.getElementById("password").value
     return { name, phoneNumber, username, password };
@@ -10,8 +10,8 @@ function displayError() {
 
 }
 
-async function login() {
-    const info = readlogininfo();
+async function register() {
+    const info = getRegisterInfo();
     const response = await fetch("/api/auth/register", {
         method: 'POST',
         headers: {
@@ -20,7 +20,7 @@ async function login() {
         },
         body: JSON.stringify(info),
     })
-    if (response.redirected) { location.href = response.url; } 
+    if (response.redirected) { location.href = response.url; }
     else {
         // handle errors
     }

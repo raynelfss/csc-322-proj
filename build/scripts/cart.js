@@ -71,8 +71,8 @@ const createCartContainer = ({ items, total }) => {
     const img = cE('img', { class: 'close', src: './imgs/close.svg', onclick: 'hideCart()' })
     const cartItems = createCartItems(items);
     const buttonAttr = items.length == 0 ?
-        { text: `Checkout | $${total}`, disabled: true, onclick: 'hideCart()' } :
-        { text: `Checkout | $${total}`, onclick: 'hideCart()' };
+        { text: `Checkout | $${total}`, disabled: true, onclick: 'goToCheckout()' } :
+        { text: `Checkout | $${total}`, onclick: 'goToCheckout()' };
     const button = cE('button', buttonAttr)
     appendChildren(cartContainer, [h2, img, cartItems, button]);
     return cartContainer;
@@ -147,4 +147,7 @@ const getCartTotal = (items) => {
 
 const clearCart = () => {
     localStorage.setItem('cart', JSON.stringify({ items: [], total: 0 }));
+}
+const goToCheckout = () => {
+    window.location = '/checkout'
 }

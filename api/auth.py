@@ -23,6 +23,9 @@ def login():
                     employee = employees.getEmployee(user[0])
                     session['employeeID'] = employee[0]
                     session['employeeType'] = employee[2]
+                elif (user[3] == 'customer'):
+                    customer = customers.getCustomerByUserID(user[0])
+                    session['customerID'] = customer[0]
                 return redirect('/') # redirects to homepage
             else: return 'password is incorrect'     
         except Exception as e:
@@ -36,15 +39,19 @@ def register():
         try: 
             data = request.json
             passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
-            userID = customers.createCustomer(data['username'], passwordHash,
+            userID, customerID = customers.createCustomer(data['username'], passwordHash,
                 data['name'], data['phoneNumber'])
             session['loggedIn'] = True
             session['userType'] = 'customer'
             session['userID'] = userID
+            session['customerID'] = customerID
+            print('Registered')
             return redirect('/') # redirects to homepage
         except Exception as e:
             print(e, '\n')
             return abort(500)
+
+
 
 
 

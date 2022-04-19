@@ -33,11 +33,41 @@ def createCustomer(username, passwordHash, name, phoneNumber):
         shoppingCartID = [row for row in rows][0][0]
 
         # Add Customer
-        cursor.execute("""INSERT INTO CustomerTable 
-            (UserID, Name, PhoneNumber, ShoppingCartID) VALUES (?,?,?,?)""",
+        rows = cursor.execute("""INSERT INTO CustomerTable 
+            (UserID, Name, PhoneNumber, ShoppingCartID) VALUES (?,?,?,?) RETURNING CustomerID""",
             (userID, name, phoneNumber, shoppingCartID,))
-        return userID
+        customerID = [row for row in rows][0][0]
+        return userID, customerID
 
+def getCustomerByCustomerID(customerID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM CustomerTable WHERE CustomerID=?", (customerID, ))
+        return [row for row in rows][0]
+        # return [getCustomerDictionary(row) for row in rows][0]
 
+def getCustomerByUserID(userID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM CustomerTable WHERE UserID=?", (userID, ))
+        return [row for row in rows][0]
+def updateCustomer(customerID, name, phoneNumber, vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints):
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""UPDATE CustomerTable SET Name=?, PhoneNumber=?, VipStatus=?, Balance=?, NumberOfOrders=?, 
+        MoneySpent=?, ShoppingCartID=?, Karen=?, DemotionPoints=? WHERE CustomerID=?""", (name, phoneNumber, vipStatus, balance,
+        numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID))
+
+# def getCustomerDictionary(row):
+#     return {
+#         customerID: row[0],
+#         userID: row[1],
+#         name: row[2],
+#         phoneNumber: row[3],
+#         vipStatus: row[4],
+#         balance: row[5],
+#         numberOfOrders: row[6],
+#         moneySpent: row[7],
+#         shoppingCartID: row[8],
+#         karen: row[9],
+#         demotionPoints: row[10]
+#     }
     
 

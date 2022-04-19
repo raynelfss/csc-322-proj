@@ -24,7 +24,7 @@ const appendChildren = (parent, children = []) => {
 function handleClick(e) {
     if (e.target.value == 'pickUp') {
         isDelivery = false; hideLocationForm();
-    } 
+    }
     else {
         isDelivery = true; displayLocationForm();
     }
@@ -171,7 +171,7 @@ function getItemIds() {
 }
 
 function getAddress() {
-    return ['address1', 'address2', 'city', 'country', 'zipcode'].map(addressField => (
+    return ['address1', 'address2', 'city', 'state', 'zipcode'].map(addressField => (
         document.getElementById(addressField).value
     )).join(', ');
 }
@@ -182,15 +182,14 @@ async function checkout() {
     const address = isDelivery ? getAddress() : null;
     const data = JSON.stringify({ dishIDs, deliveryMethod, address });
     console.log(data);
-    // const response = await fetch('/api/orders', {
-    //     method: 'POST',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'Content-Type': 'application/json',
-    //     },
-    //     body: data
-    // });
-    // handle response
+    const response = await fetch('/api/order/', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: data
+    });
 }
 
 // clean up unnessary functions and code later

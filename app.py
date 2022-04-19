@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, abort, redirect, session
 from api.index import apiBlueprint #imports apiBlueprint from ./api/index.py
-from helpers import isChef, isLoggedIn
+from helpers import isChef, isCustomer, isLoggedIn
 
 app = Flask(__name__, static_url_path='', static_folder="build", template_folder='build')
 app.secret_key = 'deezNuts' 
@@ -38,6 +38,8 @@ def register():
 
 @app.route('/checkout')
 def checkout():
+    if not isCustomer():
+        return abort(403)
     return render_template("checkout.html")
 
 @app.errorhandler(404)
