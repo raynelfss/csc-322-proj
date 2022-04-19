@@ -29,6 +29,7 @@ def addOrderToTable(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod
                 DeliveryMethod, Status))
         row = [row for row in rows][0]
         return row
+
 # Place Order and updates User
 def placeOrder(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status, newBalance, newOrderCount):
     print(DishIDs)
@@ -36,10 +37,11 @@ def placeOrder(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Sta
         rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, 
             Address, Cost, Datetime, DeliveryMethod, Status) 
             VALUES (?,?,?,?,?,?,?) RETURNING OrderID""",
-            (DishIDs, CustomerID, Address, Cost, Datetime,
-                DeliveryMethod, Status))
+            (DishIDs, CustomerID, Address, Cost,
+                Datetime, DeliveryMethod, Status))
         OrderID = [row for row in rows][0][0]
-        cursor.execute("UPDATE CustomerTable SET Balance=?, NumberOfOrders=? WHERE CustomerID=?", (newBalance, newOrderCount, CustomerID))
+        cursor.execute("""UPDATE CustomerTable SET Balance=?, NumberOfOrders=?
+            WHERE CustomerID=?""", (newBalance, newOrderCount, CustomerID))
         return OrderID
 
 def viewAllOrders(): # returns all orders

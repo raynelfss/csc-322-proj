@@ -37,7 +37,6 @@ def getEmployees():
 
 def getEmployee(userID):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?",
-            (userID,))
+        rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?", (userID,))
         employee = [row for row in rows][0]
         return employee

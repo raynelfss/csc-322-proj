@@ -17,17 +17,27 @@ class DatabaseConnection:
         self.connection.commit()
         self.connection.close()
     
+def isLoggedIn():
+    return session.get('loggedIn') == True
+    
 def isChef():
     return (session.get('loggedIn') == True
         and session.get('userType') == 'employee' 
         and session.get('employeeType') == 'chef')
 
+def isDeliveryBoy():
+    return (session.get('loggedIn') == True
+        and session.get('userType') == 'employee' 
+        and session.get('employeeType') == 'deliveryPerson') #placeholder name
+    
 def isCustomer():
     return (session.get('loggedIn') == True
         and session.get('userType') == 'customer')
 
-def isLoggedIn():
-    return session.get('loggedIn') == True
+def isManager():
+    return (session.get('loggedIn') == True
+        and session.get('userType') == 'employee' 
+        and session.get('employeeType') == 'manager')
 
 def calcPrices(dishIDs, deliveryStatus):
     totalPrice = 0
@@ -36,7 +46,7 @@ def calcPrices(dishIDs, deliveryStatus):
         totalPrice += dish[3]
 
     if deliveryStatus: # additional delivery cost
-        totalPrice += 7.99 # base delivery fee
+        totalPrice += 2.99 # base delivery fee
     
     totalPrice *= 1.08875 # 8.875% tax rate
     roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth

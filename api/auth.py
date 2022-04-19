@@ -39,8 +39,8 @@ def register():
         try: 
             data = request.json
             passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
-            userID, customerID = customers.createCustomer(data['username'], passwordHash,
-                data['name'], data['phoneNumber'])
+            userID, customerID = customers.createCustomer(data['username'],
+                passwordHash, data['name'], data['phoneNumber'])
             session['loggedIn'] = True
             session['userType'] = 'customer'
             session['userID'] = userID
