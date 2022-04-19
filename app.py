@@ -46,6 +46,10 @@ def checkout():
 def not_found(e):
   return render_template("404.html")
 
+@app.route('/menu/orders')
+def orderspage():
+    return render_template("orders-page.html")
+
 # all api calls /api
 app.register_blueprint(apiBlueprint)
 

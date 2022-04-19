@@ -86,6 +86,7 @@ function hideCart() {
 // update price
 // calculate price
 // place order
+
 const refreshCart = () => { hideCart(); displayCart(); }
 
 const getCart = () => {
