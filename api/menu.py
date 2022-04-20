@@ -18,10 +18,10 @@ def index():    # route to handle requests for menu
         try:
             data = request.json # grab json data which is saved as a dictionary
             menu.add(
-                data['name'],
+                data['dishName'],
                 data['description'],
                 data['price'],
-                data['img_url'],
+                data['imageURL'],
                 session['employeeID']
             )
             return { 'response': menu.getAll() }
@@ -62,7 +62,7 @@ def menuItems(id):
         if not isChef(): abort(403) # not authorized
         try:
             data = request.json 
-            menu.updateByID(id, data['name'], data['img_url'],
+            menu.updateByID(id, data['dishName'], data['imageURL'],
                 data['description'], data['price'])
             return { 'response': menu.getAll() }
         except Exception as e:

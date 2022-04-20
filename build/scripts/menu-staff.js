@@ -6,7 +6,7 @@ function addElementtoTable() {        // Function adds an element to the item ba
 }
 
 function createRow(item) {
-    let row = createElement('tr', { class: 'item' });
+    let row = createElement('tr', { class: 'item', id: item['dishID'] });
     Object.values(item).forEach(value => {
         let column = createElement('td', { text: value })
         row.appendChild(column);
@@ -106,10 +106,13 @@ function openDiag(motive, buttonText, id = false) {
 }
 
 function closeDiag(name) {
-    document.getElementById("itemName").value = ''
-    document.getElementById("description").value = ''
-    document.getElementById("imglink").value = ''
-    document.getElementById("price").value = ''
+    ['dishName', 'description', 'price', 'imageURL'].forEach(field => {
+        document.getElementById(field).value = '';
+    })
+    // document.getElementById("itemName").value = ''
+    // document.getElementById("description").value = ''
+    // document.getElementById("imglink").value = ''
+    // document.getElementById("price").value = ''
 
     let diag = document.getElementById(name)
     diag.style.display = 'none'
@@ -119,7 +122,7 @@ async function displayItems() {
     eraseElements()
     let items = await getfromDB() || []
     let table = document.getElementById("ptable")      // Uses item-list by calling its id.
-
+    console.log(items);
     items.forEach(item => {
         let row = createRow(item);
         table.appendChild(row);
@@ -150,16 +153,14 @@ async function deleteItem(id) {
 function editItem(id) {
     let item = parseIntoDict()
     sendEdittoDB(id, item)
-    closeDiag()
+    closeDiag('cover')
 }
 
 async function editDiag(id) {
     openDiag("Edit item:", "Edit", id)
     console.log("Attempted edit", id)
     let item = await getfromDBInd(id)
-    console.log(item)
-
-    fillTextboxes(item[1], item[2], item[3], item[4])
+    fillTextboxes(item)
 }
 
 async function sendEdittoDB(id, item) {
@@ -177,25 +178,38 @@ async function sendEdittoDB(id, item) {
 }
 
 function parseIntoDict() {        // Function adds an element to the item bar. Uses createElement() function.
-    let itemName = document.getElementById("itemName").value        // Gets itemname from input.
-    let desc = document.getElementById("description").value         // Gets description from input.
-    let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
-    let price = document.getElementById("price").value      // Gets price from input.
+    let data = {};
+    ['dishName', 'description', 'price', 'imageURL'].forEach(field => {
+        let inputElement = document.getElementById(field);
+        data[field] = inputElement.value;
+        inputElement.value = '';
+    })
+    // let itemName = document.getElementById("itemName").value        // Gets itemname from input.
+    // let desc = document.getElementById("description").value         // Gets description from input.
+    // let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
+    // let price = document.getElementById("price").value      // Gets price from input.
 
-    itemName.value = ''
-    desc.value = ''
-    imgsrc.value = ''
-    price.value = ''
+    // itemName.value = ''
+    // desc.value = ''
+    // imgsrc.value = ''
+    // price.value = ''
 
-    let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }     // Gathers all the data into an array.
+    // let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }     // Gathers all the data into an array.
+
     return data
 }
+// function parseIntoDict() {
 
-function fillTextboxes(name, description, price, imgsrc) {
-    document.getElementById("itemName").value = name       // Gets itemname from input.
-    document.getElementById("description").value = description       // Gets description from input.
-    document.getElementById("imglink").value = imgsrc       // Gets image link from input (Will be changed in future).
-    document.getElementById("price").value = price      // Gets price from input.
+// }
+
+function fillTextboxes(item) {
+    ['dishName', 'description', 'price', 'imageURL'].forEach(field => {
+        document.getElementById(field).value = item[field];
+    })
+    // document.getElementById("itemName").value = dishName       // Gets itemname from input.
+    // document.getElementById("description").value = description       // Gets description from input.
+    // document.getElementById("imglink").value = imageURL       // Gets image link from input (Will be changed in future).
+    // document.getElementById("price").value = price      // Gets price from input.
 }
 
 function eraseElements() {

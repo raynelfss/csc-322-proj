@@ -45,22 +45,24 @@ function filltable(data) {
         let row = document.createElement('tr');
         ['orderID', 'dishIDs', 'customerID', 'address', 'cost', 'datetime',
             'employeeID', 'deliveryMethod', 'status'].forEach(key => {
+                // itterate through those values in the order and create a column for each
                 let column = null;
                 switch (key) {
                     case 'employeeID':
+                        // when filing in column for employeeID, check if employeeID exists and if it's a delivery
                         column = order['employeeID'] == null && order['deliveryMethod'] == 'delivery' ?
-                            createElement('button', { text: 'Assign' }) :
-                            createElement('td', { text: order[key] });
+                            createElement('button', { text: 'Assign' }) : // if delivery have a button to assign deliveryBoy
+                            createElement('td', { text: order[key] }); // else just display employeeID
                         break;
                     default:
                         column = createElement('td', { text: order[key] });
                         break;
                 }
-                row.appendChild(column);
+                row.appendChild(column); // add the created column into the row
             })
         let button = createElement('button', { text: 'Cancel' })
         row.appendChild(button);
-        table.appendChild(row);
+        table.appendChild(row); // add the row to table
     });
 }
 
