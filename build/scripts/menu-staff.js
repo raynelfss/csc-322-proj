@@ -5,50 +5,65 @@ function addElementtoTable() {        // Function adds an element to the item ba
     closeDiag("cover")
 }
 
-function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined) {
-    let element = document.createElement("tr")         // Creates a div element with class items.
-    element.classList = "item"
-
-    let ident = document.createElement("td")
-    ident.appendChild(document.createTextNode(id))
-    element.appendChild(ident)
-
-    let name = document.createElement("td")        // Name will have format h1.
-    name.appendChild(document.createTextNode(itemName))         // Appends the text as child.
-    element.appendChild(name)          // Adds name to inner div.
-
-    let desc = document.createElement("td")          // Creates description paragraph using p.
-    desc.appendChild(document.createTextNode(description))      // Appends paragraph text from description arg.
-    element.appendChild(desc)              // Appends object to element.
-
-    let image = document.createElement("td")      // An image object is created.
-    image.appendChild(document.createTextNode(imageSrc))                 // Appends image to the inner div.
-    element.appendChild(image)
-
-    let pric = document.createElement("td")         // Creates price text using p
-    pric.appendChild(document.createTextNode(price))        // Appends paragraph text from price arg.
-    element.appendChild(pric)          // Appends price to inner div.
-
-    let action = document.createElement("td")
-    action.classList.add("buttonv")
-
-    let button1 = document.createElement("button")
-    button1.append(document.createTextNode("Edit"))
-    button1.onclick = function () { editDiag(id) }
-    action.appendChild(button1)
-
-    let button2 = document.createElement("button")
-    button2.append(document.createTextNode("Delete"))
-    button2.onclick = function () { deleteItem(id) }
-
-    action.appendChild(button2)
-    element.appendChild(action)
-
-    console.log("Tried to create item.")       // Prints log message, signaling creation of item.
-    element.id = id
-
-    return element              // Return item.
+function createRow(item) {
+    let row = createElement('tr', { class: 'item' });
+    Object.values(item).forEach(value => {
+        let column = createElement('td', { text: value })
+        row.appendChild(column);
+    })
+    let actionColumn = createElement('td', { class: 'buttonv' });
+    let editButton = createElement('button', { text: 'Edit', onclick: `editDiag(${item['dishID']})` })
+    let deleteButton = createElement('button', { text: 'Delete', onclick: `deleteItem(${item['dishID']})` })
+    actionColumn.appendChild(editButton);
+    actionColumn.appendChild(deleteButton);
+    row.appendChild(actionColumn);
+    return row;
 }
+
+// function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined) {
+//     let element = document.createElement("tr")         // Creates a div element with class items.
+//     element.classList = "item"
+
+//     let ident = document.createElement("td")
+//     ident.appendChild(document.createTextNode(id))
+//     element.appendChild(ident)
+
+//     let name = document.createElement("td")        // Name will have format h1.
+//     name.appendChild(document.createTextNode(itemName))         // Appends the text as child.
+//     element.appendChild(name)          // Adds name to inner div.
+
+//     let desc = document.createElement("td")          // Creates description paragraph using p.
+//     desc.appendChild(document.createTextNode(description))      // Appends paragraph text from description arg.
+//     element.appendChild(desc)              // Appends object to element.
+
+//     let image = document.createElement("td")      // An image object is created.
+//     image.appendChild(document.createTextNode(imageSrc))                 // Appends image to the inner div.
+//     element.appendChild(image)
+
+//     let pric = document.createElement("td")         // Creates price text using p
+//     pric.appendChild(document.createTextNode(price))        // Appends paragraph text from price arg.
+//     element.appendChild(pric)          // Appends price to inner div.
+
+//     let action = document.createElement("td")
+//     action.classList.add("buttonv")
+
+//     let button1 = document.createElement("button")
+//     button1.append(document.createTextNode("Edit"))
+//     button1.onclick = function () { editDiag(id) }
+//     action.appendChild(button1)
+
+//     let button2 = document.createElement("button")
+//     button2.append(document.createTextNode("Delete"))
+//     button2.onclick = function () { deleteItem(id) }
+
+//     action.appendChild(button2)
+//     element.appendChild(action)
+
+//     console.log("Tried to create item.")       // Prints log message, signaling creation of item.
+//     element.id = id
+
+//     return element              // Return item.
+// }
 
 async function addtoDB(itemArray) {
     const response = await fetch("/api/menu/", {
@@ -105,11 +120,15 @@ async function displayItems() {
     let items = await getfromDB() || []
     let table = document.getElementById("ptable")      // Uses item-list by calling its id.
 
-    items.forEach(element => {
-        console.log(element[0])
-        let frame = createElement(element[0], element[1], element[2], element[3], element[4])
-        table.appendChild(frame)
+    items.forEach(item => {
+        let row = createRow(item);
+        table.appendChild(row);
     })
+    // items.forEach(element => {
+    //     console.log(element[0])
+    //     let frame = createElement(element[0], element[1], element[2], element[3], element[4])
+    //     table.appendChild(frame)
+    // })
 }
 
 async function deleteItem(id) {
@@ -167,7 +186,7 @@ function parseIntoDict() {        // Function adds an element to the item bar. U
     desc.value = ''
     imgsrc.value = ''
     price.value = ''
-    
+
     let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }     // Gathers all the data into an array.
     return data
 }

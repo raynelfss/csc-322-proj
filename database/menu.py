@@ -37,17 +37,27 @@ def deleteAll(): # deletes all items
 def getById(id): # returns a specific item
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM FoodTable WHERE DishID=?", (id,)) 
-        row = [row for row in rows][0]
-        return row
+        dish = [listToDict(row) for row in rows][0]
+        return dish
 
 def getAll():  # returns all items from Menu
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM FoodTable")
-        rowsOutput = [row for row in rows]
-        return rowsOutput
+        dishes = [listToDict(row) for row in rows]
+        return dishes
 
 def updateByID(id, name, img_url, description, price): # updates specific items
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE FoodTable SET name=?, img_url=?,
-            description=?, price=? WHERE DishID=?""",
+        cursor.execute("""UPDATE FoodTable SET DishName=?, ImageURL=?,
+            Description=?, Price=? WHERE DishID=?""",
             (name, img_url, description, price, id,)) 
+
+def listToDict(dish):
+    return {
+        'dishID': dish[0],
+        'dishName': dish[1],
+        'description': dish[2],
+        'price': dish[3],
+        'imageURL': dish[4],
+        'chefID': dish[5]
+    }

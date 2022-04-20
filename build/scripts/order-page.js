@@ -12,8 +12,8 @@ function currentTime() {
 
 function hourParse(today) {
     let hour = today.getHours();
-    if (hour%12 == 0) { return 12; }
-    else { return hour%12; }
+    if (hour % 12 == 0) { return 12; }
+    else { return hour % 12; }
 }
 
 function ampm(today) {
@@ -33,26 +33,38 @@ async function getfromDB() {
     const response = await fetch('/api/order/inprogress');
     const data = await response.json();
     console.log(data['response']);
-    
+
     filltable(data['response']);
 
 }
 
 function filltable(data) {
     let table = document.getElementById("ptable");
-    data.forEach(element => {
+    data.forEach(order => {
+
         let row = document.createElement('tr');
-        element.forEach(item => {
-            let column = document.createElement('td');
-            column.innerText = item;
-            row.appendChild(column);
-        });
-        let button = document.createElement('button');
-        button.innerText = "Cancel";
+        ['orderID', 'dishIDs', 'customerID', 'address', 'cost', 'datetime',
+            'employeeID', 'deliveryMethod', 'status'].forEach(key => {
+                let column = null;
+                switch (key) {
+                    case 'employeeID':
+                        column = order['employeeID'] == null && order['deliveryMethod'] == 'delivery' ?
+                            createElement('button', { text: 'Assign' }) :
+                            createElement('td', { text: order[key] });
+                        break;
+                    default:
+                        column = createElement('td', { text: order[key] });
+                        break;
+                }
+                row.appendChild(column);
+            })
+        let button = createElement('button', { text: 'Cancel' })
         row.appendChild(button);
         table.appendChild(row);
     });
 }
+
+
 
 // 
 

@@ -12,22 +12,26 @@ def login():
         try: 
             data = request.json # get user from db
             user = auth.getUserByUsername(data['username'])
-            correct = sha256_crypt.verify(data['password'], user[2]) 
+            if not user:
+                return abort(400, 'username does not exist')
+            correct = sha256_crypt.verify(data['password'], user['passwordHash']) 
             # verifies the password and returns True if correct
-            if correct:
-                session['loggedIn'] = True
-                session['userID'] = user[0]
-                session['userType'] = user[3]
-                if (user[3] == 'employee'):
-                    # get employeeType
-                    employee = employees.getEmployee(user[0])
-                    session['employeeID'] = employee[0]
-                    session['employeeType'] = employee[2]
-                elif (user[3] == 'customer'):
-                    customer = customers.getCustomerByUserID(user[0])
-                    session['customerID'] = customer[0]
-                return redirect('/') # redirects to homepage
-            else: return 'password is incorrect'     
+            if not correct:
+                return abort(400, 'password incorrect')
+    
+            session['loggedIn'] = True
+            session['userID'] = user['userID']
+            session['userType'] = user['role']
+            if (user['role'] == 'employee'):
+                # get employeeType
+                employee = employees.getEmployee(user['userID'])
+                session['employeeID'] = employee['employeeID']
+                session['employeeType'] = employee['employeeType']
+            elif (user[3] == 'customer'):
+                customer = customers.getCustomerByUserID(user['userID'])
+                session['customerID'] = customer['customerID']
+            return redirect('/') # redirects to homepage
+    
         except Exception as e:
             print(e, '\n')
             return abort(500)

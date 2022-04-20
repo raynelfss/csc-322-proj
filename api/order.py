@@ -9,7 +9,7 @@ orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
 def index():    # route to handle requests
     if request.method == 'GET':   # Retrieve all items 
         if not helpers.isChef(): abort(403) # not authorized
-        try: return { 'response': orders.viewAllOrders() }   # returns table in JSON format
+        try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
             print(e, '\n')
             return abort(500) # returns internal server error
@@ -27,17 +27,18 @@ def index():    # route to handle requests
             cost = helpers.calcPrices(data['dishIDs'], data['deliveryMethod']) 
             customer = customers.getCustomerByCustomerID(session['customerID'])
             
-            # check if user has enough money
+            # use store address if pickup
             if data['deliveryMethod'] == 'pickup':
                 address = '160 Convent Ave, New York, NY 10031' # store address
             else: address = data['address']
-            
-            newBalance = customer[5] - cost
+
+            # check if user has enough money
+            newBalance = customer['balance'] - cost
             if newBalance < 0:
                 newBalance = 0
                 # ignore for now
                 # return abort(400, 'Insufficient funds.')
-            newOrderCount = customer[6] + 1
+            newOrderCount = customer['numberOfOrders'] + 1
             orderID = orders.placeOrder(
                 dishes, session['customerID'], address, cost,
                 datetime.now(), data['deliveryMethod'], 'pending',

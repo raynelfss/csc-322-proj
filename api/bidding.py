@@ -9,7 +9,7 @@ bidsBlueprint = Blueprint('app_bids', __name__, url_prefix = '/bids')
 def index(): # route to handle requests
     if request.method == 'GET':   # Retrieve all items from menu
         if not helpers.isManager(): abort(403) # not authorized
-        try: return { 'response': bidding.viewAllBids() } 
+        try: return { 'response': bidding.getAllBids() } 
         except Exception as e:
             print(e, '\n')
             return abort(500) # returns internal server error

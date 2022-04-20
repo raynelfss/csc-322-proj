@@ -97,8 +97,8 @@ cur.execute( # Create Rating System Table
     """
     CREATE TABLE IF NOT EXISTS RatingSystemTable (
         RatingID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-        EmployeeID INTEGER NOT NULL,
-        Amount DOUBLE NOT NULL DEFAULT 0,
+        UserID INTEGER NOT NULL,
+        Rating INTEGER NOT NULL DEFAULT 0,
         OrderID INTEGER NOT NULL
     )
     """

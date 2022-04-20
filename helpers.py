@@ -43,7 +43,7 @@ def calcPrices(dishIDs, deliveryStatus):
     totalPrice = 0
     for dishID in dishIDs:
         dish = menu.getById(dishID)
-        totalPrice += dish[3]
+        totalPrice += dish['price']
 
     if deliveryStatus: # additional delivery cost
         totalPrice += 2.99 # base delivery fee

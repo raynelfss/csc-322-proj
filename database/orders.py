@@ -27,8 +27,8 @@ def addOrderToTable(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod
             VALUES (?,?,?,?,?,?,?,?) RETURNING *""",
             (DishIDs, CustomerID, Address, Cost, Datetime,
                 DeliveryMethod, Status))
-        row = [row for row in rows][0]
-        return row
+        order = [listToDict(row) for row in rows][0]
+        return order
 
 # Place Order and updates User
 def placeOrder(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Status, newBalance, newOrderCount):
@@ -44,28 +44,28 @@ def placeOrder(DishIDs, CustomerID, Address, Cost, Datetime, DeliveryMethod, Sta
             WHERE CustomerID=?""", (newBalance, newOrderCount, CustomerID))
         return OrderID
 
-def viewAllOrders(): # returns all orders
+def getAllOrders(): # returns all orders
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM OrderTable")
-        rowsOutput = [row for row in rows]
-        return rowsOutput
+        orders = [listToDict(row) for row in rows]
+        return orders
 
 def getOrdersInProgress():
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM OrderTable WHERE Status!='complete'")
-        return [row for row in rows]
+        return [listToDict(row) for row in rows]
 
 def getOrderByID(id): # returns specific order
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM OrderTable WHERE OrderID=?", (id,)) 
-        row = [row for row in rows][0]
-        return row
+        order = [listToDict(row) for row in rows][0]
+        return order
 
 def getOrdersByCustomerID(id): # returns all orders of one customer
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM OrderTable WHERE CustomerID=?", (id,)) 
-        rows = [row for row in rows]
-        return rows
+        orders = [listToDict(row) for row in rows]
+        return orders
 
 def updateOrder(id, DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID, DeliveryMethod, Status):
     with DatabaseConnection('./database/database.db') as cursor:
@@ -77,3 +77,16 @@ def updateOrder(id, DishIDs, CustomerID, Address, Cost, Datetime, EmployeeID, De
 def deleteOrder(id):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DELETE FROM OrderTable WHERE OrderID=?", (id,))
+
+def listToDict(order):
+    return {
+        'orderID': order[0],
+        'dishIDs': order[1],
+        'customerID': order[2],
+        'address': order[3],
+        'cost': order[4],
+        'datetime': order[5],
+        'employeeID': order[6],
+        'deliveryMethod': order[7],
+        'status': order[8],
+    }

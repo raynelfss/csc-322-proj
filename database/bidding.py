@@ -20,21 +20,29 @@ def addBid(bidID, employeeID, amount, orderID):
         rows = cursor.execute("""INSERT INTO BiddingSystemTable (bidID, employeeID, 
             amount, orderID) VALUES (?,?,?,?) RETURNING *""",
             (bidID, employeeID, amount, orderID))
-        row = [row for row in rows][0]
-        return row
+        bid = [listToDict(row) for row in rows][0]
+        return bid
 
 def deleteBid(bidID):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DELETE FROM BiddingSystemTable WHERE bidID=?", (bidID,))
 
-def viewAllBids(): 
+def getAllBids(): 
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM BiddingSystemTable")
-        rowsOutput = [row for row in rows]
-        return rowsOutput
+        bids = [listToDict(row) for row in rows]
+        return bids
 
 def getBidByID(bidID): 
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM BiddingSystemTable WHERE bidID=?",(bidID,)) 
-        row = [row for row in rows][0]
-        return row
+        bid = [listToDict(row) for row in rows][0]
+        return bid
+
+def listToDict(bid):
+    return {
+        'bidID': bid[0],
+        'employeeID': bid[1],
+        'amount': bid[2],
+        'orderID': bid[3],
+    }

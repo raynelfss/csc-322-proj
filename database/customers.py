@@ -42,32 +42,32 @@ def createCustomer(username, passwordHash, name, phoneNumber):
 def getCustomerByCustomerID(customerID):
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM CustomerTable WHERE CustomerID=?", (customerID, ))
-        return [row for row in rows][0]
-        # return [getCustomerDictionary(row) for row in rows][0]
+        return [listToDict(row) for row in rows][0]
 
 def getCustomerByUserID(userID):
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM CustomerTable WHERE UserID=?", (userID, ))
-        return [row for row in rows][0]
+        return [listToDict(row) for row in rows][0]
+
 def updateCustomer(customerID, name, phoneNumber, vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("""UPDATE CustomerTable SET Name=?, PhoneNumber=?, VipStatus=?, Balance=?, NumberOfOrders=?, 
         MoneySpent=?, ShoppingCartID=?, Karen=?, DemotionPoints=? WHERE CustomerID=?""", (name, phoneNumber, vipStatus, balance,
         numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID))
 
-# def getCustomerDictionary(row):
-#     return {
-#         customerID: row[0],
-#         userID: row[1],
-#         name: row[2],
-#         phoneNumber: row[3],
-#         vipStatus: row[4],
-#         balance: row[5],
-#         numberOfOrders: row[6],
-#         moneySpent: row[7],
-#         shoppingCartID: row[8],
-#         karen: row[9],
-#         demotionPoints: row[10]
-#     }
+def listToDict(customer):
+    return {
+        'customerID': customer[0],
+        'userID': customer[1],
+        'name': customer[2],
+        'phoneNumber': customer[3],
+        'vipStatus': customer[4],
+        'balance': customer[5],
+        'numberOfOrders': customer[6],
+        'moneySpent': customer[7],
+        'shoppingCartID': customer[8],
+        'karen': customer[9],
+        'demotionPoints': customer[10]
+    }
     
 
