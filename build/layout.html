@@ -11,13 +11,7 @@
         <div class="itembar">
             <a href="/"><img src="./imgs/Logo.png" width="200px"></a>
             <div class="options">
-                {%  set nav = [
-                    {'url': '/', 'name': 'Home'},
-                    {'url': '/menu', 'name':'Menu'},
-                    {'url': '/about', 'name':'About'},
-                    {'url': '/login', 'name':'Login / Register'},
-                    ]
-                -%}
+
                 {%for navItem in nav%}
                     <a  href="{{navItem['url']}}" 
                         class="navbuttons {%if navItem['url']==currentUrl%}current{%endif%}">

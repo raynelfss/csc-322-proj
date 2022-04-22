@@ -51,3 +51,19 @@ def calcPrices(dishIDs, deliveryStatus):
     totalPrice *= 1.08875 # 8.875% tax rate
     roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth
     return roundedPrice
+
+def getNav():
+    if isLoggedIn():
+        return [
+            {'url': '/', 'name': 'Home'},
+            {'url': '/menu', 'name':'Menu'},
+            {'url': '/about', 'name':'About'},
+            {'url': '/logout', 'name':'Logout'},
+        ]
+    else:
+        return [
+            {'url': '/', 'name': 'Home'},
+            {'url': '/menu', 'name':'Menu'},
+            {'url': '/about', 'name':'About'},
+            {'url': '/login', 'name':'Login'},  
+        ]

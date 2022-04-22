@@ -14,8 +14,12 @@ async function login() {
         },
         body: JSON.stringify(info),
     })
-    if (response.redirected) { location.href = response.url; } 
+    if (response.redirected) { location.href = response.url; }
     else {
         // handle errors
+        if (response.status === 400) {
+            const message = await response.text();
+            alert(message);
+        }
     }
 }
