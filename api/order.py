@@ -16,8 +16,7 @@ def index():    # route to handle requests
 
     elif request.method == 'POST': # Add item to menu
         if not helpers.isCustomer(): abort(403) # only customers should be able to order for now
-
-        if True:
+        try:
             data = request.json # grab json data which is saved as a dictionary
             
             # convert dishIDs to string
@@ -36,8 +35,8 @@ def index():    # route to handle requests
             newBalance = customer['balance'] - cost
             if newBalance < 0:
                 newBalance = 0
-                # ignore for now
-                # return abort(400, 'Insufficient funds.')
+                return abort(400, 'Insufficient funds.')
+
             newOrderCount = customer['numberOfOrders'] + 1
             orderID = orders.placeOrder(
                 dishes, session['customerID'], address, cost,
@@ -46,9 +45,10 @@ def index():    # route to handle requests
             )
             print('Order Placed', orderID)
             return { 'response': { 'orderID': orderID } }
-        # except Exception as e:
-        #     print('error: ', e, '\n')
-        #     return abort(500) # returns internal server error
+
+        except Exception as e:
+            print('error: ', e, '\n')
+            return abort(500) # returns internal server error
 
     elif request.method == 'DELETE': # deletes entire table
         if not helpers.isChef(): abort(403) # not authorized
@@ -72,11 +72,11 @@ def order(id):
             return abort(500)
     
     elif request.method == 'PUT':
-        #if not manager() : abort(403)
+        if not helpers.isManager() : abort(403)
         try:
             data = request.json
-            dishes = ','.join([str(dishID) for dishID in data['dishIDs']])
-            price = helpers.calcPrices(data['dishIDs'], data['DeliveryMethod']) 
+            dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
+            price = helpers.calcPrices( data['dishIDs'], data['DeliveryMethod'] ) 
             orders.updateOrder(id, dishes, data['CustomerID'], data['Address'], price,
                 data['Datetime'], data['deliveryMethod'], 'status')
             return { 'response': orders.getOrderByID(id) }
