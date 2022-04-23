@@ -7,7 +7,7 @@ function currentTime() {
     let min = parseTime(today.getMinutes());
     let sec = parseTime(today.getSeconds());
     let day = parseDay(today.getUTCDay())
-    var time = String(day + " " + today.getDate() + " / " + today.getMonth() + " / " + today.getFullYear() 
+    var time = String(day + " " + (today.getMonth() +1) + " / " + today.getDate() + " / " + today.getFullYear() 
     + "\n" + hours + ":" + min + ":" + sec + " " + meridiam);
     clock.innerText = time;
 }
