@@ -111,7 +111,7 @@ function editItem(id) {
 }
 
 async function editDiag(id) {
-    openDiag("Edit item:", "Edit", id)
+    openDiag("Edit item:", "Save", id)
     console.log("Attempted edit", id)
     let item = await getfromDBInd(id)
     console.log(item)

@@ -18,8 +18,8 @@ def index():    # route to handle requests for menu
         try:
             data = request.json # grab json data which is saved as a dictionary
             menu.add(
-                data['dishName'],
-                data['description'],
+                data['dish_Name'],
+                data['dishdescription'],
                 data['price'],
                 data['imageURL'],
                 session['employeeID']
