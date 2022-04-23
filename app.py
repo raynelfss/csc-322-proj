@@ -42,10 +42,13 @@ def checkout():
         return abort(403)
     return render_template("checkout.html")
 
-@app.route('/menu/orders')
+@app.route('/orders')
 def orderspage():
-    return render_template("orders-page.html")
-
+    if isChef():
+        return render_template("orders-page.html")
+    else:
+        return abort(403)
+        
 @app.route('/orders/<id>')
 def order(id):
     return render_template("order.html")

@@ -54,6 +54,11 @@ function filltable(data) {
                             createElement('button', { text: 'Assign' }) : // if delivery have a button to assign deliveryBoy
                             createElement('td', { text: order[key] }); // else just display employeeID
                         break;
+                    case 'orderID':
+                        column = createElement('td');
+                        let anchor = createElement('a', { href: `/orders/${order[key]}`, text: order[key] })
+                        column.appendChild(anchor)
+                        break;
                     default:
                         column = createElement('td', { text: order[key] });
                         break;

@@ -3,16 +3,18 @@ async function getOrder() {
     const urlSplitted = url.split('/');
     const id = urlSplitted[urlSplitted.length - 1];
     const response = await fetch(`/api/order/${id}`);
-    const data = await response.json();
-    const order = data['response'] || {};
-    return order
+    if (response.headers.get("content-type") === 'application/json') {
+        const data = await response.json();
+        const order = data['response'];
+        return order
+    }
+    return undefined
 }
 
 async function loadOrder() {
     const order = await getOrder();
-    console.log(order)
+    // console.log(order)
     if (order) {
-        console.log('true')
         // set order id
         document.getElementsByClassName('order-id')[0].textContent = `Order ID: ${order['orderID']}`
         // display order items
@@ -22,7 +24,9 @@ async function loadOrder() {
         // display order status
         loadStatus(order['status'])
     } else {
-        console.log('err')
+        orderContainer = document.getElementsByClassName('order-container')[0];
+        notFound = createElement('p', { text: 'Order not found' })
+        orderContainer.appendChild(notFound);
     }
 }
 
