@@ -83,14 +83,15 @@ def order(id):
         except Exception as e:
             print(e, '\n')
             return abort(500)
-    # elif request.method == 'DELETE': # deletes specific items from table by ID
-    #     if not manager(): abort(403) # not authorized
-    #     try:
-    #         orders.deleteOrder(id)
-    #         return { 'response': 'deleted' }
-    #     except Exception as e:
-    #         print(e, '\n')
-    #         return abort(500)    
+
+    elif request.method == 'DELETE': # deletes specific items from table by ID
+        if not helpers.isManager(): abort(403) # not authorized
+        try:
+            orders.getOrderByID(id)
+            return { 'response': 'deleted' }
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)    
 
 @orderBlueprint.route('/inprogress', methods=['GET'])
 def inProgress():

@@ -34,3 +34,12 @@ def order(bidID):
         except Exception as e:
             print(e, '\n')
             return abort(500)
+                
+    elif request.method == 'DELETE':
+        if not helpers.isManager(): abort(403) # not authorized
+        try: 
+            bidding.deleteBid(bidID)
+            return { 'response': 'deleted' }
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)
