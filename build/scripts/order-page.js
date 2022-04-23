@@ -6,7 +6,9 @@ function currentTime() {
     let meridiam = ampm(today);
     let min = parseTime(today.getMinutes());
     let sec = parseTime(today.getSeconds());
-    var time = String(hours + ":" + min + ":" + sec + " " + meridiam);
+    let day = parseDay(today.getUTCDay())
+    var time = String(day + " " + today.getDate() + " / " + today.getMonth() + " / " + today.getFullYear() 
+    + "\n" + hours + ":" + min + ":" + sec + " " + meridiam);
     clock.innerText = time;
 }
 
@@ -14,6 +16,11 @@ function hourParse(today) {
     let hour = today.getHours();
     if (hour % 12 == 0) { return 12; }
     else { return hour % 12; }
+}
+
+function parseDay(num){
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    return days[num];
 }
 
 function ampm(today) {

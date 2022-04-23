@@ -7,63 +7,26 @@ function addElementtoTable() {        // Function adds an element to the item ba
 
 function createRow(item) {
     let row = createElement('tr', { class: 'item', id: item['dishID'] });
-    Object.values(item).forEach(value => {
-        let column = createElement('td', { text: value })
-        row.appendChild(column);
+    Object.keys(item).forEach(key => {
+        if (key == 'imageURL') {
+            let column = createElement('td');
+            let img = createElement('img' , {src: item[key], height: '100px'});
+            column.appendChild(img);
+            row.appendChild(column);
+        }
+        else {
+            let column = createElement('td', { text: item[key] })
+            row.appendChild(column);
+        }
     })
     let actionColumn = createElement('td', { class: 'buttonv' });
-    let editButton = createElement('button', { text: 'Edit', onclick: `editDiag(${item['dishID']})` })
-    let deleteButton = createElement('button', { text: 'Delete', onclick: `deleteItem(${item['dishID']})` })
+    let editButton = createElement('button', { text: 'Edit', onclick: `editDiag(${item['dish_ID']})` })
+    let deleteButton = createElement('button', { text: 'Delete', onclick: `deleteItem(${item['dish_ID']})` })
     actionColumn.appendChild(editButton);
     actionColumn.appendChild(deleteButton);
     row.appendChild(actionColumn);
     return row;
 }
-
-// function createElement(id, itemName = "Item-name", description = "No description", price = undefined, imageSrc = undefined) {
-//     let element = document.createElement("tr")         // Creates a div element with class items.
-//     element.classList = "item"
-
-//     let ident = document.createElement("td")
-//     ident.appendChild(document.createTextNode(id))
-//     element.appendChild(ident)
-
-//     let name = document.createElement("td")        // Name will have format h1.
-//     name.appendChild(document.createTextNode(itemName))         // Appends the text as child.
-//     element.appendChild(name)          // Adds name to inner div.
-
-//     let desc = document.createElement("td")          // Creates description paragraph using p.
-//     desc.appendChild(document.createTextNode(description))      // Appends paragraph text from description arg.
-//     element.appendChild(desc)              // Appends object to element.
-
-//     let image = document.createElement("td")      // An image object is created.
-//     image.appendChild(document.createTextNode(imageSrc))                 // Appends image to the inner div.
-//     element.appendChild(image)
-
-//     let pric = document.createElement("td")         // Creates price text using p
-//     pric.appendChild(document.createTextNode(price))        // Appends paragraph text from price arg.
-//     element.appendChild(pric)          // Appends price to inner div.
-
-//     let action = document.createElement("td")
-//     action.classList.add("buttonv")
-
-//     let button1 = document.createElement("button")
-//     button1.append(document.createTextNode("Edit"))
-//     button1.onclick = function () { editDiag(id) }
-//     action.appendChild(button1)
-
-//     let button2 = document.createElement("button")
-//     button2.append(document.createTextNode("Delete"))
-//     button2.onclick = function () { deleteItem(id) }
-
-//     action.appendChild(button2)
-//     element.appendChild(action)
-
-//     console.log("Tried to create item.")       // Prints log message, signaling creation of item.
-//     element.id = id
-
-//     return element              // Return item.
-// }
 
 async function addtoDB(itemArray) {
     const response = await fetch("/api/menu/", {
@@ -106,13 +69,9 @@ function openDiag(motive, buttonText, id = false) {
 }
 
 function closeDiag(name) {
-    ['dishName', 'description', 'price', 'imageURL'].forEach(field => {
+    ['dish_Name', 'dishdescription', 'price', 'imageURL'].forEach(field => {
         document.getElementById(field).value = '';
     })
-    // document.getElementById("itemName").value = ''
-    // document.getElementById("description").value = ''
-    // document.getElementById("imglink").value = ''
-    // document.getElementById("price").value = ''
 
     let diag = document.getElementById(name)
     diag.style.display = 'none'
@@ -127,11 +86,6 @@ async function displayItems() {
         let row = createRow(item);
         table.appendChild(row);
     })
-    // items.forEach(element => {
-    //     console.log(element[0])
-    //     let frame = createElement(element[0], element[1], element[2], element[3], element[4])
-    //     table.appendChild(frame)
-    // })
 }
 
 async function deleteItem(id) {
@@ -160,6 +114,7 @@ async function editDiag(id) {
     openDiag("Edit item:", "Edit", id)
     console.log("Attempted edit", id)
     let item = await getfromDBInd(id)
+    console.log(item)
     fillTextboxes(item)
 }
 
@@ -179,37 +134,19 @@ async function sendEdittoDB(id, item) {
 
 function parseIntoDict() {        // Function adds an element to the item bar. Uses createElement() function.
     let data = {};
-    ['dishName', 'description', 'price', 'imageURL'].forEach(field => {
+    ['dish_Name', 'dishdescription', 'price', 'imageURL'].forEach(field => {
         let inputElement = document.getElementById(field);
         data[field] = inputElement.value;
         inputElement.value = '';
     })
-    // let itemName = document.getElementById("itemName").value        // Gets itemname from input.
-    // let desc = document.getElementById("description").value         // Gets description from input.
-    // let imgsrc = document.getElementById("imglink").value       // Gets image link from input (Will be changed in future).
-    // let price = document.getElementById("price").value      // Gets price from input.
-
-    // itemName.value = ''
-    // desc.value = ''
-    // imgsrc.value = ''
-    // price.value = ''
-
-    // let data = { 'name': itemName, 'description': desc, 'img_url': imgsrc, 'price': price }     // Gathers all the data into an array.
-
     return data
 }
-// function parseIntoDict() {
-
-// }
 
 function fillTextboxes(item) {
-    ['dishName', 'description', 'price', 'imageURL'].forEach(field => {
+    ['dish_Name', 'dishdescription', 'price', 'imageURL'].forEach(field => {
+        console.log(item[field])
         document.getElementById(field).value = item[field];
     })
-    // document.getElementById("itemName").value = dishName       // Gets itemname from input.
-    // document.getElementById("description").value = description       // Gets description from input.
-    // document.getElementById("imglink").value = imageURL       // Gets image link from input (Will be changed in future).
-    // document.getElementById("price").value = price      // Gets price from input.
 }
 
 function eraseElements() {

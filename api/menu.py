@@ -62,8 +62,8 @@ def menuItems(id):
         if not isChef(): abort(403) # not authorized
         try:
             data = request.json 
-            menu.updateByID(id, data['dishName'], data['imageURL'],
-                data['description'], data['price'])
+            menu.updateByID(id, data['dish_Name'], data['imageURL'],
+                data['dishdescription'], data['price'])
             return { 'response': menu.getAll() }
         except Exception as e:
             print(e, '\n')

@@ -54,10 +54,10 @@ def updateByID(id, name, img_url, description, price): # updates specific items
 
 def listToDict(dish):
     return {
-        'dishID': dish[0],
-        'dishName': dish[1],
-        'description': dish[2],
+        'dish_ID': dish[0],
+        'dish_Name': dish[1],
+        'dishdescription': dish[2],
         'price': dish[3],
         'imageURL': dish[4],
-        'chefID': dish[5]
+        'dishchefID': dish[5]
     }
