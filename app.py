@@ -46,6 +46,10 @@ def checkout():
 def orderspage():
     return render_template("orders-page.html")
 
+@app.route('/orders/<id>')
+def order(id):
+    return render_template("order.html")
+
 @app.errorhandler(404)
 def not_found(e):
   return render_template("404.html")

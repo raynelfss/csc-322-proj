@@ -62,7 +62,11 @@ def index():    # route to handle requests
 @orderBlueprint.route('/<id>', methods = ['GET', 'PUT', 'DELETE'])
 def order(id):
     if request.method == 'GET':
-        try: return { 'response': orders.getOrderByID(id) }
+        try:
+            order = orders.getOrderByID(id)
+            dishes = helpers.getDishes(order['dishIDs']) # get dishes
+            order['dishes'] = dishes # add dishes to order
+            return { 'response': order }
         except Exception as e:
             print(e, '\n')
             return abort(500)
