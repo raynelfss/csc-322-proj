@@ -21,10 +21,10 @@ function createItemInfo(name, price) {
     return cartItemInfo;
 }
 
-function createCartItem({ dishID, dishName, imageURL, price, quantity }) {
+function createCartItem({ dish_ID, dish_Name, imageURL, price, quantity }) {
     const cartItem = createElement('div', { class: 'cart-item ' });
-    const select = createSelectField(dishID, quantity);
-    const cartItemInfo = createItemInfo(dishName, price);
+    const select = createSelectField(dish_ID, quantity);
+    const cartItemInfo = createItemInfo(dish_Name, price);
     const img = createElement('img', { src: imageURL });
     appendChildren(cartItem, [select, cartItemInfo, img]);
     return cartItem
@@ -73,7 +73,12 @@ function hideCart() {
 
 }
 
-function refreshCart() { hideCart(); displayCart(); }
+function refreshCart() { 
+    if (document.getElementsByClassName('overlay') > 0) {
+        hideCart();
+        displayCart();
+    }
+}
 
 function getCart() {
     let cart = localStorage.getItem('cart');
@@ -90,9 +95,9 @@ function getCart() {
 function addCartItem(menuItem, quantity = 1) {
     if (typeof (menuItem) == 'string') menuItem = JSON.parse(menuItem);
     let cart = getCart();
-    let cartItem = cart.items.find(({ dishID }) => menuItem.dishID == dishID);
+    let cartItem = cart.items.find(({ dish_ID }) => menuItem.dish_ID == dish_ID);
     if (cartItem) { // if item already in cart, increment item quantity by quantity
-        updateItemQuantity(id, Number(cartItem.quantity) + quantity); return;
+        updateItemQuantity(cartItem.dish_ID, Number(cartItem.quantity) + quantity); return;
     }
     cart.items.push({ ...menuItem, quantity });
     cart.total += quantity * menuItem.price;
@@ -101,7 +106,7 @@ function addCartItem(menuItem, quantity = 1) {
 
 function removeCartItem(dishID) {
     let cart = getCart();
-    cart.items = cart.items.filter(item => item.dishID != dishID);
+    cart.items = cart.items.filter(item => item.dish_ID != dishID);
     cart.total = getCartTotal(cart.items);
     localStorage.setItem('cart', JSON.stringify(cart));
     refreshCart();
@@ -112,7 +117,7 @@ function updateItemQuantity(dishID, newQuantity) {
     if (newQuantity > 10) { return; }
 
     let cart = getCart();
-    let i = cart.items.findIndex(item => item.dishID == dishID);
+    let i = cart.items.findIndex(item => item.dish_ID == dishID);
     if (i > -1) {
         cart.items[i].quantity = newQuantity;
         cart.total = getCartTotal(cart.items);
@@ -130,6 +135,7 @@ function getCartTotal(items) {
 function clearCart() {
     localStorage.setItem('cart', JSON.stringify({ items: [], total: 0 }));
 }
+
 function goToCheckout() {
     window.location = '/checkout'
 }

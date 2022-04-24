@@ -31,9 +31,9 @@ function createCard(item) {
     let card = createElement('div', { class: 'items div' });
     let innerdiv = createElement('div', { class: 'div' });
     let img = createElement('img', { class: 'menu-img', width: '200px', height: '200px', src: item.imageURL });
-    let name = createElement('h1', { text: item.dishName, class: 'header1' });
-    let desc = createElement('p', { text: item.description, class: 'p2' });
-    let pric = createElement('p', { text: item.price, class: 'p3' });
+    let name = createElement('h1', { text: item.dish_Name, class: 'header1' });
+    let desc = createElement('p', { text: item.dishdescription, class: 'p2' });
+    let pric = createElement('p', { text: `Price: ${item.price}`, class: 'p3' });
     let div3 = createElement('div', { class: 'div' });
     let addButton = createElement('button', {
         text: 'Add to cart',

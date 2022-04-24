@@ -51,3 +51,36 @@ def calcPrices(dishIDs, deliveryStatus):
     totalPrice *= 1.08875 # 8.875% tax rate
     roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth
     return roundedPrice
+
+def getDishes(dishIDString):
+    dishIDs = dishIDString.split(',') # [dishID, dishID]
+    dishCount = {} # {dishID: quantity}
+    for dishID in dishIDs:
+        if dishID in dishCount:
+            dishCount[dishID] += 1
+        else:
+            dishCount[dishID] = 1
+    dishes = []
+    for dishID in dishCount: # itterate through keys in dishCount
+        dish = menu.getById(dishID) # get dish from db
+        dish['quantity'] = dishCount[dishID] # add quantity to dish
+        dishes.append(dish) # add dish to dishes
+    return dishes
+
+
+
+def getNav():
+    if isLoggedIn():
+        return [
+            {'url': '/', 'name': 'Home'},
+            {'url': '/menu', 'name':'Menu'},
+            {'url': '/about', 'name':'About'},
+            {'url': '/logout', 'name':'Logout'},
+        ]
+    else:
+        return [
+            {'url': '/', 'name': 'Home'},
+            {'url': '/menu', 'name':'Menu'},
+            {'url': '/about', 'name':'About'},
+            {'url': '/login', 'name':'Login'},  
+        ]

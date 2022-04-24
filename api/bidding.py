@@ -16,7 +16,17 @@ def index(): # route to handle requests
 
     elif request.method == 'POST':
         if not helpers.isDeliveryBoy(): abort(403)
-        ## code to handle posting bids
+        try:
+            data = request.json
+            bidding.addBid(
+                data['bidID'], session['employeeID'],
+                data['amount'], data['orderID']
+            )
+            return { bidding.getAllBids() }
+
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)
 
     elif request.method == 'DELETE': # deletes entire table
         if not helpers.isManager(): abort(403) # not authorized
@@ -31,6 +41,15 @@ def index(): # route to handle requests
 def order(bidID):
     if request.method == 'GET':
         try: return { 'response': bidding.getBidByID(bidID) }
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)
+                
+    elif request.method == 'DELETE':
+        if not helpers.isManager(): abort(403) # not authorized
+        try: 
+            bidding.deleteBid(bidID)
+            return { 'response': 'deleted' }
         except Exception as e:
             print(e, '\n')
             return abort(500)

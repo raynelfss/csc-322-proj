@@ -2,7 +2,6 @@ from passlib.hash import sha256_crypt
 from flask import Blueprint, abort, request, session, redirect
 from database import auth, customers, employees
 from helpers import isLoggedIn
-
 authBlueprint = Blueprint('app_login', __name__, url_prefix = '/auth')
 
 @authBlueprint.route('/login', methods = ['POST'])
@@ -13,11 +12,11 @@ def login():
             data = request.json # get user from db
             user = auth.getUserByUsername(data['username'])
             if not user:
-                return abort(400, 'username does not exist')
+                return 'user does not exist', 400
             correct = sha256_crypt.verify(data['password'], user['passwordHash']) 
             # verifies the password and returns True if correct
             if not correct:
-                return abort(400, 'password incorrect')
+                return 'password is incorrect', 400
     
             session['loggedIn'] = True
             session['userID'] = user['userID']
@@ -31,9 +30,9 @@ def login():
                 customer = customers.getCustomerByUserID(user['userID'])
                 session['customerID'] = customer['customerID']
             return redirect('/') # redirects to homepage
-    
+
         except Exception as e:
-            print(e, '\n')
+            print(e)
             return abort(500)
 
 @authBlueprint.route('/register', methods = ['POST']) # register customers
