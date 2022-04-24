@@ -3,13 +3,27 @@
 {% block styles %}
     <link href="./styles/menu.css" rel="stylesheet" type="text/css"/>
     <link href="./styles/cart.css" rel="stylesheet" type="text/css"/>
+    <link href="./styles/addtocart.css" rel = "stylesheet" type="text/css"/>
     <script src="./scripts/cart.js"></script>
     <script src="./scripts/menu.js"></script>
+    <script src="./scripts/addtocart.js"></script>
 {% endblock %}
 
 {% block body %}
     <div>
         <h2>Menu:</h2>
         <div class="item-bar" id="item-list"></div>
+        <div class = "item-info" id="item-info">
+            <h2> Item name </h2>
+            <img src = ""/> 
+            <h1> Item name </h1>
+            <p> description daady</p>
+            <div class = "reviews-list">
+                <h2> Reviews</h2>            
+            </div>
+            <button onclick= "closeModel()" >Close</button>
+        </div>
+        
+
     </div>
 {% endblock %}

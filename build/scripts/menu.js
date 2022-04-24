@@ -38,7 +38,7 @@ function createCard(item) {
     let addButton = createElement('button', {
         text: 'Add to cart',
         class: 'addToCart',
-        onclick: `addCartItem(${JSON.stringify(item)})`
+        onclick: `openModel(${item.id})`
     })
     div3.appendChild(addButton);
     appendChildren(innerdiv, [img, name, desc, pric, div3]);
