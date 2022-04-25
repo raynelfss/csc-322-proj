@@ -8,20 +8,28 @@ async function getOrders() {
     return [];
 }
 
-async function postBid(bid) {
+function getBid() {
+    return document.getElementById('bid').value;
+}
+
+async function postBid(orderID) {
+    const amount = getBid();
+    const data = JSON.stringify({ amount, orderID });
     const response = await fetch('/api/orders', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         },
-        body: bid
+        body: data
     });
     // handle error with status 400
     if (response.status === 400) {
         const message = await response.text();
         alert(message);
     }
+    closeBidModal();
+
 }
 
 function createOrder(order) {
@@ -30,7 +38,8 @@ function createOrder(order) {
         const element = createElement('p', { text: order[field] });
         orderDiv.appendChild(element);
     });
-    // const button = createElement('button', {onclick: )}
+    const button = createElement('button', { text: 'Bid', onclick: `openBidModal(${order.orderID})` });
+    orderDiv.appendChild(button);
     return orderDiv;
 }
 
@@ -47,9 +56,16 @@ async function loadOrders() {
 
 
 function openBidModal(orderID) {
+    const modalContainer = document.getElementsByClassName('modalContainer')[0];
+    document.getElementsByClassName('modalCancel')[0].setAttribute('onclick', 'closeBidModal()');
+    document.getElementsByClassName('place')[0].setAttribute('onclick', `postBid(${orderID})`);
+    modalContainer.style.display = 'block';
 
 }
 
-function closeBidModal() { }
+function closeBidModal() {
+    const modalContainer = document.getElementsByClassName('modalContainer')[0];
+    modalContainer.style.display = 'none';
+}
 
 loadOrders()

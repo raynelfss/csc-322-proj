@@ -1,0 +1,33 @@
+{% extends 'dashboard-layout.html' %}
+
+
+{% block head %}
+    <title>Bid On Orders</title>
+    <link href="/styles/bid-page.css" rel="stylesheet" type="text/css"/>
+{% endblock %}
+
+
+{% block body %}
+    <div class="orders">
+        <!-- display delivery orders without deliverers -->
+        <!-- <div class="order">
+
+            not sure what should go in here 
+
+            <p>Address</p>
+            <p>Time Placed</p>
+            <button>Bid</button>
+
+        </div> -->
+    </div>
+    <div class="modalContainer">
+        <div class="modalOverlay"></div>
+        <div class="modal">
+            <label for="bid">Amount</label>
+            <input id="bid" type="number" min=0 step="0.01"/>
+            <button class="place">Place Bid</button>
+            <button class="modalCancel">Cancel</button>
+        </div>
+    </div>
+    <script src="/scripts/bids.js"></script>
+{% endblock %}

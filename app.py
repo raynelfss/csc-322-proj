@@ -60,7 +60,7 @@ def order(id):
 
 @app.route('/bid')
 def bid():
-    return render_template("bids.html")
+    return render_template("bid-page.html")
 
 @app.errorhandler(404)
 def not_found(e):
