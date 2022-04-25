@@ -1,0 +1,39 @@
+.order {
+    background-color: white;
+    padding: 10px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+/* modal */
+.modal {
+    position: fixed;
+    border-radius: 10px;
+    border: 5px solid pink;
+    width: 350px;
+    top: 50%;
+    left: 50%;
+    display: flex;
+    transform: translate(-50%, -50%);
+    background-color: rgb(255, 230, 244);
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+    padding: 20px;
+}
+
+.modal button {
+    margin-top: 20px;
+}
+
+.modalOverlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modalContainer {
+    display: none;
+}
