@@ -1,0 +1,99 @@
+body {
+    font-family: sans-serif;
+    background-color: rgb(255, 228, 233);
+    background-size: 100%;
+    background-attachment: fixed;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+/* header styles */
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.sidebarIcon {
+    position: absolute;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    opacity: 0.5;
+}
+
+.sidebarIcon:hover {
+    opacity: 1;
+}
+
+.logo {
+    width: 200px;
+}
+
+/* sidebar */
+.sidebar {
+    font-family: 'Roboto', sans-serif;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #3F829D;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    z-index: 100;
+}
+
+.sidebarHide {
+    display: none;
+}
+
+.sidebarHeader {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+}
+
+.sidebarHeader h1 {
+    color: #060D10;
+    font-weight: 400;
+}
+
+.sidebarClose {
+    position: absolute;
+    right: 20px;
+    opacity: 0.5;
+}
+
+.sidebarClose:hover {
+    opacity: 1;
+}
+
+.sidebar p {
+    color: #060D10;
+}
+
+.sidebar nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebarLinks {
+    text-decoration: none;
+    color: #060D10;
+    margin: 20px;
+}
+
+.sidebarLinks:hover {
+    color: white;
+}
+
+.linkSelected {
+    color: white;
+}

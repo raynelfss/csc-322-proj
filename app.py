@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, abort, redirect, session
 from api.index import apiBlueprint #imports apiBlueprint from ./api/index.py
-from helpers import isChef, isCustomer, isLoggedIn, getNav
+from helpers import isChef, isCustomer, isLoggedIn, getNav, getSidebarNav
 
 app = Flask(__name__, static_url_path='', static_folder="build", template_folder='build')
 app.secret_key = 'deezNuts' 
@@ -12,10 +12,21 @@ def index():
 @app.route('/menu')
 def menupage(): return render_template("menu.html", currentUrl="/menu", nav=getNav())
 
-@app.route('/menu/edit')
+@app.route('/dashboard')
+def dashboard():
+    return render_template("dashboard-page.html", nav=getSidebarNav(), currentUrl='/dashboard')
+
+@app.route('/dashboard/menu')
 def menueditpage(): 
     if isChef():
-        return render_template("menu-staff.html")
+        return render_template("menu-staff.html", nav=getSidebarNav(), currentUrl='/dashboard/menu')
+    else:
+        return abort(403)
+
+@app.route('/dashboard/orders')
+def orderspage():
+    if isChef():
+        return render_template("orders-page.html", nav=getSidebarNav(), currentUrl='/dashboard/orders')
     else:
         return abort(403)
 
@@ -42,16 +53,14 @@ def checkout():
         return abort(403)
     return render_template("checkout.html")
 
-@app.route('/orders')
-def orderspage():
-    if isChef():
-        return render_template("orders-page.html")
-    else:
-        return abort(403)
         
 @app.route('/orders/<id>')
 def order(id):
     return render_template("order.html")
+
+@app.route('/bid')
+def bid():
+    return render_template("bids.html")
 
 @app.errorhandler(404)
 def not_found(e):
