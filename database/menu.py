@@ -10,8 +10,7 @@ def createTable():  # creates food table
             Description TEXT,
             Price DOUBLE NOT NULL,
             ImageURL TEXT,
-            ChefID INTEGER NOT NULL
-        )
+            ChefID INTEGER NOT NULL )
         """)
 
 def deleteTable(): # only used for testing purposes
@@ -22,8 +21,7 @@ def add(dishName, description, price, imageURL, chefID):
     # adds items to table
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("""INSERT INTO FoodTable 
-            (DishName, Description, Price, ImageURL, chefID) 
-            VALUES (?,?,?,?,?)""",
+            (DishName, Description, Price, ImageURL, ChefID) VALUES (?,?,?,?,?)""",
             (dishName, description, price, imageURL, chefID,))
 
 def deleteById(id): # deletes a specific item
@@ -54,10 +52,7 @@ def updateByID(id, name, img_url, description, price): # updates specific items
 
 def listToDict(dish):
     return {
-        'dish_ID': dish[0],
-        'dish_Name': dish[1],
-        'dishdescription': dish[2],
-        'price': dish[3],
-        'imageURL': dish[4],
-        'dishchefID': dish[5]
+        'dish_ID': dish[0], 'dish_Name': dish[1],
+        'dishdescription': dish[2], 'price': dish[3],
+        'imageURL': dish[4], 'dishchefID': dish[5]
     }

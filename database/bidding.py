@@ -7,42 +7,49 @@ def createTable():
             BidID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
             EmployeeID INTEGER NOT NULL,
             Amount DOUBLE NOT NULL,
-            OrderID INTEGER NOT NULL
-        )
+            OrderID INTEGER NOT NULL )
         """)
 
 def deleteTable(): # testing
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DROP TABLE IF EXISTS BiddingSystemTable")
 
-def addBid(bidID, employeeID, amount, orderID):
+def addBid(bidID, employeeID, amount, orderID): # creates bid
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("""INSERT INTO BiddingSystemTable (bidID, employeeID, 
-            amount, orderID) VALUES (?,?,?,?) RETURNING *""",
+        rows = cursor.execute("""INSERT INTO BiddingSystemTable (BidID, EmployeeID, 
+            Amount, OrderID) VALUES (?,?,?,?) RETURNING *""",
             (bidID, employeeID, amount, orderID))
         bid = [listToDict(row) for row in rows][0]
         return bid
 
-def deleteBid(bidID):
+def deleteBid(bidID): # deletes a specific bid
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("DELETE FROM BiddingSystemTable WHERE bidID=?", (bidID,))
+        cursor.execute("DELETE FROM BiddingSystemTable WHERE BidID=?", (bidID,))
 
-def getAllBids(): 
+def deleteBidByOrderID(orderID): 
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DELETE FROM BiddingSystemTable WHERE OrderID=?", (orderID,))
+
+def getAllBids(): # returns all existing bids
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM BiddingSystemTable")
         bids = [listToDict(row) for row in rows]
         return bids
 
-def getBidByID(bidID): 
+def getBidsByOrderID(orderID): # returns all bids on a specific orderID
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM BiddingSystemTable WHERE bidID=?",(bidID,)) 
+        rows = cursor.execute("SELECT * FROM BiddingSystemTable WHERE OrderID=?",(orderID,)) 
+        bids = [listToDict(row) for row in rows]
+        return bids
+
+def getBidsByID(bidID): # returns a specific bid
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM BiddingSystemTable WHERE BidID=?",(bidID,)) 
         bid = [listToDict(row) for row in rows][0]
         return bid
 
 def listToDict(bid):
     return {
-        'bidID': bid[0],
-        'employeeID': bid[1],
-        'amount': bid[2],
-        'orderID': bid[3],
+        'bidID': bid[0], 'employeeID': bid[1],
+        'amount': bid[2], 'orderID': bid[3],
     }

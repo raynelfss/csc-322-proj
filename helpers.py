@@ -52,6 +52,8 @@ def calcPrices(dishIDs, deliveryStatus):
     roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth
     return roundedPrice
 
+# listToDict ??
+
 def getDishes(dishIDString):
     dishIDs = dishIDString.split(',') # [dishID, dishID]
     dishCount = {} # {dishID: quantity}
@@ -66,8 +68,6 @@ def getDishes(dishIDString):
         dish['quantity'] = dishCount[dishID] # add quantity to dish
         dishes.append(dish) # add dish to dishes
     return dishes
-
-
 
 def getNav():
     if isLoggedIn():

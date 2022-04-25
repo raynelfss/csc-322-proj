@@ -8,8 +8,7 @@ def createEmployeeTable():  # creates a table for all users
             UserID INTEGER UNIQUE NOT NULL,
             EmployeeType TEXT NOT NULL,
             DemotionPoints INTEGER NOT NULL DEFAULT 0,
-            EmploymentStatus BOOLEAN NOT NULL
-        )
+            EmploymentStatus BOOLEAN NOT NULL )
         """)
 
 # use this to create user and employee
@@ -34,7 +33,6 @@ def getEmployees():
         employees = [listToDict(row) for row in rows]
         return employees
         
-
 def getEmployee(userID):
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?", (userID,))
@@ -43,9 +41,7 @@ def getEmployee(userID):
 
 def listToDict(employee):
     return {
-        'employeeID': employee[0],
-        'userID': employee[1],
-        'employeeType': employee[2],
-        'demotionPoints': employee[3],
+        'employeeID': employee[0], 'userID': employee[1], 
+        'employeeType': employee[2], 'demotionPoints': employee[3],
         'employmentStatus': employee[4],
     }

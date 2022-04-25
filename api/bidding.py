@@ -1,3 +1,4 @@
+from urllib import response
 from flask import Blueprint, abort, request, session
 from database import orders, customers, bidding
 import helpers
@@ -5,6 +6,7 @@ import datetime
 
 bidsBlueprint = Blueprint('app_bids', __name__, url_prefix = '/bids')
 @bidsBlueprint.route('/', methods = ['GET', 'POST', 'DELETE'])
+@bidsBlueprint.route('/orderID', methods = ['GET', 'DELETE'])
 
 def index(): # route to handle requests
     if request.method == 'GET':   # Retrieve all items from menu
@@ -19,10 +21,9 @@ def index(): # route to handle requests
         try:
             data = request.json
             bidding.addBid(
-                data['bidID'], session['employeeID'],
-                data['amount'], data['orderID']
+                data['bidID'], session['employeeID'], data['amount'], data['orderID']
             )
-            return { bidding.getAllBids() }
+            return { 'response': 'successfully posted bid' }
 
         except Exception as e:
             print(e, '\n')
@@ -38,9 +39,28 @@ def index(): # route to handle requests
             return abort(500)
 
 @bidsBlueprint.route('/<id>', methods = ['GET', 'DELETE'])
-def order(bidID):
+def bid(bidID):
     if request.method == 'GET':
-        try: return { 'response': bidding.getBidByID(bidID) }
+        # if not helpers.isDeliveryBoy(): abort(403)
+        try: return { 'response': bidding.getBidsByID(bidID) }
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)
+                
+    elif request.method == 'DELETE':
+        if not helpers.isDeliveryBoy() or not helpers.isManager(): abort(403) # not authorized
+        try: 
+            bidding.deleteBid(bidID)
+            return { 'response': 'deleted' }
+        except Exception as e:
+            print(e, '\n')
+            return abort(500)
+
+@bidsBlueprint.route('/orderID/<id>', methods = ['GET', 'DELETE'])
+def bidsOnOrder(orderID):
+    if request.method == 'GET':
+        if not helpers.isManager(): abort(403)
+        try: return { 'response': bidding.getBidsByOrderID(orderID) }
         except Exception as e:
             print(e, '\n')
             return abort(500)
@@ -48,7 +68,7 @@ def order(bidID):
     elif request.method == 'DELETE':
         if not helpers.isManager(): abort(403) # not authorized
         try: 
-            bidding.deleteBid(bidID)
+            bidding.deleteBidByOrderID(orderID)
             return { 'response': 'deleted' }
         except Exception as e:
             print(e, '\n')
