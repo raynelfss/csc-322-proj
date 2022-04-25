@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+        <title>Denisse's Cafe Dashboard</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="/styles/dashboard-layout.css">
+        <script src="/scripts/helpers.js"></script>
+        <script src="/scripts/sidebar.js"></script>
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        <header>
+            <img src="/imgs/hamburger.svg"  class="sidebarIcon" onclick="displaySidebar()"/>
+            <img src="/imgs/Logo.png" class="logo">
+        </header>
+        <div class="sidebar sidebarHide">
+            <div class="sidebarHeader">
+                <h1>Dashboard</h1>
+                <img src="/imgs/close.svg" class="sidebarClose" onclick="hideSidebar()"/>
+            </div>
+            <nav>
+                {%for navItem in nav%}
+                    <a  href="{{navItem['url']}}" 
+                        class="sidebarLinks {%if navItem['url']==currentUrl%}linkSelected{%endif%}">
+                        {{navItem['name']}}
+                    </a>
+                {%endfor%}
+            </nav>
+
+        </div>
+        {% block body %}{% endblock %}
+    </body>
+</html>
