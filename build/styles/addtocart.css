@@ -1,9 +1,13 @@
 .item-info{
-    background-color: palevioletred;
+    background-color: white;
     width: 500px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
+}
+
+.item-img{
+    width: 200px;
 }
