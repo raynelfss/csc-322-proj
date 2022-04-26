@@ -99,7 +99,7 @@ cur.execute( # Create Rating System Table
         RatingID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
         UserID INTEGER NOT NULL,
         Rating INTEGER NOT NULL DEFAULT 0,
-        OrderID INTEGER NOT NULL
+        DishID INTEGER NOT NULL
     )
     """
 )
