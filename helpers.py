@@ -52,16 +52,14 @@ def calcPrices(dishIDs, deliveryStatus):
     roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth
     return roundedPrice
 
-# listToDict ??
-
 def getDishes(dishIDString):
     dishIDs = dishIDString.split(',') # [dishID, dishID]
     dishCount = {} # {dishID: quantity}
+    
     for dishID in dishIDs:
-        if dishID in dishCount:
-            dishCount[dishID] += 1
-        else:
-            dishCount[dishID] = 1
+        if dishID in dishCount: dishCount[dishID] += 1
+        else: dishCount[dishID] = 1
+    
     dishes = []
     for dishID in dishCount: # itterate through keys in dishCount
         dish = menu.getById(dishID) # get dish from db
@@ -73,16 +71,16 @@ def getNav():
     if isLoggedIn():
         return [
             {'url': '/', 'name': 'Home'},
-            {'url': '/menu', 'name':'Menu'},
-            {'url': '/about', 'name':'About'},
-            {'url': '/logout', 'name':'Logout'},
+            {'url': '/menu', 'name': 'Menu'},
+            {'url': '/about', 'name': 'About'},
+            {'url': '/logout', 'name': 'Logout'},
         ]
     else:
         return [
             {'url': '/', 'name': 'Home'},
-            {'url': '/menu', 'name':'Menu'},
-            {'url': '/about', 'name':'About'},
-            {'url': '/login', 'name':'Login'},  
+            {'url': '/menu', 'name': 'Menu'},
+            {'url': '/about', 'name': 'About'},
+            {'url': '/login', 'name': 'Login'},  
         ]
 
 def getSidebarNav():
@@ -93,7 +91,4 @@ def getSidebarNav():
             {'url': '/dashboard/orders', 'name':'Orders'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
-    else:
-        return [
-            
-        ]
+    else: return []

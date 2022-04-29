@@ -50,6 +50,5 @@ def getBidsByID(bidID): # returns a specific bid
 
 def listToDict(bid):
     return {
-        'bidID': bid[0], 'employeeID': bid[1],
-        'amount': bid[2], 'orderID': bid[3],
+        'bidID': bid[0], 'employeeID': bid[1], 'amount': bid[2], 'orderID': bid[3],
     }

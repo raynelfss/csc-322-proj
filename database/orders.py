@@ -22,9 +22,8 @@ def deleteTable(): # testing
 def addOrderToTable(dishIDs, customerID, address, cost, datetime, deliveryMethod, status):
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, 
-            Address, Cost, Datetime, DeliveryMethod, Status) 
-            VALUES (?,?,?,?,?,?,?,?) RETURNING *""",
-            (dishIDs, customerID, address, cost, datetime, deliveryMethod, status))
+            Address, Cost, Datetime, DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?) RETURNING *""",
+            (dishIDs, customerID, address, cost, datetime, deliveryMethod, status,))
         order = [listToDict(row) for row in rows][0]
         return order
 
@@ -34,11 +33,11 @@ def placeOrder(dishIDs, customerID, address, cost, datetime, deliveryMethod, sta
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, 
             Address, Cost, Datetime, DeliveryMethod, Status) 
-            VALUES (?,?,?,?,?,?,?) RETURNING OrderID""",
-            (dishIDs, customerID, address, cost, datetime, deliveryMethod, status))
+            VALUES (?,?,?,?,?,?,?) RETURNING OrderID""", (dishIDs, customerID, address,
+            cost, datetime, deliveryMethod, status,))
         OrderID = [row for row in rows][0][0]
-        cursor.execute("""UPDATE CustomerTable SET Balance=?, NumberOfOrders=?
-            WHERE CustomerID=?""", (newBalance, newOrderCount, customerID))
+        cursor.execute("""UPDATE CustomerTable SET Balance=?, NumberOfOrders=? WHERE CustomerID=?""",
+            (newBalance, newOrderCount, customerID))
         return OrderID
 
 def getAllOrders(): # returns all orders
@@ -49,7 +48,7 @@ def getAllOrders(): # returns all orders
 
 def getOrdersInProgress():
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM OrderTable WHERE Status!='complete'")
+        rows = cursor.execute("SELECT * FROM OrderTable WHERE Status != 'complete'")
         return [listToDict(row) for row in rows]
 
 def getOrderByID(id): # returns specific order

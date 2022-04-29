@@ -31,7 +31,7 @@ def deleteCart(shoppingCartID): # deletes specific cart
 def displayCartByID(shoppingCartID): # displays specific cart
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM ShoppingCartTable WHERE ShoppingCartID=?",
-        (shoppingCartID,))
+            (shoppingCartID,))
         cart = [listToDict(row) for row in rows]
         return cart
 

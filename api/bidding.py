@@ -11,6 +11,7 @@ bidsBlueprint = Blueprint('app_bids', __name__, url_prefix = '/bids')
 def index(): # route to handle requests
     if request.method == 'GET':   # Retrieve all items from menu
         if not helpers.isManager(): abort(403) # not authorized
+        
         try: return { 'response': bidding.getAllBids() } 
         except Exception as e:
             print(e, '\n')
@@ -20,9 +21,7 @@ def index(): # route to handle requests
         if not helpers.isDeliveryBoy(): abort(403)
         try:
             data = request.json
-            bidding.addBid(
-                data['bidID'], session['employeeID'], data['amount'], data['orderID']
-            )
+            bidding.addBid( data['bidID'], session['employeeID'], data['amount'], data['orderID'] )
             return { 'response': 'successfully posted bid' }
 
         except Exception as e:
@@ -60,6 +59,7 @@ def bid(bidID):
 def bidsOnOrder(orderID):
     if request.method == 'GET':
         if not helpers.isManager(): abort(403)
+        
         try: return { 'response': bidding.getBidsByOrderID(orderID) }
         except Exception as e:
             print(e, '\n')
@@ -70,6 +70,7 @@ def bidsOnOrder(orderID):
         try: 
             bidding.deleteBidByOrderID(orderID)
             return { 'response': 'deleted' }
+        
         except Exception as e:
             print(e, '\n')
             return abort(500)

@@ -40,19 +40,19 @@ def createCustomer(username, passwordHash, name, phoneNumber):
 
 def getCustomerByCustomerID(customerID):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM CustomerTable WHERE CustomerID=?", (customerID, ))
+        rows = cursor.execute("SELECT * FROM CustomerTable WHERE CustomerID = ?", (customerID,))
         return [listToDict(row) for row in rows][0]
 
 def getCustomerByUserID(userID):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM CustomerTable WHERE UserID=?", (userID, ))
+        rows = cursor.execute("SELECT * FROM CustomerTable WHERE UserID = ?", (userID, ))
         return [listToDict(row) for row in rows][0]
 
 def updateCustomer(customerID, name, phoneNumber, vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE CustomerTable SET Name=?, PhoneNumber=?, VipStatus=?, Balance=?, 
-        NumberOfOrders=?, MoneySpent=?, ShoppingCartID=?, Karen=?, DemotionPoints=? WHERE CustomerID=?""", 
-        (name, phoneNumber, vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID))
+        cursor.execute("""UPDATE CustomerTable SET (Name, PhoneNumber, VipStatus, Balance, NumberOfOrders, MoneySpent,
+            ShoppingCartID, Karen, DemotionPoints) VALUES(?,?,?,?,?,?,?,?,?) WHERE CustomerID=?""", (name, phoneNumber,
+            vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID))
 
 def listToDict(customer):
     return {

@@ -9,6 +9,7 @@ orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
 def index():    # route to handle requests
     if request.method == 'GET':   # Retrieve all items 
         if not helpers.isChef(): abort(403) # not authorized
+        
         try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
             print(e, '\n')
@@ -67,6 +68,7 @@ def order(id):
             dishes = helpers.getDishes(order['dishIDs']) # get dishes
             order['dishes'] = dishes # add dishes to order
             return { 'response': order }
+        
         except Exception as e:
             print(e, '\n')
             return abort(500)
@@ -79,6 +81,7 @@ def order(id):
             price = helpers.calcPrices( data['dishIDs'], data['DeliveryMethod'] ) 
             orders.updateOrder(id, dishes, data['CustomerID'], data['Address'], price,
                 data['Datetime'], data['deliveryMethod'], 'status')
+            
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
             print(e, '\n')
@@ -89,6 +92,7 @@ def order(id):
         try:
             orders.getOrderByID(id)
             return { 'response': 'deleted' }
+        
         except Exception as e:
             print(e, '\n')
             return abort(500)    
@@ -97,6 +101,7 @@ def order(id):
 def inProgress():
     if request.method == 'GET':
         if not helpers.isChef(): abort(403) # not authorized
+        
         try:
             ordersInProgress = orders.getOrdersInProgress()
             return {'response': ordersInProgress}

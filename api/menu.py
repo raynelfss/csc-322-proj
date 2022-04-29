@@ -4,11 +4,11 @@ from database import menu # imports from ./menu.py
 from helpers import isChef
 
 menuBlueprint = Blueprint('app_menu', __name__, url_prefix = '/menu')
- 
 @menuBlueprint.route('/', methods = ['GET', 'POST', 'DELETE']) # url would be {address}/api/menu
 def index():    # route to handle requests for menu
     if request.method == 'GET':     # Retrieve all items from menu
         try: return { 'response': menu.getAll() }   # returns table in JSON format
+        
         except Exception as e:
             print(e, '\n')
             return abort(500) # returns internal server error
@@ -18,11 +18,12 @@ def index():    # route to handle requests for menu
         try:
             data = request.json # grab json data which is saved as a dictionary
             menu.add(
-                data['dish_Name'], data['dishdescription'],
+                data['dishName'], data['dishDescription'],
                 data['price'], data['imageURL'],
                 session['employeeID']
             )
             return { 'response': menu.getAll() }
+        
         except Exception as e:
             print(e, '\n')
             return abort(500) # returns internal server error
@@ -32,6 +33,7 @@ def index():    # route to handle requests for menu
         try: 
             menu.deleteAll()
             return { 'response': 'deleted' }
+        
         except Exception as e:
             print(e, '\n')
             return abort(500)
@@ -40,8 +42,7 @@ def index():    # route to handle requests for menu
 # url would be {address}/api/menu/<id> ^^
 def menuItems(id):
     if request.method == 'GET':  # Retrieve a specific item from menu
-        try: return { 'response': menu.getById(id) } 
-        # returns row in JSON format ^
+        try: return { 'response': menu.getById(id) } # returns row in JSON format 
         except Exception as e: 
             print(e, '\n')
             return abort(500) # returns internal server error
@@ -52,6 +53,7 @@ def menuItems(id):
         try:
             menu.deleteById(id)
             return { 'response': 'deleted' }
+        
         except Exception as e:
             print(e, '\n')
             return abort(500)
@@ -60,8 +62,9 @@ def menuItems(id):
         if not isChef(): abort(403) # not authorized
         try:
             data = request.json 
-            menu.updateByID(id, data['dish_Name'], data['imageURL'],
-                data['dishdescription'], data['price'])
+            menu.updateByID(id, data['dishName'], data['imageURL'],
+                data['dishDescription'], data['price'])
+            
             return { 'response': menu.getAll() }
         except Exception as e:
             print(e, '\n')

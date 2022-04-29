@@ -16,14 +16,12 @@ def createEmployee(username, passwordHash, employeeType):
     with DatabaseConnection('./database/database.db') as cursor:
         # Add User
         rows = cursor.execute("""INSERT INTO AuthenticationTable 
-            (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID""",
-            (username, passwordHash, 'employee',))
+            (Username, PasswordHash, Role) VALUES (?,?,?) RETURNING UserID""",(username, passwordHash, 'employee',))
         userID = [row for row in rows][0][0]
     
         # Add Customer
         cursor.execute("""INSERT INTO EmployeeTable 
-            (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)""",
-            (userID, employeeType, True,))
+            (UserID, EmployeeType, EmploymentStatus) VALUES (?,?,?)""",(userID, employeeType, True,))
         
         return userID
 
