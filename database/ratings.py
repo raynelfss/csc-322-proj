@@ -44,7 +44,15 @@ def getRatingsByDish(dishID):
         ratings = [listToDict(row) for row in rows]
         return ratings
 
-## To-do : get average grades of dish
+def avgRatingOfDish(dishID):
+    ratingSum = 0
+    averageRating = 0
+    ratings = getRatingsByDish(dishID)
+    
+    for rating in ratings: ratingSum += rating[2]
+    averageRating = ratingSum/len(ratings)
+
+    return averageRating
 
 def listToDict(rating):
     return {
