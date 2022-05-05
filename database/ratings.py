@@ -26,7 +26,7 @@ def deleteRating(ratingID):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DELETE FROM RatingSystemTable WHERE RatingID=?", (ratingID,))
 
-def getRatingByID(ratingID):
+def getRatingByID(ratingID): # returns a specific rating by its ID
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM RatingSystemTable WHERE RatingID=?", (ratingID,))
         rating = [listToDict(row) for row in rows][0]
@@ -38,13 +38,13 @@ def getAllRatings():
         ratings = [listToDict(row) for row in rows]
         return ratings
 
-def getRatingsByDish(dishID):
+def getRatingsByDish(dishID): # returns a list of ratings for a certain dishID 
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM RatingSystemTable WHERE DishID=?", (dishID,))
         ratings = [listToDict(row) for row in rows]
         return ratings
 
-def avgRatingOfDish(dishID):
+def avgRatingOfDish(dishID): # returns the avg rating of a dish
     ratingSum = 0
     averageRating = 0
     ratings = getRatingsByDish(dishID)

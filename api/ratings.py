@@ -38,17 +38,17 @@ def index():
             return abort(500)
 
 @ratingBlueprint.route('/<id>', methods = ['GET', 'DELETE'])
-def rating(id):
+def rating(ratingId):
     if request.method == 'GET':
         try:
-            rating = ratings.getRatingByID(id)
+            rating = ratings.getRatingByID(ratingId)
             return { 'response': rating }
         except Exception as e:
             print(e, '\n')
             return abort(500)
     elif request.method == 'DELETE':
         try:
-            ratings.deleteRating(id)
+            ratings.deleteRating(ratingId)
             return { 'response': 'successfully deleted rating' }
         except Exception as e:
             print(e, '\n')
