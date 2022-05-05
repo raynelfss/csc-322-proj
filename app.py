@@ -47,8 +47,8 @@ def register():
 
 @app.route('/checkout')
 def checkout():
-    if not isCustomer(): return abort(403)
-    return render_template("checkout.html")
+    if not isCustomer(): return render_template("checkout.html", login = True)
+    return render_template("checkout.html", login = False)
 
         
 @app.route('/orders/<id>')
