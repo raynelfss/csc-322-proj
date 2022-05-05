@@ -52,7 +52,7 @@ def avgRatingOfDish(dishID):
     for rating in ratings: ratingSum += rating[2]
     averageRating = ratingSum/len(ratings)
 
-    return averageRating
+    return round(averageRating, 2)
 
 def listToDict(rating):
     return {
