@@ -23,6 +23,13 @@ async function getItemId(id){
     return data['response']; 
 }
 
+// Get ratings of all dishes, need to change this to get average id
+
+// async function getRatingId(id){
+//     const response = await fetch('/api/ratings/' +id);
+//     const data = await response.json();
+//     return data ['respons']
+// }
 function displayItem(item){
    let element_names = document.getElementsByClassName("item-name");
    [...element_names].forEach(element => {
