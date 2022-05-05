@@ -43,8 +43,12 @@ function createCard(item) {
     let addButton = createElement('button', {
         text: 'Add to cart',
         class: 'addtocart',
-        onclick: `addCartItem(${JSON.stringify(item)})`
+        // onclick: `addCartItem(${JSON.stringify(item)})`
     })
+    addButton.onclick = function() {
+        addCartItem(JSON.stringify(item));
+        displayCart();
+    }
     div3.appendChild(viewDetails);
     div3.appendChild(addButton);
     appendChildren(innerdiv, [img, name, desc, pric, div3]);

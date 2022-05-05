@@ -95,6 +95,7 @@ function getCart() {
 // cartItem = { dishID, dishName, description, price, imageURL, chefID, quantity }
 function addCartItem(menuItem, quantity = 1) {
     if (typeof (menuItem) == 'string') menuItem = JSON.parse(menuItem);
+    
     let cart = getCart();
     let cartItem = cart.items.find(({ dishID }) => menuItem.dishID == dishID);
     if (cartItem) { // if item already in cart, increment item quantity by quantity

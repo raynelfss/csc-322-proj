@@ -8,6 +8,7 @@ async function openModel(id){
     button.onclick = function() {
         addCartItem(JSON.stringify(item));
         closeModel();
+        displayCart();
     }
 }
 

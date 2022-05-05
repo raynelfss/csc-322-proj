@@ -14,7 +14,9 @@ def menupage(): return render_template("menu.html", currentUrl = "/menu", nav = 
 
 @app.route('/dashboard')
 def dashboard():
-    return render_template("dashboard-page.html", nav = getSidebarNav(), currentUrl = '/dashboard')
+    if isLoggedIn():
+        return render_template("dashboard-page.html", nav = getSidebarNav(), currentUrl = '/dashboard')
+    else: return abort(403)
 
 @app.route('/dashboard/menu')
 def menueditpage(): 
