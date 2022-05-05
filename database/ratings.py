@@ -7,6 +7,7 @@ def createRatingsTable():
             CREATE TABLE IF NOT EXISTS RatingSystemTable (
                 RatingID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                 UserID INTEGER NOT NULL,
+                Review TEXT NOT NULL, 
                 Rating INTEGER NOT NULL DEFAULT 0,
                 DishID INTEGER NOT NULL )
             """)
@@ -15,10 +16,10 @@ def deleteTable():
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DROP TABLE IF EXISTS RatingSystemTable")
 
-def addRating(userID, rating, dishID):
+def addRating(userID, rating, review, dishID):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("""INSERT INTO RatingSystemTable (UserID, Rating, DishID)
-            VALUES (?,?,?,?) RETURNING *""",(userID, rating, dishID,))
+        rows = cursor.execute("""INSERT INTO RatingSystemTable (UserID, Rating, review, DishID)
+            VALUES (?,?,?,?) RETURNING *""",(userID, rating, review, dishID,))
         rating = [listToDict(row) for row in rows][0]
         return rating
 
@@ -49,7 +50,7 @@ def avgRatingOfDish(dishID): # returns the avg rating of a dish
     averageRating = 0
     ratings = getRatingsByDish(dishID)
     
-    for rating in ratings: ratingSum += rating[2]
+    for rating in ratings: ratingSum += rating[3]
     averageRating = ratingSum/len(ratings)
 
     return round(averageRating, 2)
@@ -57,5 +58,5 @@ def avgRatingOfDish(dishID): # returns the avg rating of a dish
 def listToDict(rating):
     return {
         'RatingID': rating[0], 'UserID': rating[1],
-        'Rating': rating[2], 'DishID': rating[3],
+        'Review': rating[2], 'Rating': rating[3], 'DishID': rating[4]
     }
