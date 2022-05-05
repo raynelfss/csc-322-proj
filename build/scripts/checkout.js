@@ -18,7 +18,7 @@ function displayLocationForm() {
     document.getElementsByClassName('address-section')[0].style.display = 'Flex';
 }
 
-const createSelectField = (id, quantity) => {
+const createSelectField2 = (id, quantity) => {
     const select = createElement('select', { onchange: `handleSelect('${id}')`, id: `${id}-quantity` });
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         .forEach(value => {
@@ -30,10 +30,10 @@ const createSelectField = (id, quantity) => {
 
 function createCheckoutItem(item) {
     const checkoutItem = createElement('div', { class: 'checkout-item' });
-    const img = createElement('img', { src: item.img_url })
-    const select = createSelectField(item.id, item.quantity);
+    const img = createElement('img', { src: item.imageURL })
+    const select = createSelectField2(item.dishID, item.quantity);
     const infoContainer = createElement('div', { class: 'checkout-item-info' });
-    const name = createElement('p', { text: item.name })
+    const name = createElement('p', { text: item.dishName })
     const price = createElement('p', { text: item.price });
     appendChildren(infoContainer, [name, price]);
     appendChildren(checkoutItem, [select, infoContainer, img]);
@@ -42,7 +42,21 @@ function createCheckoutItem(item) {
 
 function handleSelect(id) {
     const select = document.getElementById(`${id}-quantity`);
-    updateItemQuantity(id, select.value);
+    updateItemQuantity2(id, select.value);
+}
+
+function updateItemQuantity2(dishID, newQuantity) {
+    if (newQuantity == 0) { removeCartItem(dishID); refreshCheckoutCart(); return; }
+    if (newQuantity > 10) { return; }
+    
+    let cart = getCart();
+    let i = cart.items.findIndex(item => item.dishID == dishID);
+    if (i > -1) {
+        cart.items[i].quantity = newQuantity;
+        cart.total = getCartTotal(cart.items);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        refreshCheckoutCart();
+    }
 }
 
 function loadCheckoutCart() {
@@ -66,12 +80,10 @@ const refreshCheckoutCart = () => { clearCheckoutCart(); loadCheckoutCart(); }
 // getCart, removeCartItem, updateItemQuantity, getCartTotal, clearCart imported from ./cart.js
 
 
-function calculateCartPrice(items, isDelivery) {
-    let subtotal = 0;
+function calculateCartPrice(subtotal, isDelivery) {
     let taxes = 0;
     let deliveryFee = 0;
     let total = 0;
-    items.forEach(item => { subtotal = item.price * item.quantity; })
     taxes = subtotal * 0.08875;
     isDelivery && (deliveryFee = 7.99);
     total = subtotal + taxes + deliveryFee;
@@ -80,7 +92,8 @@ function calculateCartPrice(items, isDelivery) {
 
 function loadPrice() {
     let cart = getCart();
-    let prices = calculateCartPrice(cart.items, isDelivery);
+    console.log(cart);
+    let prices = calculateCartPrice(cart.total, isDelivery);
     Object.keys(prices).forEach(priceType => {
         document.getElementById(priceType).textContent = prices[priceType].toFixed(2);
     })
