@@ -51,12 +51,14 @@
     background-size: cover;
     border-radius: 15px;
     display: flex;
+
     /* flex-direction: row; */
 }
 
 .img2 {
     border-radius: 15px;
     margin: auto 10px;
+
     /* transform: translateX(-460px) translateY(-100px); */
 }
 

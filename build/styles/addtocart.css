@@ -13,3 +13,12 @@
 .item-img{
     width: 200px;
 }
+
+.scroll {
+    width:500px;
+    height:500px;
+    background: rbg(11, 11, 114);
+    overflow:hidden;
+    overflow-y:scroll;
+    
+}

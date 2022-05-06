@@ -166,11 +166,3 @@ form .btn button:hover{
     font-size:30px;
     margin-bottom:15px;
 }
-.scroll {
-    width:500px;
-    height:500px;
-    background: rbg(11, 11, 114);
-    overflow:hidden;
-    overflow-y:scroll;
-    
-}
