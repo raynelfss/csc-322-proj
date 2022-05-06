@@ -134,7 +134,7 @@ async function sendEdittoDB(id, item) {
 
 function parseIntoDict() {        // Function adds an element to the item bar. Uses createElement() function.
     let data = {};
-    ['dish_Name', 'dishdescription', 'price', 'imageURL'].forEach(field => {
+    ['dishName', 'dishDescription', 'price', 'imageURL'].forEach(field => {
         let inputElement = document.getElementById(field);
         data[field] = inputElement.value;
         inputElement.value = '';
@@ -143,7 +143,7 @@ function parseIntoDict() {        // Function adds an element to the item bar. U
 }
 
 function fillTextboxes(item) {
-    ['dish_Name', 'dishdescription', 'price', 'imageURL'].forEach(field => {
+    ['dishName', 'dishDescription', 'price', 'imageURL'].forEach(field => {
         console.log(item[field])
         document.getElementById(field).value = item[field];
     })
