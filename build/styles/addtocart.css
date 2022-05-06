@@ -22,3 +22,116 @@
     overflow-y:scroll;
     
 }
+
+.stars input {
+    display:none;
+}
+
+.stars label{
+    font-size: 30px;
+    color: #444;
+    padding: 10px;
+    float:right;
+    transition: all 0.2s ease;
+    text-align: center;
+    margin-right: 40px;
+}
+
+.stars input:not(:checked) ~ label:hover,
+.stars input:not(:checked) ~ label:hover ~label{
+    color:#fd4;
+}
+input:checked ~ label{
+    color:#fd4;
+}
+input#rate1:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate2:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate3:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate4:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate5:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate1:checked ~ form header:before{
+    content:"I hate like it."
+}
+input#rate2:checked ~ form header:before{
+    content:"I dislike like it."
+}
+input#rate3:checked ~ form header:before{
+    content:"It was okay."
+}
+input#rate4:checked ~ form header:before{
+    content:"It was good."
+}
+input#rate5:checked ~ form header:before{
+    content:"It was excellent."
+}
+form header{
+    width:100%;
+    font-size: 25px;
+    font-weight:500;
+    padding-top:50px;
+    text-align:center;
+    transition: all 0.2s ease;
+}
+form .textarea{
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+  }
+form .textarea textarea{
+    width: 100%;
+    height:100%;
+    outline: none;
+    color: rgb(94, 94, 94);
+    border: 1px solid #333;
+    padding: 10px;
+    font-size: 17px;
+    resize: none;
+  }
+  .textarea textarea:focus{
+    border-color: #444;
+  }
+
+form .btn{
+    height: 45px;
+    width:100%;
+    margin-bottom:10px;
+}
+form .btn button{
+    height: 100%;
+    width:100%;
+    border:1px solid #444;
+    outline:none;
+    cursor:pointer;
+    transition: all 0.3s ease;
+}
+
+form .btn button:hover{
+    background:rgb(94, 94, 94);
+    color:white;
+}
+
+.container .text{
+    font-size:100px;
+}
+
+.post{
+    display:none;
+    font-size:30px;
+    margin-bottom:15px;
+}
+
