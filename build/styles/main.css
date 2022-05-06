@@ -51,7 +51,7 @@
     background-size: cover;
     border-radius: 15px;
     display: flex;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
 .img2 {
