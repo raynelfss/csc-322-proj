@@ -44,10 +44,10 @@ def getAll():  # returns all items from Menu
         dishes = [listToDict(row) for row in rows]
         return dishes
 
-def updateByID(id, name, img_url, description, price): # updates specific items
+def updateByID(id, name, img_url, description, price, chefID): # updates specific items
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE FoodTable SET (DishName, ImageURL,
-            Description, Price) VALUES(?,?,?,?) WHERE DishID=?""", (name, img_url, description, price, id,)) 
+        cursor.execute("""UPDATE FoodTable SET DishName = ?, ImageURL = ?,
+            Description = ?, Price = ?, ChefID = ? WHERE DishID = ?""", (name, img_url, description, price, chefID, id)) 
 
 def listToDict(dish):
     return {

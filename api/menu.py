@@ -63,7 +63,7 @@ def menuItems(id):
         try:
             data = request.json 
             menu.updateByID(id, data['dishName'], data['imageURL'],
-                data['dishDescription'], data['price'])
+                data['dishDescription'], data['price'], session['employeeID'])
             
             return { 'response': menu.getAll() }
         except Exception as e:

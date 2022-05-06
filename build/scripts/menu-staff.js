@@ -20,8 +20,8 @@ function createRow(item) {
         }
     })
     let actionColumn = createElement('td', { class: 'buttonv' });
-    let editButton = createElement('button', { text: 'Edit', onclick: `editDiag(${item['dish_ID']})` })
-    let deleteButton = createElement('button', { text: 'Delete', onclick: `deleteItem(${item['dish_ID']})` })
+    let editButton = createElement('button', { text: 'Edit', onclick: `editDiag(${item['dishID']})` })
+    let deleteButton = createElement('button', { text: 'Delete', onclick: `deleteItem(${item['dishID']})` })
     actionColumn.appendChild(editButton);
     actionColumn.appendChild(deleteButton);
     row.appendChild(actionColumn);
@@ -69,7 +69,7 @@ function openDiag(motive, buttonText, id = false) {
 }
 
 function closeDiag(name) {
-    ['dish_Name', 'dishdescription', 'price', 'imageURL'].forEach(field => {
+    ['dishName', 'dishDescription', 'price', 'imageURL'].forEach(field => {
         document.getElementById(field).value = '';
     })
 
@@ -105,9 +105,10 @@ async function deleteItem(id) {
 }
 
 function editItem(id) {
-    let item = parseIntoDict()
-    sendEdittoDB(id, item)
-    closeDiag('cover')
+    let item = parseIntoDict();
+    console.log(id, item);
+    sendEdittoDB(id, item);
+    closeDiag('cover');
 }
 
 async function editDiag(id) {
