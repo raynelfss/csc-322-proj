@@ -45,11 +45,19 @@ async function getfromDB() {
 
 }
 
+async function getOrderByID(id){
+    const response = await fetch('/api/order/' + id);
+    const data = await response.json();
+    return data['response'];
+}
+
 function filltable(data) {
     let table = document.getElementById("ptable");
     data.forEach(order => {
 
         let row = document.createElement('tr');
+        row.classList.add("rows");
+        row.id = order.orderID;
         ['orderID', 'dishIDs', 'customerID', 'address', 'cost', 'datetime',
             'employeeID', 'deliveryMethod', 'status'].forEach(key => {
                 // itterate through those values in the order and create a column for each
@@ -72,15 +80,52 @@ function filltable(data) {
                 }
                 row.appendChild(column); // add the created column into the row
             })
-        let button = createElement('button', { text: 'Cancel' })
+        let button = createElement('button', { text: 'Cancel' , onclick: `cancelAction(${order.orderID})`})
         row.appendChild(button);
         table.appendChild(row); // add the row to table
     });
 }
 
+function cancelAction(id) {
+    if (confirm("Are you sure you want to cancel this order? The order value will be refunded to the user.")) {
+        cancelOrder(id);
 
+    }
+}
 
-// 
+async function cancelOrder(id) {
+    const order = await getOrderByID(id);
+    order.status = "cancelled";
+    let dishes = order.dishIDs.split(',');
+    order.dishIDs = dishes;
+
+    console.log(order);
+    updateItem(id, order)
+    eraseUniqueElement(id);
+}
+
+async function updateItem(id, order) {
+    const response =  await fetch('/api/order/' + id, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(order),
+    });
+    const data = await response.json()
+    console.log(data)
+}
+
+function eraseElements() {
+    let elements = document.getElementsByClassName('rows');
+    while (elements.length > 0) {elements[0].parentNode.removeChild(elements[0])};
+}
+
+function eraseUniqueElement(id) {
+    let element = document.getElementById(id);
+    element.remove();
+}
 
 getfromDB();
 currentTime();

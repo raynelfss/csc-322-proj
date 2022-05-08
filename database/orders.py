@@ -48,7 +48,7 @@ def getAllOrders(): # returns all orders
 
 def getOrdersInProgress():
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("SELECT * FROM OrderTable WHERE Status != 'complete'")
+        rows = cursor.execute("SELECT * FROM OrderTable WHERE (Status != 'complete' AND Status != 'cancelled')")
         return [listToDict(row) for row in rows]
 
 def getOrderByID(id): # returns specific order
@@ -63,11 +63,11 @@ def getOrdersBycustomerID(id): # returns all orders of one customer
         orders = [listToDict(row) for row in rows]
         return orders
 
-def updateOrder(id, dishIDs, customerID, address, cost, datetime, employeeID, deliveryMethod, status):
+def updateOrder(id, dishIDs, customerID, address, cost, datetime, deliveryMethod, status):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE OrderTable SET (DishIDs, CustomerID, Address, Cost,
-            Datetime, EmployeeID, DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?,?,?)
-            WHERE OrderID=?""",(dishIDs, customerID, address, cost, datetime, employeeID,
+        cursor.execute("""UPDATE OrderTable SET DishIDs = ?, CustomerID = ?, Address = ?, Cost = ?,
+            Datetime = ?, DeliveryMethod = ?, Status = ? 
+            WHERE OrderID=?""",(dishIDs, customerID, address, cost, datetime,
             deliveryMethod, status, id,))
 
 def deleteOrder(id):
