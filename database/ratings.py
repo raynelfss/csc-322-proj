@@ -1,4 +1,3 @@
-from database.auth import listToDict
 from helpers import DatabaseConnection
 
 def createRatingsTable():

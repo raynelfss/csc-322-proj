@@ -11,7 +11,7 @@ def index():
     if request.method == 'GET':
         if not helpers.isCustomer(): abort(403) # not authorized
         
-        try: return { 'response': ratings.getAllRatings()}   # returns table in JSON format
+        try: return { 'response': ratings.getAllRatings() }   # returns table in JSON format
         except Exception as e:
             print(e, '\n')
             return abort(500) # returns internal server error
