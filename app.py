@@ -50,6 +50,9 @@ def checkout():
     if not isCustomer(): return render_template("checkout.html", login = True)
     return render_template("checkout.html", login = False)
 
+@app.route('/orderhistory')
+def orderhistory(): return render_template("orderhistory.html", currentUrl = "/orderhistory", nav = getNav())
+
         
 @app.route('/orders/<id>')
 def order(id): return render_template("order.html")

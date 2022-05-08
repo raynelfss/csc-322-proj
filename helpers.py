@@ -78,6 +78,7 @@ def getNav():
             {'url': '/menu', 'name': 'Menu'},
             {'url': '/about', 'name': 'About'},
             {'url': '/logout', 'name': 'Logout'},
+            {'url': '/orderhistory', 'name': 'OrderHistory'},
         ]
     else:
         return [
