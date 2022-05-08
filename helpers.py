@@ -18,7 +18,11 @@ class DatabaseConnection:
         self.connection.close()
     
 def isLoggedIn():
-    return session.get('loggedIn') == True
+    return (session.get('loggedIn') == True 
+    and session.get('loggedIn') == True)
+
+def isEmployee():
+    return session.get('userType') == 'employee' 
     
 def isChef():
     return (session.get('loggedIn') == True

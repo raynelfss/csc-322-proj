@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, abort, redirect, session
 from api.index import apiBlueprint #imports apiBlueprint from ./api/index.py
-from helpers import isChef, isCustomer, isLoggedIn, getNav, getSidebarNav
+from helpers import isChef, isCustomer, isEmployee, isLoggedIn, getNav, getSidebarNav, isManager
 
 app = Flask(__name__, static_url_path='', static_folder="build", template_folder='build')
 app.secret_key = 'deezNuts' 
@@ -14,19 +14,19 @@ def menupage(): return render_template("menu.html", currentUrl = "/menu", nav = 
 
 @app.route('/dashboard')
 def dashboard():
-    if isLoggedIn():
+    if isLoggedIn() and isEmployee():
         return render_template("dashboard-page.html", nav = getSidebarNav(), currentUrl = '/dashboard')
     else: return abort(403)
 
 @app.route('/dashboard/menu')
 def menueditpage(): 
-    if isChef():
+    if isChef() or isManager():
         return render_template("menu-staff.html", nav = getSidebarNav(), currentUrl = '/dashboard/menu')
     else: return abort(403)
 
 @app.route('/dashboard/orders')
 def orderspage():
-    if isChef():
+    if isChef() or isManager():
         return render_template("orders-page.html", nav = getSidebarNav(), currentUrl = '/dashboard/orders')
     else: return abort(403)
 
