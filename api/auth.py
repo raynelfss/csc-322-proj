@@ -27,9 +27,8 @@ def login():
                 employee = employees.getEmployee(user['userID'])
                 session['employeeID'] = employee['employeeID']
                 session['employeeType'] = employee['employeeType']
-                return redirect('/dashboard')
             
-            elif (user[3] == 'customer'):
+            elif (user['role'] == 'customer'):
                 customer = customers.getCustomerByUserID(user['userID'])
                 session['customerID'] = customer['customerID']
             return redirect('/') # redirects to homepage

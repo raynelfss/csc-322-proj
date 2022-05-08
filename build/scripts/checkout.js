@@ -101,10 +101,12 @@ function loadPrice() {
 
 function getDishIDs() {
     let cart = getCart();
+    console.log(cart);
     let ids = [];
     cart.items.forEach(item => {
-        for (let i = 0; i < item.quantity; i++) ids.push(item.id);
+        for (let i = 0; i < item.quantity; i++) ids.push(item.dishID);
     })
+    //console.log(ids);
     return ids;
 }
 
@@ -120,6 +122,7 @@ async function checkout() {
     const address = isDelivery ? getAddress() : null;
     const data = JSON.stringify({ dishIDs, deliveryMethod, address });
     console.log(data);
+    
     const response = await fetch('/api/order/', {
         method: 'POST',
         headers: {
