@@ -1,0 +1,73 @@
+{% extends 'layout.html' %}
+
+{% block styles %}
+    <link rel = "stylesheet" href = "./styles/main.css">
+    <link rel = "stylesheet" href = "./styles/cart.css">
+    <link rel = "stylesheet" href = "./styles/orderhistory.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <script src="./scripts/cart.js"></script>
+{% endblock %}
+
+{% block body %}
+<div class="title">
+    <h2>Order History</h2>
+</div>
+<table class="content-table">
+    <thead>
+      <tr>
+        <th>Order Number:</th>
+        <th>Order Details:</th>
+        <th>Quantity:</th>
+        <th>Total Amount:</th>
+        <th>Purchase Date:</th>
+        <th class="rating">Delivery Rating:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Menu item</td>
+        <td>10</td>
+        <td>$10000.00</td>
+        <td>05/04/22</td>
+        <td>Rating for delivery driver:
+            <div class ="stars">
+                <input type="radio" name="rate" id ="rate5">
+                <label for="rate5" class="fas fa-star"></label>
+                <input type="radio" name="rate" id ="rate4">
+                <label for="rate4" class="fas fa-star"></label>
+                <input type="radio" name="rate" id ="rate3">
+                <label for="rate3" class="fas fa-star"></label>
+                <input type="radio" name="rate" id ="rate2">
+                <label for="rate2" class="fas fa-star"></label>
+                <input type="radio" name="rate" id ="rate1">
+                <label for="rate1" class="fas fa-star"></label>
+                <form action="#">
+                    <header></header>
+                    <div class="textarea">
+                        <textarea cols="10" rows="4"></textarea>
+                    </div>
+                    <button id="number">Submit</button>
+                </form>
+            </div>
+        </td>
+            
+      </tr>
+      <tr class="active-row">
+        <td>2</td>
+        <td>Menu item</td>
+        <td>1</td>
+        <td>$5.00</td>
+        <td>05/04/22</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Menu item</td>
+        <td>4</td>
+        <td>$25.50</td>
+        <td>05/04/22</td>
+      </tr>
+    </tbody>
+  </table>
+  
+{% endblock %}

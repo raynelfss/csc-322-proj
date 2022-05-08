@@ -1,0 +1,121 @@
+* {
+    font-family: sans-serif; /* Change your font family */
+  }
+  
+.title {
+    padding: 20px;
+    background:white;
+    margin-bottom: -30px;
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .content-table thead tr {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .content-table th,
+  .content-table td {
+    padding: 12px 15px;
+    
+  }
+
+  .content-table .rating{
+      width:50px
+  }
+  
+  .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #f3f3f3;
+    font-weight: bold;
+    color: #2b2b2b;
+    
+  }
+  
+  .content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #282828;
+  }
+
+ .stars input {
+    display:none;
+}
+
+.stars label{
+    font-size: 30px;
+    color: #444;
+    padding: 10px;
+    float:right;
+    transition: all 0.2s ease;
+    text-align: center;
+    margin-right: 40px;
+}
+
+.stars input:not(:checked) ~ label:hover,
+.stars input:not(:checked) ~ label:hover ~label{
+    color:#fd4;
+}
+input:checked ~ label{
+    color:#fd4;
+}
+input#rate1:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate2:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate3:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate4:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+input#rate5:checked ~ label{
+    color:#fe7;
+    text-shadow: 0 0 20px #952;
+}
+form header{
+    width:100%;
+    font-size: 25px;
+    font-weight:500;
+    padding-top:50px;
+    text-align:center;
+    transition: all 0.2s ease;
+}
+form .textarea{
+    height: 50px;
+    width: 100%;
+    overflow: hidden;
+  }
+form .textarea textarea{
+    width: 100%;
+    height:100%;
+    outline: none;
+    color: rgb(94, 94, 94);
+    border: 1px solid #333;
+    padding: 10px;
+    font-size: 17px;
+    resize: none;
+  }
+  .textarea textarea:focus{
+    border-color: #444;
+  }
+  button {
+      cursor:pointer;
+  }
+
+ 
