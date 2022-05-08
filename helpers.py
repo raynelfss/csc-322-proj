@@ -1,7 +1,7 @@
 from dis import dis
 import sqlite3 # database
 from flask import session
-from database import menu, orders
+from database import menu
 from collections import Counter
 
 # helper functions and classes
@@ -65,8 +65,8 @@ def getDishes(dishIDString):
     dishes = [{**menu.getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
     return dishes
 
-def topFiveDishes(): # returns the 5 most requested dishIDs
-    ordersList = orders.getAllOrders() # returns a list of dictionaries
+def topFiveDishes(ordersList): # returns the 5 most requested dishIDs
+    # ordersList = orders.getAllOrders() # returns a list of dictionaries
     frequencies = {}
     topFive = []
     for order in ordersList:
