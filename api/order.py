@@ -74,13 +74,14 @@ def order(id):
             return abort(500)
     
     elif request.method == 'PUT':
-        if not helpers.isManager() : abort(403)
+        if not helpers.isManager() and not helpers.isChef() : abort(403)
         try:
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
-            price = helpers.calcPrices( data['dishIDs'], data['DeliveryMethod'] ) 
-            orders.updateOrder(id, dishes, data['CustomerID'], data['Address'], price,
-                data['Datetime'], data['deliveryMethod'], 'status')
+            print(dishes)
+            price = helpers.calcPrices( data['dishIDs'], data['deliveryMethod'] ) 
+            orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
+                data['datetime'], data['deliveryMethod'], data['status'])
             
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
