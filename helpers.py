@@ -1,7 +1,8 @@
 from dis import dis
 import sqlite3 # database
 from flask import session
-from database import menu
+from database import menu, orders
+from collections import Counter
 
 # helper functions and classes
 class DatabaseConnection:
@@ -60,16 +61,27 @@ def getDishes(dishIDString):
     dishIDs = dishIDString.split(',') # [dishID, dishID]
     dishCount = {} # {dishID: quantity}
     
-    for dishID in dishIDs:
-        if dishID in dishCount: dishCount[dishID] += 1
-        else: dishCount[dishID] = 1
-    
-    dishes = []
-    for dishID in dishCount: # itterate through keys in dishCount
-        dish = menu.getById(dishID) # get dish from db
-        dish['quantity'] = dishCount[dishID] # add quantity to dish
-        dishes.append(dish) # add dish to dishes
+    dishCount = Counter(dishIDs)
+    dishes = [{**menu.getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
     return dishes
+
+def topFiveDishes(): # returns the 5 most requested dishIDs
+    ordersList = orders.getAllOrders() # returns a list of dictionaries
+    frequencies = {}
+    topFive = []
+    for order in ordersList:
+        dishIDsString = ordersList['dishIDs']
+        dishIDs = dishIDsString.split(',') # [dishID, dishID]
+        for dishID in dishIDs:
+            if dishID in frequencies: frequencies[dishID] += 1
+            else: frequencies[dishID] = 1
+    
+    for i in range(5):
+        maxKey = max(frequencies, key=frequencies.get)
+        topFive.append(maxKey)
+        frequencies.pop(maxKey)
+        
+    return topFive
 
 def getNav():
     if isLoggedIn():

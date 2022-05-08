@@ -49,10 +49,10 @@ def avgRatingOfDish(dishID): # returns the avg rating of a dish
     averageRating = 0
     ratings = getRatingsByDish(dishID)
     
-    for rating in ratings: ratingSum += rating[3]
+    for rating in ratings: ratingSum += rating['Rating']
     averageRating = ratingSum/len(ratings)
 
-    return round(averageRating, 2)
+    return round(averageRating, 1) # rounds rating to 1 decimal place
 
 def listToDict(rating):
     return {
