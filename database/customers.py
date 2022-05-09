@@ -64,8 +64,8 @@ def getCustomerByUserID(userID):
 
 def updateCustomer(customerID, name, phoneNumber, vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE CustomerTable SET (Name, PhoneNumber, VipStatus, Balance, NumberOfOrders, MoneySpent,
-            ShoppingCartID, Karen, DemotionPoints) VALUES(?,?,?,?,?,?,?,?,?) WHERE CustomerID=?""", (name, phoneNumber,
+        cursor.execute("""UPDATE CustomerTable SET Name=?, PhoneNumber=?, VipStatus=?, Balance=?, NumberOfOrders=?, MoneySpent=?,
+            ShoppingCartID=?, Karen=?, DemotionPoints=? WHERE CustomerID=?""", (name, phoneNumber,
             vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID))
 
 def listToDict(customer):

@@ -1,0 +1,63 @@
+.infodiv{
+    border-radius: 10px;
+    background-color: white;
+    margin: 20px 40px;
+    padding: 20px 20px;
+    text-align: center;
+}
+
+.bheader{
+    font-size: 30px;
+}
+.balanceblock{
+    display: flex;
+    flex-direction: column;
+}
+.balance{
+    font-size: 50px;
+    padding-left: 20px;
+    font-weight: 700;
+}
+.options{
+    text-align: right;
+}
+.accountinfo{
+    text-align: left;
+}
+button{
+    border-radius: 10px;
+    border: none;
+    padding: 10px;
+}
+.displayblock{
+    display: none;
+    position: absolute;
+    top: 0px; left: 0px; bottom: 0px; right: 0px;
+    size: 100%;
+    background-color: rgba(0, 0, 0, 0.166);
+}
+.success{
+    display: none;
+    text-align: center;
+    color: green;
+    font-size: 12px;
+}
+.depositmodel{
+    display: none;
+    position: absolute;
+    top: 50%;left: 50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column;
+    align-content: center;
+    border-radius: 10px;
+    padding: 20px 10px;
+    background-color: white;
+    size: 400px 100px;
+}
+#depositamount{
+    background: transparent;
+    border: none;
+    font-size: 40px;
+    text-align: center;
+    size: 400px 100px;
+}

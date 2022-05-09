@@ -33,7 +33,7 @@ def customer(customerID):
             return abort(500)
     
     elif request.method == 'POST':
-        if not helpers.isManager(): abort(403)
+        if not helpers.isManager(): return abort(403)
         try:
             data = request.json
             customers.updateCustomer(customerID, data['userID'], data['name'], data['phoneNumber'],
@@ -45,7 +45,7 @@ def customer(customerID):
             return abort(500)
     
     elif request.method == 'DELETE':
-        if not helpers.isManager(): abort(403)
+        if not helpers.isManager(): return abort(403)
         try:
             customers.deleteCustomer(customerID)
             return { 'response': 'successfully deleted customer info' }
