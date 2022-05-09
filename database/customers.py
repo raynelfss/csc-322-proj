@@ -57,6 +57,7 @@ def getCustomerByCustomerID(customerID):
         rows = cursor.execute("SELECT * FROM CustomerTable WHERE CustomerID = ?", (customerID,))
         return [listToDict(row) for row in rows][0]
 
+
 def getCustomerByUserID(userID):
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("SELECT * FROM CustomerTable WHERE UserID = ?", (userID, ))
@@ -67,6 +68,20 @@ def updateCustomer(customerID, name, phoneNumber, vipStatus, balance, numberOfOr
         cursor.execute("""UPDATE CustomerTable SET Name=?, PhoneNumber=?, VipStatus=?, Balance=?, NumberOfOrders=?, MoneySpent=?,
             ShoppingCartID=?, Karen=?, DemotionPoints=? WHERE CustomerID=?""", (name, phoneNumber,
             vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID))
+
+def getBalance(customerID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT Balance FROM CustomerTable WHERE CustomerID = ?", (customerID,))
+        return [listToDictBal(row) for row in rows][0]
+
+def updateBalance(customerID, balance):
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""UPDATE CustomerTable SET Balance=? WHERE CustomerID=?""", (balance, customerID))
+
+def listToDictBal(customer):
+    return {
+        'balance' : customer[0],
+    }
 
 def listToDict(customer):
     return {
