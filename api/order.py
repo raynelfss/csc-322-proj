@@ -12,7 +12,7 @@ def index():    # route to handle requests
         
         try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500) # returns internal server error
 
     elif request.method == 'POST': # Add item to menu
@@ -57,7 +57,7 @@ def index():    # route to handle requests
             orders.deleteTable()
             return { 'response': 'deleted' }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
 @orderBlueprint.route('/<id>', methods = ['GET', 'PUT', 'DELETE'])
@@ -70,7 +70,7 @@ def order(id):
             return { 'response': order }
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
     
     elif request.method == 'PUT':
@@ -85,7 +85,7 @@ def order(id):
             
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
     elif request.method == 'DELETE': # deletes specific items from table by ID
@@ -95,17 +95,16 @@ def order(id):
             return { 'response': 'deleted' }
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)    
 
 @orderBlueprint.route('/inprogress', methods=['GET'])
 def inProgress():
     if request.method == 'GET':
         if not helpers.isChef(): abort(403) # not authorized
-        
         try:
             ordersInProgress = orders.getOrdersInProgress()
-            return {'response': ordersInProgress}
+            return { 'response': ordersInProgress }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)   

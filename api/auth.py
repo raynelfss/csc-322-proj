@@ -34,7 +34,7 @@ def login():
             return redirect('/') # redirects to homepage
 
         except Exception as e:
-            print(e)
+            print('error: ', e, '\n')
             return abort(500)
 
 @authBlueprint.route('/register', methods = ['POST']) # register customers
@@ -55,7 +55,7 @@ def register():
             return redirect('/') # redirects to homepage
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
 

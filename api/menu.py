@@ -10,7 +10,7 @@ def index():    # route to handle requests for menu
         try: return { 'response': menu.getAll() }   # returns table in JSON format
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500) # returns internal server error
 
     elif request.method == 'POST': # Add item to menu
@@ -25,7 +25,7 @@ def index():    # route to handle requests for menu
             return { 'response': menu.getAll() }
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500) # returns internal server error
 
     elif request.method == 'DELETE': #deletes entire table
@@ -35,7 +35,7 @@ def index():    # route to handle requests for menu
             return { 'response': 'deleted' }
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
 @menuBlueprint.route('/<id>', methods = ['GET', 'DELETE', 'PUT'])
@@ -44,7 +44,7 @@ def menuItems(id):
     if request.method == 'GET':  # Retrieve a specific item from menu
         try: return { 'response': menu.getById(id) } # returns row in JSON format 
         except Exception as e: 
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500) # returns internal server error
     
     elif request.method == 'DELETE':  
@@ -55,7 +55,7 @@ def menuItems(id):
             return { 'response': 'deleted' }
         
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
     
     elif request.method == "PUT":
@@ -67,5 +67,5 @@ def menuItems(id):
             
             return { 'response': menu.getAll() }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)

@@ -7,10 +7,9 @@ cartBlueprint = Blueprint('app_cart', __name__, url_prefix = '/cart')
 def index():
     if request.method == 'DELETE':
         if not helpers.isManager(): abort(403)
-        
         try: shoppingCart.deleteAllCarts()
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
 @cartBlueprint.route('/<id>', methods = ['GET', 'PUT', 'DELETE'])
@@ -18,7 +17,7 @@ def cart(shoppingCartID):
     if request.method == 'GET':
         try: return { 'response': shoppingCart.displayCartByID(shoppingCartID) }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
     
     elif request.method == 'PUT':
@@ -32,7 +31,7 @@ def cart(shoppingCartID):
             
             return { 'response': cart }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
     elif request.method == 'DELETE':
@@ -40,6 +39,6 @@ def cart(shoppingCartID):
             shoppingCart.deleteCart(shoppingCartID)
             return { 'response': 'deleted' }
         except Exception as e:
-            print(e, '\n')
+            print('error: ', e, '\n')
             return abort(500)
 
