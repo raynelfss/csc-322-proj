@@ -1,14 +1,74 @@
 {% extends 'dashboard-layout.html' %}
 
 {% block body %}
-    <div>
-        <p>Welcome to Dashboard</p>
+    <div class="title">
+        <h2>Welcome to Dashboard</h2>
         <!-- will prob display different stuff here based on employee -->
     </div>
 
 {% if session.get('employeeType') == 'chef' %}
     <div>
-        <t1>You're a chef</t1>
+        <div class="title">
+            <h2>You're a chef.</h2>
+        </div>
+            <table class="content-table">
+                <thead>
+                <tr>
+                    <th>Order Number:</th>
+                    <th>Customer Number Rating:</th>
+                    <th>Customer Review:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Number rating goes here.</td>
+                    <td>Review/complaint goes here.</td>
+                    </div>  
+                    </td>
+                </tr>
+                <tr class="active-row">
+                    <td>2</td>
+                    <td>Number rating goes here.</td>
+                    <td>Review/complaint goes here.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Number rating goes here.</td>
+                    <td>Review/complaint goes here.</td>
+                </tr>
+                </tbody>
+            </table>
+            
+            <table class="content-table2">
+                <thead>
+                <tr>
+                    <th>Manager Feedback</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>If you receive an average of less than or equal to a 2.0 rating
+                        or at least 3 complaints, you will be demoted.
+                    </td>
+                    </div>  
+                    </td>
+                </tr>
+                <tr class="active-row">
+                    <td>If you get demoted 2 times, you're fired.
+                    </td>
+                </tr>
+                <tr>
+                    <td>If you receive an average of more than or equal to a 4.0 rating
+                        or at least 3 compliments, you will receive a bonus.
+                    </td>
+                </tr>
+                <tr>
+                    <td>1 compliment can remove 1 complaint.
+                    </td>
+                </tr>
+                </tbody>
+            </table>        
     </div>
 {% elif session.get('employeeType') == 'deliveryPerson'%}
     <div>
@@ -16,11 +76,11 @@
     </div>
 {% elif session.get('employeeType') == 'manager' %}
     <div>
-        <t1>You're a manager</t1>
+        <t1>You're a manager.</t1>
     </div>
 {% else %}
     <div>
-        <t1> You're a Customer. </t1>
+        <t1> You're a customer. </t1>
     </div>
 {% endif %}
 

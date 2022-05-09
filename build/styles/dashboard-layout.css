@@ -97,3 +97,92 @@ header {
 .linkSelected {
     color: white;
 }
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    margin-top: 50px;
+    margin-left: 30px;
+    font-size: 0.9em;
+    width: 50%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .content-table thead tr {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .content-table th,
+  .content-table td {
+    padding: 12px 10px;
+    
+  }
+
+  .content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #f3f3f3;
+    font-weight: bold;
+    color: #2b2b2b;
+    
+  }
+  
+  .content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #282828;
+  }
+
+
+  .content-table2 {
+    border-collapse: collapse;
+    margin: 25px 0;
+    margin-top: -191px;
+    margin-left: 800px;
+    font-size: 0.9em;
+    width: 42%;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    
+  }
+  
+  .content-table2 thead tr {
+    background-color: #2b2b2b;
+    color: #ffffff;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .content-table2 th,
+  .content-table2 td {
+    padding: 12px 10px;
+    
+  }
+
+  .content-table2 tbody tr {
+    border-bottom: 1px solid #dddddd;
+    background-color: #f3f3f3;
+    font-weight: bold;
+    color: #2b2b2b;
+    
+  }
+  
+  .content-table2 tbody tr:last-of-type {
+    border-bottom: 2px solid #282828;
+  }
+
+
+
+
+* {
+    font-family: sans-serif; /* Change your font family */
+  }
+  
+.title {
+    padding: 8px;
+    background:white;
+    margin-bottom: -30px;
+}
