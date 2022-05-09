@@ -97,17 +97,23 @@ header {
 .linkSelected {
     color: white;
 }
-
+/* These are all table stuff */
+.tables{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* margin: 20px; */
+  padding: 10px;
+}
 .content-table {
     border-collapse: collapse;
-    margin: 25px 0;
-    margin-top: 50px;
-    margin-left: 30px;
     font-size: 0.9em;
     width: 50%;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin: 10px;
   }
   
   .content-table thead tr {
@@ -138,9 +144,10 @@ header {
 
   .content-table2 {
     border-collapse: collapse;
-    margin: 25px 0;
-    margin-top: -191px;
-    margin-left: 800px;
+    /* margin: 25px 0; */
+    /* margin-top: -191px;
+    margin-left: 800px; */
+    margin: 10px;
     font-size: 0.9em;
     width: 42%;
     border-radius: 5px 5px 0 0;
@@ -184,5 +191,5 @@ header {
 .title {
     padding: 8px;
     background:white;
-    margin-bottom: -30px;
+    /* margin-bottom: -30px; */
 }
