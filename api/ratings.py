@@ -13,7 +13,7 @@ def index():
         try: return { 'response': ratings.getAllRatings() }   # returns table in JSON format
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
     
     elif request.method == 'POST': # Add rating to ratings 
         if not helpers.isCustomer(): abort(403) # only customers should be able to write reviews. 
@@ -24,7 +24,7 @@ def index():
 
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
 
     elif request.method == 'DELETE': # deletes entire table
         if not helpers.isManager(): abort(403) # not authorized
@@ -33,7 +33,7 @@ def index():
             return { 'response': 'deleted' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
 @ratingBlueprint.route('/<id>', methods = ['GET', 'DELETE'])
 def rating(ratingId):
@@ -43,7 +43,7 @@ def rating(ratingId):
             return { 'response': rating }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == 'DELETE':
         try:
@@ -51,4 +51,4 @@ def rating(ratingId):
             return { 'response': 'successfully deleted rating' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)

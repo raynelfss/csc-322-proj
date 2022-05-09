@@ -57,5 +57,6 @@ def avgRatingOfDish(dishID): # returns the avg rating of a dish
 def listToDict(rating):
     return {
         'RatingID': rating[0], 'UserID': rating[1],
-        'Review': rating[2], 'Rating': rating[3], 'DishID': rating[4]
+        'Review': rating[2], 'Rating': rating[3], 
+        'DishID': rating[4]
     }

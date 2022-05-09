@@ -35,7 +35,7 @@ def login():
 
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
 @authBlueprint.route('/register', methods = ['POST']) # register customers
 def register():
@@ -56,7 +56,7 @@ def register():
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
 
 

@@ -13,7 +13,7 @@ def index():    # route to handle requests
         try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
 
     elif request.method == 'POST': # Add item to menu
         if not helpers.isCustomer(): abort(403) # only customers should be able to order for now
@@ -49,7 +49,7 @@ def index():    # route to handle requests
 
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
 
     elif request.method == 'DELETE': # deletes entire table
         if not helpers.isChef(): abort(403) # not authorized
@@ -58,7 +58,7 @@ def index():    # route to handle requests
             return { 'response': 'deleted' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
 @orderBlueprint.route('/<id>', methods = ['GET', 'PUT', 'DELETE'])
 def order(id):
@@ -71,7 +71,7 @@ def order(id):
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == 'PUT':
         if not helpers.isManager() and not helpers.isChef() : abort(403)
@@ -86,7 +86,7 @@ def order(id):
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
     elif request.method == 'DELETE': # deletes specific items from table by ID
         if not helpers.isManager(): abort(403) # not authorized
@@ -96,7 +96,7 @@ def order(id):
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)    
+            abort(500)    
 
 @orderBlueprint.route('/inprogress', methods=['GET'])
 def inProgress():
@@ -107,4 +107,4 @@ def inProgress():
             return { 'response': ordersInProgress }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)   
+            abort(500)   

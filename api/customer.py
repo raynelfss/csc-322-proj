@@ -11,7 +11,7 @@ def index():
         try: return { 'response': customers.getAllCustomers() }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == 'DELETE':
         if not helpers.isManager(): abort(403)
@@ -20,7 +20,7 @@ def index():
             return { 'response': 'successfully deleted customer table' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
 @customerBlueprint.route('/<id>', methods = ['GET', 'POST', 'DELETE'])
 def customer(customerID): 
@@ -30,7 +30,7 @@ def customer(customerID):
             return { 'response': customer }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == 'POST':
         if not helpers.isManager(): abort(403)
@@ -42,7 +42,7 @@ def customer(customerID):
             return { 'response': 'successfully updated customer info' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == 'DELETE':
         if not helpers.isManager(): abort(403)
@@ -51,4 +51,4 @@ def customer(customerID):
             return { 'response': 'successfully deleted customer info' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)

@@ -11,7 +11,7 @@ def index():    # route to handle requests for menu
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
 
     elif request.method == 'POST': # Add item to menu
         if not isChef(): abort(403) # not authorized
@@ -26,7 +26,7 @@ def index():    # route to handle requests for menu
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
 
     elif request.method == 'DELETE': #deletes entire table
         if not isChef(): abort(403) # not authorized
@@ -36,7 +36,7 @@ def index():    # route to handle requests for menu
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
 @menuBlueprint.route('/<id>', methods = ['GET', 'DELETE', 'PUT'])
 # url would be {address}/api/menu/<id> ^^
@@ -45,7 +45,7 @@ def menuItems(id):
         try: return { 'response': menu.getById(id) } # returns row in JSON format 
         except Exception as e: 
             print('error: ', e, '\n')
-            return abort(500) # returns internal server error
+            abort(500) # returns internal server error
     
     elif request.method == 'DELETE':  
         # deletes specific items from table by ID
@@ -56,7 +56,7 @@ def menuItems(id):
         
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == "PUT":
         if not isChef(): abort(403) # not authorized
@@ -68,4 +68,4 @@ def menuItems(id):
             return { 'response': menu.getAll() }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)

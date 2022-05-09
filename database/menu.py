@@ -17,12 +17,10 @@ def deleteTable(): # only used for testing purposes
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DROP TABLE FoodTable")
 
-def add(dishName, description, price, imageURL, chefID): 
-    # adds items to table
+def add(dishName, description, price, imageURL, chefID): # adds items to table
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""INSERT INTO FoodTable 
-            (DishName, Description, Price, ImageURL, ChefID) VALUES (?,?,?,?,?)""",
-            (dishName, description, price, imageURL, chefID,))
+        cursor.execute("""INSERT INTO FoodTable (DishName, Description, Price, ImageURL, ChefID)
+            VALUES (?,?,?,?,?)""", (dishName, description, price, imageURL, chefID,))
 
 def deleteById(id): # deletes a specific item
     with DatabaseConnection('./database/database.db') as cursor:
@@ -46,8 +44,8 @@ def getAll():  # returns all items from Menu
 
 def updateByID(id, name, img_url, description, price, chefID): # updates specific items
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE FoodTable SET DishName = ?, ImageURL = ?,
-            Description = ?, Price = ?, ChefID = ? WHERE DishID = ?""", (name, img_url, description, price, chefID, id)) 
+        cursor.execute("""UPDATE FoodTable SET (DishName, ImageURL, Description, Price, ChefID)
+            VALUES(?,?,?,?,?) WHERE DishID=?""", (name, img_url, description, price, chefID, id,)) 
 
 def listToDict(dish):
     return {

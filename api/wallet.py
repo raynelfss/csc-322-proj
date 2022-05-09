@@ -12,7 +12,7 @@ def index():
             return {'response': { 'balance': balance['balance'] } }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)   # returns internal server error
+            abort(500)   # returns internal server error
 
     elif request.method == 'PUT':
         if not helpers.isLoggedIn(): abort(403)
@@ -26,4 +26,4 @@ def index():
             return { 'response': { 'balance': provisional['balance'] } }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)

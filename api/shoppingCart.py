@@ -18,7 +18,7 @@ def cart(shoppingCartID):
         try: return { 'response': shoppingCart.displayCartByID(shoppingCartID) }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
     
     elif request.method == 'PUT':
         try:
@@ -40,5 +40,5 @@ def cart(shoppingCartID):
             return { 'response': 'deleted' }
         except Exception as e:
             print('error: ', e, '\n')
-            return abort(500)
+            abort(500)
 
