@@ -1,11 +1,8 @@
-import collections
 from dis import dis
-import itertools
 import sqlite3 # database
 from flask import session
 from database import menu
 from collections import Counter
-from itertools import chain
 
 # helper functions and classes
 class DatabaseConnection:

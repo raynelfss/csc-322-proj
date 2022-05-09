@@ -26,9 +26,11 @@ def cart(shoppingCartID):
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
             price = helpers.calcPrices( data['dishIDs'], data['DeliveryMethod'] ) 
-            shoppingCart.updateCart(shoppingCartID, dishes, price)
             
-            return { 'response': shoppingCart.displayCartByID(shoppingCartID) }
+            shoppingCart.updateCart(shoppingCartID, dishes, price)
+            cart = shoppingCart.displayCartByID(shoppingCartID)
+            
+            return { 'response': cart }
         except Exception as e:
             print(e, '\n')
             return abort(500)

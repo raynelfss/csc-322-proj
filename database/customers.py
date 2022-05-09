@@ -17,6 +17,10 @@ def createCustomerTable():  # creates a table for all users
             DemotionPoints INTEGER NOT NULL DEFAULT 0 )
         """)
 
+def deleteCustomerTable(): 
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DROP TABLE IF EXISTS CustomerTable")
+
 # use this to create user, customer and shopping cart
 def createCustomer(username, passwordHash, name, phoneNumber):
     with DatabaseConnection('./database/database.db') as cursor:
@@ -37,6 +41,16 @@ def createCustomer(username, passwordHash, name, phoneNumber):
             (userID, name, phoneNumber, shoppingCartID,))
         customerID = [row for row in rows][0][0]
         return userID, customerID
+
+def getAllCustomers():
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT * FROM CustomerTable")
+        customers = [listToDict(row) for row in rows]
+        return customers
+
+def deleteCustomer(customerID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DELETE FROM CustomerTable WHERE CustomerID=?", (customerID,))
 
 def getCustomerByCustomerID(customerID):
     with DatabaseConnection('./database/database.db') as cursor:
