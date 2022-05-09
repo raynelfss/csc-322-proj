@@ -12,6 +12,8 @@ def index():
 @app.route('/menu')
 def menupage(): return render_template("menu.html", currentUrl = "/menu", nav = getNav())
 
+# Dashboard pages.
+
 @app.route('/dashboard')
 def dashboard():
     if isLoggedIn():
@@ -28,6 +30,18 @@ def menueditpage():
 def orderspage():
     if isChef() or isManager():
         return render_template("orders-page.html", nav = getSidebarNav(), currentUrl = '/dashboard/orders')
+    else: return abort(403)
+
+@app.route('/dashboard/settings')
+def dashsettings():
+    if isLoggedIn():
+        return render_template("dashboard-settings.html", nav = getSidebarNav(), currentUrl = '/dashboard/settings')
+    else: return abort(403)
+
+@app.route('/dashboard/wallet')
+def dashWallet():
+    if isLoggedIn() and isCustomer():
+        return render_template("dashboard-wallet.html", nav = getSidebarNav(), currentUrl = '/dashboard/wallet')
     else: return abort(403)
 
 @app.route('/login')

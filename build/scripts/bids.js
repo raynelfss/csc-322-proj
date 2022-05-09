@@ -1,4 +1,4 @@
-async function getOrders() {
+async function getOrders() {    // Retreive orders pending orders from database.
     const response = await fetch('/api/order');
     const data = await response.json();
 

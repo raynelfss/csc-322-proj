@@ -1,4 +1,4 @@
-async function openModel(id){
+async function openModel(id){   // Makes model visible
     let item = await getItemId(id);  
     console.log(item)
     displayItem(item)
@@ -12,12 +12,12 @@ async function openModel(id){
     }
 }
 
-function closeModel(){
+function closeModel(){  // Makes model invisible 
     let first = document.getElementsByClassName("item-info")[0]
     first.style.display = "none"
 }
 
-async function getItemId(id){
+async function getItemId(id){   // Retreives an item from Database by ID
     const response = await fetch('/api/menu/' + id);
     const data = await response.json();
     console.log(data['response'])
@@ -31,7 +31,7 @@ async function getItemId(id){
 //     const data = await response.json();
 //     return data ['respons']
 // }
-function displayItem(item){
+function displayItem(item){     // Displays an item in the cart.
    let element_names = document.getElementsByClassName("item-name");
    [...element_names].forEach(element => {
        element.textContent = item.dishName

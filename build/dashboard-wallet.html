@@ -1,0 +1,27 @@
+{% extends 'dashboard-layout.html' %}
+
+{% block body %}
+    <div>
+        <p>Welcome to Dashboard</p>
+        <!-- will prob display different stuff here based on employee -->
+    </div>
+
+{% if session.get('userType') == 'customer' %}
+    <div>
+        <t1>You're a customer</t1>
+        <div>
+            <t1 class="bheader">Your current balance is:</t1>
+            <t1 class="balance">0.00</t1>
+            <div>
+                <button>Make a deposit</button>
+                <button>Use a coupon</button>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <div>
+        <t1> You're not supposed to be here. </t1>
+    </div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'dashboard-layout.html' %}
+
+{% block body %}
+    <div>
+        <p>Welcome to Dashboard</p>
+        <!-- will prob display different stuff here based on employee -->
+    </div>
+
+{% if session.get('employeeType') == 'chef' %}
+    <div>
+        <t1>You're a chef</t1>
+    </div>
+{% elif session.get('employeeType') == 'deliveryPerson'%}
+    <div>
+        <t1>You're a delivery person.</t1>
+    </div>
+{% elif session.get('employeeType') == 'manager' %}
+    <div>
+        <t1>You're a manager</t1>
+    </div>
+{% else %}
+    <div>
+        <t1> You're a Customer. </t1>
+        <div class="infosect">
+            <div class="perinfo">
+                <label for="Name">Full name:</label>
+                <input type="text" id="Name">
+                <label for="Name">Full name:</label>
+                <input type="text" id="Name">
+                <label for="Name">Full name:</label>
+                <input type="text" id="Name">
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% endblock %}
