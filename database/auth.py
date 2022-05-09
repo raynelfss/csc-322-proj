@@ -14,7 +14,6 @@ def getUserByUsername(username): # looks for existing users
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("""SELECT * FROM AuthenticationTable WHERE Username=?""", (username,))
         users = [listToDict(row) for row in rows]
-        print(users)
         if users: return users[0] # returns a user's info based on the username
         return ''
 
