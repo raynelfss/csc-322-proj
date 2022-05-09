@@ -1,7 +1,8 @@
 from dis import dis
 import sqlite3 # database
 from flask import session
-from database import menu
+from api import ratings
+from database import menu, ratings
 from collections import Counter
 
 # helper functions and classes
@@ -65,10 +66,10 @@ def getDishes(dishIDString):
     dishes = [{**menu.getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
     return dishes
 
-def topFiveDishes(ordersList): # returns the 5 most requested dishIDs
+def topThreeDishes(ordersList): # returns the 3 most requested dishIDs
     # ordersList = orders.getAllOrders() # returns a list of dictionaries
     frequencies = {}
-    topFive = []
+    topThree = []
     for order in ordersList:
         dishIDsString = ordersList['dishIDs']
         dishIDs = dishIDsString.split(',') # [dishID, dishID]
@@ -76,12 +77,27 @@ def topFiveDishes(ordersList): # returns the 5 most requested dishIDs
             if dishID in frequencies: frequencies[dishID] += 1
             else: frequencies[dishID] = 1
     
-    for i in range(5):
+    for i in range(3):
         maxKey = max(frequencies, key=frequencies.get)
-        topFive.append(maxKey)
+        topThree.append(maxKey)
         frequencies.pop(maxKey)
         
-    return topFive
+    return topThree
+
+def topThreeRated(menuList):
+    allRatings = {}
+    topThree = []
+
+    for item in menuList:
+        ratingNum = ratings.avgRatingOfDish(menuList['dishID'])
+        allRatings[menuList['dishID']] = ratingNum 
+        
+    for i in range(3):
+        maxKey = max(allRatings, key= allRatings.get)
+        topThree.append(maxKey)
+        allRatings.pop(maxKey)
+
+    return topThree
 
 def getNav():
     if isLoggedIn():
