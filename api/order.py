@@ -1,7 +1,7 @@
 from flask import Blueprint, abort, request, session
 from database import orders, customers
 import helpers
-import datetime
+from datetime import datetime
 
 orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
 
