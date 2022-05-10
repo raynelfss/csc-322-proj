@@ -54,6 +54,21 @@ def avgRatingOfDish(dishID): # returns the avg rating of a dish
 
     return round(averageRating, 1) # rounds rating to 1 decimal place
 
+def topThreeRated(menuList):
+    allRatings = {}
+    topThree = []
+
+    for item in menuList:
+        ratingNum = avgRatingOfDish(menuList['dishID'])
+        allRatings[menuList['dishID']] = ratingNum 
+        
+    for i in range(3):
+        maxKey = max(allRatings, key= allRatings.get)
+        topThree.append(maxKey)
+        allRatings.pop(maxKey)
+
+    return topThree
+    
 def listToDict(rating):
     return {
         'RatingID': rating[0], 'UserID': rating[1],

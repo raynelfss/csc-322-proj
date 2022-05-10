@@ -48,7 +48,7 @@ def isManager():
 def calcPrices(dishIDs, deliveryStatus):
     totalPrice = 0
     for dishID in dishIDs:
-        dish = menu.getById(dishID)
+        dish = getById(dishID)
         totalPrice += dish['price']
 
     if deliveryStatus: # additional delivery cost
@@ -63,7 +63,7 @@ def getDishes(dishIDString):
     dishCount = {} # {dishID: quantity}
     
     dishCount = Counter(dishIDs)
-    dishes = [{**menu.getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
+    dishes = [{**getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
     return dishes
 
 # def topThreeDishes(ordersList): # returns the 3 most requested dishIDs

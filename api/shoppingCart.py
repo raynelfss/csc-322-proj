@@ -1,12 +1,12 @@
 from flask import Blueprint, abort, request, session
 from database import shoppingCart
-import helpers
+from helpers import isManager, calcPrices
 
 cartBlueprint = Blueprint('app_cart', __name__, url_prefix = '/cart')
 @cartBlueprint.route('/', methods = ['DELETE']) 
 def index():
     if request.method == 'DELETE':
-        if not helpers.isManager(): abort(403)
+        if not isManager(): abort(403)
         try: shoppingCart.deleteAllCarts()
         except Exception as e:
             print('error: ', e, '\n')
@@ -24,7 +24,7 @@ def cart(shoppingCartID):
         try:
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
-            price = helpers.calcPrices( data['dishIDs'], data['DeliveryMethod'] ) 
+            price = calcPrices( data['dishIDs'], data['DeliveryMethod'] ) 
             
             shoppingCart.updateCart(shoppingCartID, dishes, price)
             cart = shoppingCart.displayCartByID(shoppingCartID)
