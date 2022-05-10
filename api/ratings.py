@@ -19,7 +19,7 @@ def index():
         if not helpers.isCustomer(): abort(403) # only customers should be able to write reviews. 
         try:
             data = request.json # grab json data which is saved as a dictionary
-            ratings.addRating( data['UserID'], data['Rating'], data['DishID'] )
+            ratings.addRating( session['UserID'], data['Rating'], data['DishID'] )
             return { 'ratingID': 'successfully posted rating' }
 
         except Exception as e:

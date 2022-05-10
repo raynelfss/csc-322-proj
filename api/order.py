@@ -80,7 +80,7 @@ def order(id):
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
             print(dishes)
             price = helpers.calcPrices( data['dishIDs'], data['deliveryMethod'] ) 
-            orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
+            orders.updateOrder(id, dishes, session['customerID'], data['address'], price,
                 data['datetime'], data['deliveryMethod'], data['status'])
             
             return { 'response': orders.getOrderByID(id) }

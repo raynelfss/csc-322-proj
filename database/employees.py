@@ -11,6 +11,10 @@ def createEmployeeTable():  # creates a table for all users
             EmploymentStatus BOOLEAN NOT NULL )
         """)
 
+def deleteTable():
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DROP TABLE IF EXISTS EmployeeTable")
+
 # use this to create user and employee
 def createEmployee(username, passwordHash, employeeType):
     with DatabaseConnection('./database/database.db') as cursor:
@@ -37,6 +41,10 @@ def getEmployee(userID):
         rows = cursor.execute("SELECT * FROM EmployeeTable WHERE UserID=?", (userID,))
         employee = [listToDict(row) for row in rows][0]
         return employee
+
+def fireEmployee(userID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("DELETE FROM EmployeeTable WHERE UserID=?", (userID,))
 
 def listToDict(employee):
     return {

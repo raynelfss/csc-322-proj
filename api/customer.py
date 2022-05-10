@@ -36,7 +36,7 @@ def customer(customerID):
         if not helpers.isManager(): abort(403)
         try:
             data = request.json
-            customers.updateCustomer(customerID, data['userID'], data['name'], data['phoneNumber'],
+            customers.updateCustomer(customerID, session['userID'], data['name'], data['phoneNumber'],
                 data['vipStatus'], data['balance'], data['numberOfOrders'], data['moneySpent'],
                 data['shoppingCartID'], data['karen'], data['demotionPoints'])
             return { 'response': 'successfully updated customer info' }
