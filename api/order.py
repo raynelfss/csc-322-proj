@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, request, session
 from database import orders, customers
-from helpers import isChef, isManager, isCustomer, calcPrices, getDishes
+from helpers import isChef, isManager, isCustomer
+from database.shoppingCart import calcPrices, getDishes
 from datetime import datetime
 
 orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')

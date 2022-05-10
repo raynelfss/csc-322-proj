@@ -1,6 +1,6 @@
 from helpers import DatabaseConnection
 from collections import Counter
-from menu import getById
+from database.menu import getById
 
 def createShoppingCart():
     with DatabaseConnection('./database/database.db') as cursor:

@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, request, session
 from database import shoppingCart
-from helpers import isManager, calcPrices
+from helpers import isManager
+from database.shoppingCart import calcPrices
 
 cartBlueprint = Blueprint('app_cart', __name__, url_prefix = '/cart')
 @cartBlueprint.route('/', methods = ['DELETE']) 
