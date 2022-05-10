@@ -1,4 +1,6 @@
 from helpers import DatabaseConnection
+from collections import Counter
+from menu import getById
 
 def createShoppingCart():
     with DatabaseConnection('./database/database.db') as cursor:
@@ -39,6 +41,27 @@ def updateCart(shoppingCartID, dishIDs, totalPrice): # deletes or adds to a cart
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("""UPDATE ShoppingCartTable SET (DishIDs=?, TotalPrice=?)
             WHERE ShoppingCartID=?""", (dishIDs, totalPrice, shoppingCartID,))
+
+def getDishes(dishIDString):
+    dishIDs = dishIDString.split(',') # [dishID, dishID]
+    dishCount = {} # {dishID: quantity}
+    
+    dishCount = Counter(dishIDs)
+    dishes = [{**getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
+    return dishes
+
+def calcPrices(dishIDs, deliveryStatus):
+    totalPrice = 0
+    for dishID in dishIDs:
+        dish = getById(dishID)
+        totalPrice += dish['price']
+
+    if deliveryStatus: # additional delivery cost
+        totalPrice += 2.99 # base delivery fee
+    
+    totalPrice *= 1.08875 # 8.875% tax rate
+    roundedPrice = round(totalPrice, 2) # rounds to nearest hundredth
+    return roundedPrice
 
 def listToDict(cart): # helper
     return {
