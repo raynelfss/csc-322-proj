@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request, session
 from database import orders, customers
-import helpers
+from helpers import isChef, isManager, isCustomer, calcPrices, getDishes
 from datetime import datetime
 
 orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
@@ -8,7 +8,7 @@ orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
 @orderBlueprint.route('/', methods = ['GET', 'POST', 'DELETE'])
 def index():    # route to handle requests
     if request.method == 'GET':   # Retrieve all items 
-        if not helpers.isChef(): abort(403) # not authorized
+        if not isChef(): abort(403) # not authorized
         
         try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
@@ -16,7 +16,7 @@ def index():    # route to handle requests
             abort(500) # returns internal server error
 
     elif request.method == 'POST': # Add item to menu
-        if not helpers.isCustomer(): abort(403) # only customers should be able to order for now
+        if not isCustomer(): abort(403) # only customers should be able to order for now
         try:
             data = request.json # grab json data which is saved as a dictionary
             
@@ -24,7 +24,7 @@ def index():    # route to handle requests
             dishes = ','.join([str(dishID) for dishID in data['dishIDs']])
             
             # calculate price
-            cost = helpers.calcPrices(data['dishIDs'], data['deliveryMethod']) 
+            cost = calcPrices(data['dishIDs'], data['deliveryMethod']) 
             customer = customers.getCustomerByCustomerID(session['customerID'])
             
             # use store address if pickup
@@ -52,7 +52,7 @@ def index():    # route to handle requests
             abort(500) # returns internal server error
 
     elif request.method == 'DELETE': # deletes entire table
-        if not helpers.isChef(): abort(403) # not authorized
+        if not isChef(): abort(403) # not authorized
         try: 
             orders.deleteTable()
             return { 'response': 'deleted' }
@@ -65,7 +65,7 @@ def order(id):
     if request.method == 'GET':
         try:
             order = orders.getOrderByID(id)
-            dishes = helpers.getDishes(order['dishIDs']) # get dishes
+            dishes = getDishes(order['dishIDs']) # get dishes
             order['dishes'] = dishes # add dishes to order
             return { 'response': order }
         
@@ -74,12 +74,12 @@ def order(id):
             abort(500)
     
     elif request.method == 'PUT':
-        if not helpers.isManager() and not helpers.isChef() : abort(403)
+        if not isManager() and not isChef() : abort(403)
         try:
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
             print(dishes)
-            price = helpers.calcPrices( data['dishIDs'], data['deliveryMethod'] ) 
+            price = calcPrices( data['dishIDs'], data['deliveryMethod'] ) 
             orders.updateOrder(id, dishes, session['customerID'], data['address'], price,
                 data['datetime'], data['deliveryMethod'], data['status'])
             
@@ -89,7 +89,7 @@ def order(id):
             abort(500)
 
     elif request.method == 'DELETE': # deletes specific items from table by ID
-        if not helpers.isManager(): abort(403) # not authorized
+        if not isManager(): abort(403) # not authorized
         try:
             orders.getOrderByID(id)
             return { 'response': 'deleted' }
@@ -101,7 +101,7 @@ def order(id):
 @orderBlueprint.route('/inprogress', methods=['GET'])
 def inProgress():
     if request.method == 'GET':
-        if not helpers.isChef(): abort(403) # not authorized
+        if not isChef(): abort(403) # not authorized
         try:
             ordersInProgress = orders.getOrdersInProgress()
             return { 'response': ordersInProgress }

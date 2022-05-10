@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request, session
 from database import employees
-import helpers
+from helpers import isManager 
 
 employeeBlueprint = Blueprint('app_employee', __name__, url_prefix = '/employee')
 
@@ -12,7 +12,7 @@ def index():
             print('error: ', e, '\n')
             abort(500)
     elif request.method == 'DELETE':
-        if not helpers.isManager(): abort(403)
+        if not isManager(): abort(403)
         try:
             employees.deleteTable()
             return { 'response': 'successfully deleted employee table'}
@@ -29,7 +29,7 @@ def employee(userID):
             abort(500)
     elif request.method == 'DELETE':
         try:
-            if not helpers.isManager(): abort(403)
+            if not isManager(): abort(403)
             employees.fireEmployee(userID)
             return { 'response': 'successfully removed employee' }
         except Exception as e:

@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request, session
 from database import customers
-import helpers
+from helpers import isManager
 
 customerBlueprint = Blueprint('app_customer', __name__, url_prefix = '/customer')
 
@@ -14,7 +14,7 @@ def index():
             abort(500)
     
     elif request.method == 'DELETE':
-        if not helpers.isManager(): abort(403)
+        if not isManager(): abort(403)
         try:
             customers.deleteCustomerTable() 
             return { 'response': 'successfully deleted customer table' }
@@ -33,7 +33,7 @@ def customer(customerID):
             abort(500)
     
     elif request.method == 'POST':
-        if not helpers.isManager(): abort(403)
+        if not isManager(): abort(403)
         try:
             data = request.json
             customers.updateCustomer(customerID, session['userID'], data['name'], data['phoneNumber'],
@@ -45,7 +45,7 @@ def customer(customerID):
             abort(500)
     
     elif request.method == 'DELETE':
-        if not helpers.isManager(): abort(403)
+        if not isManager(): abort(403)
         try:
             customers.deleteCustomer(customerID)
             return { 'response': 'successfully deleted customer info' }

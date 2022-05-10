@@ -1,8 +1,7 @@
 from dis import dis
 import sqlite3 # database
 from flask import session
-from api import ratings
-from database import menu, ratings
+from database.menu import getById
 from collections import Counter
 
 # helper functions and classes
@@ -48,7 +47,7 @@ def isManager():
 def calcPrices(dishIDs, deliveryStatus):
     totalPrice = 0
     for dishID in dishIDs:
-        dish = menu.getById(dishID)
+        dish = getById(dishID)
         totalPrice += dish['price']
 
     if deliveryStatus: # additional delivery cost
@@ -63,7 +62,7 @@ def getDishes(dishIDString):
     dishCount = {} # {dishID: quantity}
     
     dishCount = Counter(dishIDs)
-    dishes = [{**menu.getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
+    dishes = [{**getById(dishID), 'quantity': dishCount[dishID]} for dishID in dishCount]
     return dishes
 
 def topThreeDishes(ordersList): # returns the 3 most requested dishIDs
@@ -81,22 +80,6 @@ def topThreeDishes(ordersList): # returns the 3 most requested dishIDs
         maxKey = max(frequencies, key=frequencies.get)
         topThree.append(maxKey)
         frequencies.pop(maxKey)
-        
-    return topThree
-
-def topThreeRated(menuList):
-    allRatings = {}
-    topThree = []
-
-    for item in menuList:
-        ratingNum = ratings.avgRatingOfDish(menuList['dishID'])
-        allRatings[menuList['dishID']] = ratingNum 
-        
-    for i in range(3):
-        maxKey = max(allRatings, key= allRatings.get)
-        topThree.append(maxKey)
-        allRatings.pop(maxKey)
-
     return topThree
 
 def getNav():
