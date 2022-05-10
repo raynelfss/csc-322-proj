@@ -89,6 +89,17 @@ def updateBalance(customerID, balance):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("UPDATE CustomerTable SET Balance=? WHERE CustomerID=?", (balance, customerID,))
 
+def demoteOnePoint(userID): 
+    points = getCustomerDemotionPoint(userID)   #if error maybe because this doesnt return int value
+    points -=1
+    updateCustDemotionPoint(userID,points)
+
+
+def promoteOnePoint(userID):
+    points = getCustomerDemotionPoint(userID)
+    points +=1
+    updateCustDemotionPoint(userID,points)
+
 def listToDictBal(customer):
     return {
         'balance': customer[0]
