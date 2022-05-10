@@ -1,52 +1,50 @@
 from flask import Flask, render_template, request, abort, redirect, session
 from api.index import apiBlueprint #imports apiBlueprint from ./api/index.py
-from helpers import isChef, isCustomer, isEmployee, isLoggedIn, getNav, getSidebarNav, isManager
-
-app = Flask(__name__, static_url_path='', static_folder="build", template_folder='build')
+import helpers
+app = Flask(__name__, static_url_path = '', static_folder = "build", template_folder = 'build')
 app.secret_key = 'deezNuts' 
 
 @app.route('/')
 def index(): 
-    return render_template("main.html", currentUrl = "/", nav = getNav())
+    return render_template("main.html", currentUrl = "/", nav = helpers.getNav())
 
 @app.route('/menu')
-def menupage(): return render_template("menu.html", currentUrl = "/menu", nav = getNav())
+def menupage(): return render_template("menu.html", currentUrl = "/menu", nav = helpers.getNav())
 
 # Dashboard pages.
-
 @app.route('/dashboard')
 def dashboard():
-    if isLoggedIn():
-        return render_template("dashboard-page.html", nav = getSidebarNav(), currentUrl = '/dashboard')
+    if helpers.isLoggedIn():
+        return render_template("dashboard-page.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard')
     else: return abort(403)
 
 @app.route('/dashboard/menu')
 def menueditpage(): 
-    if isChef() or isManager():
-        return render_template("menu-staff.html", nav = getSidebarNav(), currentUrl = '/dashboard/menu')
+    if helpers.isChef() or helpers.isManager():
+        return render_template("menu-staff.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/menu')
     else: return abort(403)
 
 @app.route('/dashboard/orders')
 def orderspage():
-    if isChef() or isManager():
-        return render_template("orders-page.html", nav = getSidebarNav(), currentUrl = '/dashboard/orders')
+    if helpers.isChef() or helpers.isManager():
+        return render_template("orders-page.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/orders')
     else: return abort(403)
 
 @app.route('/dashboard/settings')
 def dashsettings():
-    if isLoggedIn():
-        return render_template("dashboard-settings.html", nav = getSidebarNav(), currentUrl = '/dashboard/settings')
+    if helpers.isLoggedIn():
+        return render_template("dashboard-settings.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/settings')
     else: return abort(403)
 
 @app.route('/dashboard/wallet')
 def dashWallet():
-    if isLoggedIn() and isCustomer():
-        return render_template("dashboard-wallet.html", nav = getSidebarNav(), currentUrl = '/dashboard/wallet')
+    if helpers.isLoggedIn() and helpers.isCustomer():
+        return render_template("dashboard-wallet.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/wallet')
     else: return abort(403)
 
 @app.route('/login')
 def login():
-    if isLoggedIn(): return redirect('/') 
+    if helpers.isLoggedIn(): return redirect('/') 
     return render_template("userlogin.html")
 
 @app.route('/logout')
@@ -56,17 +54,16 @@ def logout():
 
 @app.route('/register')
 def register(): 
-    if isLoggedIn(): return redirect('/') 
+    if helpers.isLoggedIn(): return redirect('/') 
     return render_template("register.html")
 
 @app.route('/checkout')
 def checkout():
-    if not isCustomer(): return render_template("checkout.html", login = True)
+    if not helpers.isCustomer(): return render_template("checkout.html", login = True)
     return render_template("checkout.html", login = False)
 
 @app.route('/orderhistory')
-def orderhistory(): return render_template("orderhistory.html", currentUrl = "/orderhistory", nav = getNav())
-
+def orderhistory(): return render_template("orderhistory.html", currentUrl = "/orderhistory", nav = helpers.getNav())
         
 @app.route('/orders/<id>')
 def order(id): return render_template("order.html")
