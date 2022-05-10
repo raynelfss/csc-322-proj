@@ -42,9 +42,23 @@ def getEmployee(userID):
         employee = [listToDict(row) for row in rows][0]
         return employee
 
+def getEmployeeDemotionPoint(userID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT DemotionPoints FROM EmployeeTable WHERE UserID=?", (userID,))
+        return [listToDictPoints(row) for row in rows][0]
+
+def updateEmployeeDemotionPoint(userID,demotionPoints):
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("UPDATE EmployeeTable SET DemotionPoints = ? WHERE UserID=?", (demotionPoints,userID,))
+
 def fireEmployee(userID):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DELETE FROM EmployeeTable WHERE UserID=?", (userID,))
+
+def listToDictPoints(employee):
+    return {
+        'demotionPoints': employee[0]
+    }
 
 def listToDict(employee):
     return {
