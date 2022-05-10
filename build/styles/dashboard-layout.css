@@ -193,3 +193,7 @@ header {
     background:white;
     /* margin-bottom: -30px; */
 }
+
+.doThis {
+    display:block;
+}
