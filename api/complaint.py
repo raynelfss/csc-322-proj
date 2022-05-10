@@ -30,5 +30,4 @@ def index():
             print('error: ', e, '\n')
             abort(500) # returns internal server error
 
-@complaintBlueprint.route('/<id>', methods = ['GET','DELETE'])
-
+# @complaintBlueprint.route('/<id>', methods = ['GET','DELETE'])
