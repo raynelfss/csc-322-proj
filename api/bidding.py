@@ -46,7 +46,7 @@ def bid(id):
             abort(500)
                 
     elif request.method == 'DELETE':
-        if not helpers.isDeliveryBoy() or not helpers.isManager(): abort(403) # not authorized
+        if not (helpers.isDeliveryBoy() or helpers.isManager()): abort(403) # not authorized
         try: 
             bidding.deleteBid(id)
             return { 'response': 'deleted' }
@@ -59,7 +59,6 @@ def bidsOnOrder(id):
     if request.method == 'GET':
         if not (helpers.isManager() or helpers.isChef()): abort(403)
         try:
-            print('I\'m here') 
             return { 'response': bidding.getBidsByOrderID(id) }
         except Exception as e:
             print('error: ', e, '\n')
@@ -70,7 +69,6 @@ def bidsOnOrder(id):
         try: 
             bidding.deleteBidByOrderID(id)
             return { 'response': 'deleted' }
-        
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)

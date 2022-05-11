@@ -9,7 +9,6 @@ ratingBlueprint = Blueprint('app_ratings', __name__, url_prefix = '/ratings')
 def index():
     if request.method == 'GET':
         if not isCustomer(): abort(403) # not authorized
-        
         try: return { 'response': ratings.getAllRatings() }   # returns table in JSON format
         except Exception as e:
             print('error: ', e, '\n')
