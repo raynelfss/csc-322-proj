@@ -28,7 +28,7 @@ def addOrderToTable(dishIDs, customerID, address, cost, datetime, deliveryMethod
         return order
 
 # Place Order and updates User
-def placeOrder(dishIDs, customerID, address, cost, datetime, deliveryMethod, status, newBalance, newOrderCount):
+def placeOrder(dishIDs, customerID, address, cost, datetime, deliveryMethod, status, newBalance, newMoneySpent, newOrderCount):
     print(dishIDs)
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("""INSERT INTO OrderTable (DishIDs, CustomerID, 
@@ -37,8 +37,8 @@ def placeOrder(dishIDs, customerID, address, cost, datetime, deliveryMethod, sta
             (dishIDs, customerID, address, cost, datetime, deliveryMethod, status,))
         
         OrderID = [row for row in rows][0][0]
-        cursor.execute("UPDATE CustomerTable SET Balance=?, NumberOfOrders=? WHERE CustomerID=?",
-            (newBalance, newOrderCount, customerID,))
+        cursor.execute("UPDATE CustomerTable SET Balance=?, MoneySpent=?, NumberOfOrders=? WHERE CustomerID=?",
+            (newBalance, newMoneySpent, newOrderCount, customerID,))
         return OrderID
 
 def getAllOrders(): # returns all orders

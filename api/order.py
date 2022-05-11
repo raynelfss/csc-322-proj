@@ -2,7 +2,7 @@ from flask import Blueprint, abort, request, session
 from database import orders, customers
 from helpers import isChef, isDeliveryBoy, isLoggedIn, isManager, isCustomer
 from database.shoppingCart import calcPrices, getDishes
-from database.customers import getBalance, updateBalance
+from database.customers import getBalance, getMoneySpent, updateBalance, updateMoneySpent
 from datetime import datetime
 
 orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
@@ -35,6 +35,7 @@ def index():    # route to handle requests
             else: address = data['address']
 
             # check if user has enough money
+            moneySpent = customer['moneySpent'] + cost
             newBalance = customer['balance'] - cost
             if newBalance < 0:
                 newBalance = 0
@@ -44,7 +45,7 @@ def index():    # route to handle requests
             orderID = orders.placeOrder(
                 dishes, session['customerID'], address, cost,
                 datetime.now(), data['deliveryMethod'], 'pending',
-                newBalance, newOrderCount
+                newBalance, moneySpent, newOrderCount
             )
             print('Order Placed', orderID)
             return { 'response': { 'orderID': orderID } }
@@ -89,8 +90,11 @@ def order(id):
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
                     data['datetime'], data['deliveryMethod'], data['status'])
                 balance = getBalance(data['customerID'])['balance']
+                spent = getMoneySpent(data['customerID'])['balance']
                 balance = balance + price
+                spent = spent - price
                 updateBalance(data['customerID'], balance)
+                updateMoneySpent(data['customerID'], spent)
             else:
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
                 data['datetime'], data['deliveryMethod'], data['status'])
