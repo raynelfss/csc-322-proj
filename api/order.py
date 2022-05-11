@@ -1,7 +1,8 @@
 from flask import Blueprint, abort, request, session
 from database import orders, customers
-from helpers import isChef, isManager, isCustomer
+from helpers import isChef, isDeliveryBoy, isLoggedIn, isManager, isCustomer
 from database.shoppingCart import calcPrices, getDishes
+from database.customers import getBalance, updateBalance
 from datetime import datetime
 
 orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
@@ -75,22 +76,31 @@ def order(id):
             abort(500)
     
     elif request.method == 'PUT':
-        if not isManager() and not isChef() : abort(403)
+        if not isLoggedIn() or isDeliveryBoy() : abort(403)
         try:
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
             print(dishes)
-            price = calcPrices( data['dishIDs'], data['deliveryMethod'] ) 
-            orders.updateOrder(id, dishes, session['customerID'], data['address'], price,
-                data['datetime'], data['deliveryMethod'], data['status'])
+            print(data['customerID'])
             
+            price = calcPrices( data['dishIDs'], data['deliveryMethod'] )
+            print(price)
+            if (isManager() or isChef()) and data['status'] == 'cancelled': 
+                orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
+                    data['datetime'], data['deliveryMethod'], data['status'])
+                balance = getBalance(data['customerID'])['balance']
+                balance = balance + price
+                updateBalance(data['customerID'], balance)
+            else:
+                orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
+                data['datetime'], data['deliveryMethod'], data['status'])
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
 
     elif request.method == 'DELETE': # deletes specific items from table by ID
-        if not isManager(): abort(403) # not authorized
+        if not isManager() and not isChef(): abort(403) # not authorized
         try:
             orders.getOrderByID(id)
             return { 'response': 'deleted' }

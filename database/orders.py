@@ -66,8 +66,8 @@ def getOrdersBycustomerID(id): # returns all orders of one customer
 
 def updateOrder(id, dishIDs, customerID, address, cost, datetime, deliveryMethod, status):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE OrderTable SET (DishIDs, CustomerID, Address, Cost,
-            Datetime, DeliveryMethod, Status) VALUES (?,?,?,?,?,?,?) WHERE OrderID=?""",
+        cursor.execute("""UPDATE OrderTable SET DishIDs=?, CustomerID=?, Address=?, Cost=?,
+            Datetime=?, DeliveryMethod=?, Status=? WHERE OrderID=?""",
             (dishIDs, customerID, address, cost, datetime, deliveryMethod, status, id,))
 
 def deleteOrder(id):
