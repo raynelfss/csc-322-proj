@@ -1,3 +1,5 @@
+var isModalOpen = false;
+
 async function getOrders() {    // Retreive orders pending orders from database.
     const response = await fetch('/api/order');
     const data = await response.json();
@@ -15,7 +17,7 @@ function getBid() {
 async function postBid(orderID) {
     const amount = getBid();
     const data = JSON.stringify({ amount, orderID });
-    const response = await fetch('/api/orders', {
+    const response = await fetch('/api/bids/', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -44,18 +46,36 @@ function createOrder(order) {
 }
 
 async function loadOrders() {
-    const orders = await getOrders();
+    const orders = await getOrders() || [];
     const ordersDiv = document.getElementsByClassName('orders')[0];
-    orders.forEach(order => {
-        const orderDiv = createOrder(order);
-        ordersDiv.appendChild(orderDiv);
-    })
+    if (orders.length > 0) {
+        orders.forEach(order => {
+            const orderDiv = createOrder(order);
+            ordersDiv.appendChild(orderDiv);
+        })
+    }
+    else {
+        ordersDiv.appendChild(createElement("h1", {"text" : "There are no active orders at the moment."}))
+    }
+}
+
+function clearOrders() {
+    let children = document.getElementsByClassName('order') || [];
+    Array.from(children).forEach(element => {
+        element.remove();
+    });
+}
+
+function reload() {
+    clearOrders();
+    loadOrders();
 }
 
 // bid modal
 
 
 function openBidModal(orderID) {
+    isModalOpen = true;
     const modalContainer = document.getElementsByClassName('modalContainer')[0];
     document.getElementsByClassName('modalCancel')[0].setAttribute('onclick', 'closeBidModal()');
     document.getElementsByClassName('place')[0].setAttribute('onclick', `postBid(${orderID})`);
@@ -66,6 +86,12 @@ function openBidModal(orderID) {
 function closeBidModal() {
     const modalContainer = document.getElementsByClassName('modalContainer')[0];
     modalContainer.style.display = 'none';
+    isModalOpen = false;
 }
 
-loadOrders()
+reload();
+setInterval(() => {
+    if(!isModalOpen) {
+        reload();
+    }
+}, 10000);
