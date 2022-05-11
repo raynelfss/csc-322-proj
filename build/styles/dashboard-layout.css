@@ -197,3 +197,15 @@ header {
 .doThis {
     display:block;
 }
+
+button {
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(66, 51, 54);
+  border-radius: 10px;
+  padding: 5px 10px;
+  transition: hover 1s;
+}
+
+button:hover {
+  background-color: rgb(253, 229, 233);
+}

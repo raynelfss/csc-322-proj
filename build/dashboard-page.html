@@ -1,5 +1,9 @@
 {% extends 'dashboard-layout.html' %}
 
+{% block head %}
+    <title>Dashboard: Home</title>
+{% endblock %}
+
 {% block body %}
     <div class="title">
         <h2>Welcome to Dashboard</h2>
@@ -80,6 +84,36 @@
 {% elif session.get('employeeType') == 'manager' %}
     <div>
         <t1>You're a manager.</t1>
+        <div class="tables">
+            <table class="content-table">
+                <thead>
+                <tr>
+                    <th>Order Number:</th>
+                    <th>Customer Number Rating:</th>
+                    <th>Customer Review:</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Number rating goes here.</td>
+                    <td>Review/complaint goes here.</td>
+                    </div>  
+                    </td>
+                </tr>
+                <tr class="active-row">
+                    <td>2</td>
+                    <td>Number rating goes here.</td>
+                    <td>Review/complaint goes here.</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Number rating goes here.</td>
+                    <td>Review/complaint goes here.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 {% else %}
     <div>

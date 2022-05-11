@@ -65,9 +65,14 @@ function filltable(data) {
                 switch (key) {
                     case 'employeeID':
                         // when filing in column for employeeID, check if employeeID exists and if it's a delivery
-                        column = order['employeeID'] == null && order['deliveryMethod'] == 'delivery' ?
-                            createElement('button', { text: 'Assign' }) : // if delivery have a button to assign deliveryBoy
-                            createElement('td', { text: order[key] }); // else just display employeeID
+                            if (order['employeeID'] == null && order['deliveryMethod'] == 'delivery') {
+                                let button = createElement('td');
+                                button.appendChild(createElement('button', { text: 'Assign' }));
+                                column = button;
+                            } // if delivery have a button to assign deliveryBoy
+                            else {
+                                column = createElement('td', { text: order[key] }); // else just display employeeID
+                            }
                         break;
                     case 'orderID':
                         column = createElement('td');
@@ -80,8 +85,10 @@ function filltable(data) {
                 }
                 row.appendChild(column); // add the created column into the row
             })
-        let button = createElement('button', { text: 'Cancel' , onclick: `cancelAction(${order.orderID})`})
-        row.appendChild(button);
+            let button_row = createElement('td');
+            let button = createElement('button', { text: 'Cancel' , onclick: `cancelAction(${order.orderID})`})
+            button_row.appendChild(button)
+        row.appendChild(button_row);
         table.appendChild(row); // add the row to table
     });
 }

@@ -8,19 +8,19 @@ body {
 
 table {
     position: relative;
-    border: 2px solid rgb(133, 126, 127);
-    border-radius: 5px;
-    /* align-content: center; */
-    /* width: 80%; */
-    /* margin: 20px 0px; */
-    /* margin: 10px 40px; */
-    /* left: 50%; */
-    /* transform: translate(-50%, 0%); */
+    border-radius: 5px 5px 0 0;
     margin-bottom: 40px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-collapse: collapse;
+    overflow: hidden;
+    word-wrap: normal;
+    width: 100%;
 }
 
 th {
     color: black;
+    padding: 10px;
+    border-collapse: collapse;
     padding: 10px;
 }
 
@@ -36,20 +36,23 @@ tr:nth-child(even) {
 tr {
     background-color: rgb(245, 158, 245);
     color: white;
-    margin: 20px;
+    padding: 10px;
+}
+td {
+    padding: 10px;
 }
 
 .whitebox{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-content: center; */
     margin: 10px 80px;
     border-radius: 10px;
     background-color: white;
     padding: 10px 50px;
-    /* align-content: center; */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
+
 h1 {
     text-align: center;
     margin: 20px 80px;

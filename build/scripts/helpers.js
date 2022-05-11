@@ -12,7 +12,7 @@ function createElement(tag, attributes = {}) {
                 }
         }
     })
-    return element
+    return element;
 }
 
 function appendChildren(parent, children = []) {
