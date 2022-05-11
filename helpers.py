@@ -95,6 +95,7 @@ def getSidebarNav():
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isDeliveryBoy():
+        print("I'm here!")
         return [
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},

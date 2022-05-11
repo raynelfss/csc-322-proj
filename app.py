@@ -42,6 +42,11 @@ def dashWallet():
         return render_template("dashboard-wallet.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/wallet')
     else: return abort(403)
 
+@app.route('/dashboard/bid')
+def bid():
+    if helpers.isLoggedIn() and helpers.isDeliveryBoy():
+        return render_template("bid-page.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/bid')
+
 @app.route('/login')
 def login():
     if helpers.isLoggedIn(): return redirect('/') 
@@ -67,9 +72,6 @@ def orderhistory(): return render_template("orderhistory.html", currentUrl = "/o
         
 @app.route('/orders/<id>')
 def order(id): return render_template("order.html")
-
-@app.route('/dashboard/bid')
-def bid(): return render_template("bid-page.html")
 
 @app.errorhandler(404)
 def not_found(e): return render_template("404.html")

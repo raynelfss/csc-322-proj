@@ -10,7 +10,7 @@ orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
 @orderBlueprint.route('/', methods = ['GET', 'POST', 'DELETE'])
 def index():    # route to handle requests
     if request.method == 'GET':   # Retrieve all items 
-        if not isChef(): abort(403) # not authorized
+        if not (isChef() or isDeliveryBoy() or isManager()): abort(403) # not authorized
         
         try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
