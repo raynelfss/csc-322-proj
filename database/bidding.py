@@ -14,11 +14,11 @@ def deleteTable(): # testing
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DROP TABLE IF EXISTS BiddingSystemTable")
 
-def addBid(bidID, employeeID, amount, orderID): # creates bid
+def addBid(employeeID, amount, orderID): # creates bid
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("""INSERT INTO BiddingSystemTable (BidID, EmployeeID, 
-            Amount, OrderID) VALUES (?,?,?,?) RETURNING *""",
-            (bidID, employeeID, amount, orderID))
+        rows = cursor.execute("""INSERT INTO BiddingSystemTable (EmployeeID, 
+            Amount, OrderID) VALUES (?,?,?) RETURNING *""",
+            (employeeID, amount, orderID))
         bid = [listToDict(row) for row in rows][0]
         return bid
 

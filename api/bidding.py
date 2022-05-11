@@ -20,7 +20,7 @@ def index(): # route to handle requests
         if not helpers.isDeliveryBoy(): abort(403)
         try:
             data = request.json
-            bidding.addBid( data['bidID'], session['employeeID'], data['amount'], data['orderID'] )
+            bidding.addBid( session['employeeID'], data['amount'], data['orderID'] )
             return { 'response': 'successfully posted bid' }
 
         except Exception as e:
