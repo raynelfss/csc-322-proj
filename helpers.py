@@ -94,6 +94,13 @@ def getSidebarNav():
             {'url': '/dashboard/orders', 'name':'Orders'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
+    elif isDeliveryBoy():
+        return [
+            {'url': '/', 'name': 'Home'},
+            {'url': '/dashboard', 'name': 'Dashboard'},
+            {'url': '/dashboard/bid', 'name':'Biddings'},
+            {'url': '/logout', 'name':'Logout'}, 
+        ]
     elif isCustomer():
         return [
             {'url': '/', 'name': 'Home'},

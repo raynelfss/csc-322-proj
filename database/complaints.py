@@ -23,7 +23,7 @@ def getComplaints():
 
 def addComplaint(complainerID, complaineeID, message, processed):
     with DatabaseConnection('./database/database.db') as cursor:
-        rows = cursor.execute("""INSERT INTO ComplaintSystemTable (ComplainerID, ConplaineeID,
+        rows = cursor.execute("""INSERT INTO ComplaintSystemTable (ComplainerID, ComplaineeID,
             Message, Processed) VALUES (?,?,?,?) RETURNING *""",
             (complainerID, complaineeID, message, processed,))
 

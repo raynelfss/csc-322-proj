@@ -68,7 +68,7 @@ def orderhistory(): return render_template("orderhistory.html", currentUrl = "/o
 @app.route('/orders/<id>')
 def order(id): return render_template("order.html")
 
-@app.route('/bid')
+@app.route('/dashboard/bid')
 def bid(): return render_template("bid-page.html")
 
 @app.errorhandler(404)
