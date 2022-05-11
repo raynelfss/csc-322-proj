@@ -30,4 +30,22 @@ def index():
             print('error: ', e, '\n')
             abort(500) # returns internal server error
 
-# @complaintBlueprint.route('/<id>', methods = ['GET','DELETE'])
+@complaintBlueprint.route('/<id>', methods = ['GET','DELETE'])
+
+def complaint(id):
+    if request.method == 'GET':
+        try:
+            complaint = complaints.getComplaintsByID(id)
+            return {'response' : complaint}
+        except Exception as e:
+            print('error: ', e , '\n')
+            abort(500)
+    elif request.method == 'DELETE':
+        if not isManager(): abort (403)
+
+        try:
+            complaints.deleteComplaint(id)
+            return {'response' :'Successfully deleted complaint' }
+        except Exception as e:
+            print('error: ', e , '\n')
+            abort(500)

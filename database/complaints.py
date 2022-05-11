@@ -42,6 +42,10 @@ def getComplaintsByComplainer(complainerID): # returns all complains from a comp
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("SELECT * FROM ComplaintSystemTable WHERE ComplainerID=?", (complainerID,))
 
+def getComplaintsByID(complaintID): # returns all complains from a complainer
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("SELECT * FROM ComplaintSystemTable WHERE ComplaintID=?", (complaintID,))
+
 def deleteByComplainee(complaineeID): # shouldn't this be called 'dispute'??
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("DELETE FROM ComplaintSystemTable WHERE ComplaineeID=?",
