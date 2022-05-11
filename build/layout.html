@@ -5,6 +5,7 @@
         <title>Denisse's Cafe Homepage</title>
         <link rel="stylesheet" href="./styles/layout.css">
         <script src="./scripts/helpers.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         {% block styles %}{% endblock %}
     </head>
     <body>
@@ -18,7 +19,9 @@
                         {{navItem['name']}}
                     </a>
                 {%endfor%}
-                <a class="navbuttons" onclick="displayCart()">Shopping Cart</a>
+                <a class="navbuttons" onclick="displayCart()">
+                    <i class="fa fa-shopping-cart"></i>
+                </a>
             </div>
         </div>
         {% block body %}{% endblock %}

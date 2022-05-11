@@ -5,6 +5,7 @@
     <link href="./styles/cart.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
+{% if session.get('loggedIn') == True %}
 {% block body %}
     <div class="checkout-container">
         <h1>Checkout</h1>
@@ -60,3 +61,4 @@
     <!-- <script src="./scripts/cart.js"></script> -->
 
 {% endblock %}
+{% endif %}

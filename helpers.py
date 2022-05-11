@@ -67,7 +67,6 @@ def getNav():
             {'url': '/menu', 'name': 'Menu'},
             {'url': '/about', 'name': 'About'},
             {'url': '/logout', 'name': 'Logout'},
-            {'url': '/orderhistory', 'name': 'Order History'},
             {'url': '/dashboard', 'name' : 'Dashboard'}
         ]
     else:
@@ -80,6 +79,14 @@ def getNav():
 
 def getSidebarNav():
     if isChef():
+        return [
+            {'url': '/', 'name': 'Home'},
+            {'url': '/dashboard', 'name': 'Dashboard'},
+            {'url': '/dashboard/menu', 'name':'Menu'},
+            {'url': '/dashboard/orders', 'name':'Orders'},
+            {'url': '/logout', 'name':'Logout'}, 
+        ]
+    elif isManager():
         return [
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},

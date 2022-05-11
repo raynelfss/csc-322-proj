@@ -131,6 +131,8 @@ async function checkout() {
         },
         body: data
     });
+    
+    clearCart();
 }
 
 // clean up unnessary functions and code later
