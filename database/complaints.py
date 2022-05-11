@@ -40,11 +40,16 @@ def delComplaintsByComplainer(complainerID): # deletes all complaints from a com
 
 def getComplaintsByComplainer(complainerID): # returns all complains from a complainer
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("SELECT * FROM ComplaintSystemTable WHERE ComplainerID=?", (complainerID,))
+        rows = cursor.execute("SELECT * FROM ComplaintSystemTable WHERE ComplainerID=?", (complainerID,))
 
-def getComplaintsByID(complaintID): # returns all complains from a complainer
+        complaints =[listToDict(row) for row in rows]
+        return complaints 
+
+def getComplaintByID(complaintID): 
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("SELECT * FROM ComplaintSystemTable WHERE ComplaintID=?", (complaintID,))
+        rows = cursor.execute("SELECT * FROM ComplaintSystemTable WHERE ComplaintID=?", (complaintID,))
+        complaint =[listToDict(row) for row in rows][0]
+        return complaint
 
 def deleteByComplainee(complaineeID): # shouldn't this be called 'dispute'??
     with DatabaseConnection('./database/database.db') as cursor:
