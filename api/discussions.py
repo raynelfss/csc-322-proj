@@ -16,7 +16,7 @@ def index():
         if not isCustomer(): abort(403) 
         try:
             data = request.json
-            discussions.addDiscussion(data['Subject'], data['CreatorID'])
+            discussions.addDiscussion( data['Subject'], data['CreatorID'] )
             return { 'response': 'successfully posted discussion' }
         except Exception as e:
             print('error: ', e, '\n')
@@ -37,18 +37,17 @@ def discussion(id):
     if request.method =='GET':
         try:
             discussion = discussions.getDiscussionByID(id)
-            return {'response' : discussion}
+            return { 'response': discussion }
         except Exception as e:
             print('error: ', e , '\n')
             abort(500)
 
     elif request.method == 'DELETE':
         if not isManager(): abort (403)
-
         try:
             discussions.deleteDiscussionByID(id)
             threads.deleteCommentsByDiscussion(id)
-            return {'response' :'Successfully deleted discussion' }
+            return { 'response': 'Successfully deleted discussion' }
         except Exception as e:
             print('error: ', e , '\n')
             abort(500)
