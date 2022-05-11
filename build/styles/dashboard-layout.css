@@ -204,8 +204,30 @@ button {
   border-radius: 10px;
   padding: 5px 10px;
   transition: hover 1s;
+  cursor:pointer;
+  display:flex;
+  margin-top:10px;
 }
 
 button:hover {
   background-color: rgb(253, 229, 233);
+}
+
+.infosect {
+  width:300px;
+  padding: 30px;
+  position: fixed;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  transition: hover 0.3s;
+  background:white;
+  border-radius:24px;
+  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px darkblue
+}
+
+.perinfo {
+  text-align: left;
+  font-size: 70%;
+
 }

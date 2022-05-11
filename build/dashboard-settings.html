@@ -1,37 +1,34 @@
 {% extends 'dashboard-layout.html' %}
-
 {% block body %}
     <div>
         <p>Welcome to Dashboard</p>
         <!-- will prob display different stuff here based on employee -->
     </div>
+    <div class="infosect">
+        <div class="perinfo">
+            <h1>Personal Info:</h1>
+            <h2>Full Name:</h2>
+            <input type="text" id="fullname">
+            <h2>Phone Number:</h2>
+            <input type="text" id="phone">
 
-{% if session.get('employeeType') == 'chef' %}
-    <div>
-        <t1>You're a chef</t1>
-    </div>
-{% elif session.get('employeeType') == 'deliveryPerson'%}
-    <div>
-        <t1>You're a delivery person.</t1>
-    </div>
-{% elif session.get('employeeType') == 'manager' %}
-    <div>
-        <t1>You're a manager</t1>
-    </div>
-{% else %}
-    <div>
-        <t1> You're a Customer. </t1>
-        <div class="infosect">
-            <div class="perinfo">
-                <label for="Name">Full name:</label>
-                <input type="text" id="Name">
-                <label for="Name">Full name:</label>
-                <input type="text" id="Name">
-                <label for="Name">Full name:</label>
-                <input type="text" id="Name">
-            </div>
+            <h1>Password Change:</h1>
+            <h2>Enter current password:</h2>
+            <input type="password" id="current">
+            <h2>Enter new password:</h2>
+            <input type="password" id="new">
+            <h2>Confirm new password:</h2>
+            <input type="password" id="confirmnew">
+            <button>Confirm new changes</button>
+
+            <!-- <label for="Name">Full name:</label>
+            <input type="text" id="Name">
+            <label for="Name">Full name:</label>
+            <input type="text" id="Name">
+            <label for="Name">Full name:</label>
+            <input type="text" id="Name"> -->
         </div>
     </div>
-{% endif %}
+
 
 {% endblock %}

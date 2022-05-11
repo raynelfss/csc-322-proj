@@ -69,6 +69,9 @@ def checkout():
 
 @app.route('/orderhistory')
 def orderhistory(): return render_template("orderhistory.html", currentUrl = "/orderhistory", nav = helpers.getNav())
+
+@app.route('/settings')
+def dashboardsettings(): return render_template("dashboard-settings.html", currentUrl = "/settings", nav = helpers.getNav())
         
 @app.route('/orders/<id>')
 def order(id): return render_template("order.html")
