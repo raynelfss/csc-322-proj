@@ -67,7 +67,7 @@ function filltable(data) {
                         // when filing in column for employeeID, check if employeeID exists and if it's a delivery
                             if (order['employeeID'] == null && order['deliveryMethod'] == 'delivery') {
                                 let button = createElement('td');
-                                button.appendChild(createElement('button', { text: 'Assign' }));
+                                button.appendChild(createElement('button', { text: 'Assign', onclick: `autoAssign(${order.orderID})` }));
                                 column = button;
                             } // if delivery have a button to assign deliveryBoy
                             else {

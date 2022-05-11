@@ -1,7 +1,7 @@
 var isModalOpen = false;
 
 async function getOrders() {    // Retreive orders pending orders from database.
-    const response = await fetch('/api/order');
+    const response = await fetch('/api/order/inprogress');
     const data = await response.json();
 
     if (response.headers.get("content-type") === 'application/json') {

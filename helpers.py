@@ -100,6 +100,7 @@ def getSidebarNav():
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/bid', 'name':'Biddings'},
+            {'url': '/dashboard/deliverystatus', 'name':'Delivery Status'}, 
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isCustomer():

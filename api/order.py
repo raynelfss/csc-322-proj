@@ -116,7 +116,7 @@ def order(id):
 @orderBlueprint.route('/inprogress', methods=['GET'])
 def inProgress():
     if request.method == 'GET':
-        if not isChef(): abort(403) # not authorized
+        if not (isChef() or isDeliveryBoy()): abort(403) # not authorized
         try:
             ordersInProgress = orders.getOrdersInProgress()
             return { 'response': ordersInProgress }

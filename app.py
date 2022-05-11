@@ -47,6 +47,11 @@ def bid():
     if helpers.isLoggedIn() and helpers.isDeliveryBoy():
         return render_template("bid-page.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/bid')
 
+@app.route('/dashboard/deliverystatus')
+def deliverystatus():
+    if helpers.isLoggedIn():
+        return render_template("dashboard-deliverystat.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/deliverystatus')
+
 @app.route('/login')
 def login():
     if helpers.isLoggedIn(): return redirect('/') 
