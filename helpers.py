@@ -100,6 +100,7 @@ def getSidebarNav():
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/wallet', 'name' : 'Wallet'},
             {'url': '/dashboard/settings', 'name' : 'Settings'},
+            {'url': '/logout', 'name':'Logout'}, 
         ]
 
     else: return []
