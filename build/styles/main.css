@@ -1,11 +1,11 @@
 .alltext {
-    background-image: url("/imgs/homeimg2.png");
+    background-image: url("/imgs/homeimg3.png");
     /* filter:brightness(50%); */
     background-attachment: fixed;
     background-size: cover;
     height: 450px;
     color:white;
-    font-size: 40px;
+    font-size: 30px;
     padding: 20px;
     font-family: 'Raleway', sans-serif;
 }
