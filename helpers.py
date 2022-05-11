@@ -60,7 +60,7 @@ def topThreeDishes(ordersList): # returns the 3 most requested dishIDs
         
     return topThree
 
-def getNav():
+def getNav(): 
     if isLoggedIn():
         return [
             {'url': '/', 'name': 'Home'},

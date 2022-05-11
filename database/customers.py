@@ -63,11 +63,22 @@ def getCustomerByUserID(userID):
         rows = cursor.execute("SELECT * FROM CustomerTable WHERE UserID = ?", (userID,))
         return [listToDict(row) for row in rows][0]
 
+def getCustomerDemotionPoint(userID):
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("SELECT DemotionPoints FROM CustomerTable WHERE CustomerID = ?", (userID,))
+
+        return [listToDictPoints(row) for row in rows][0]
+
+
 def updateCustomer(customerID, name, phoneNumber, vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("""UPDATE CustomerTable SET Name=?, PhoneNumber=?, VipStatus=?, Balance=?, NumberOfOrders=?, MoneySpent=?,
             ShoppingCartID=?, Karen=?, DemotionPoints=? WHERE CustomerID=?""", (name, phoneNumber,
             vipStatus, balance, numberOfOrders, moneySpent, shoppingCartID, karen, demotionPoints, customerID,))
+
+def updateCustDemotionPoint(userID,demotionPoints):
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""UPDATE CustomerTable SET DemotionPoints = ? WHERE CustomerID=?)""",(demotionPoints, userID,))
 
 def getBalance(customerID):
     with DatabaseConnection('./database/database.db') as cursor:
@@ -78,9 +89,24 @@ def updateBalance(customerID, balance):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("UPDATE CustomerTable SET Balance=? WHERE CustomerID=?", (balance, customerID,))
 
+def demoteOnePoint(userID): 
+    points = getCustomerDemotionPoint(userID)   #if error maybe because this doesnt return int value
+    points -=1
+    updateCustDemotionPoint(userID,points)
+
+
+def promoteOnePoint(userID):
+    points = getCustomerDemotionPoint(userID)
+    points +=1
+    updateCustDemotionPoint(userID,points)
+
 def listToDictBal(customer):
     return {
         'balance': customer[0]
+    }
+def listToDictPoints(customer):
+    return {
+        'demotionPoints': customer[0]
     }
 
 def listToDict(customer):
