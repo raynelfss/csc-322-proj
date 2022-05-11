@@ -11,7 +11,6 @@ orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
 def index():    # route to handle requests
     if request.method == 'GET':   # Retrieve all items 
         if not (isChef() or isDeliveryBoy() or isManager()): abort(403) # not authorized
-        
         try: return { 'response': orders.getAllOrders() }   # returns table in JSON format
         except Exception as e:
             print('error: ', e, '\n')
@@ -77,7 +76,7 @@ def order(id):
             abort(500)
     
     elif request.method == 'PUT':
-        if not isLoggedIn() or isDeliveryBoy() : abort(403)
+        if not (isLoggedIn() or isDeliveryBoy()) : abort(403)
         try:
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
@@ -95,16 +94,18 @@ def order(id):
                 spent = spent - price
                 updateBalance(data['customerID'], balance)
                 updateMoneySpent(data['customerID'], spent)
+            
             else:
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
                 data['datetime'], data['deliveryMethod'], data['status'])
+            
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
 
     elif request.method == 'DELETE': # deletes specific items from table by ID
-        if not isManager() and not isChef(): abort(403) # not authorized
+        if not (isManager() or isChef()): abort(403) # not authorized
         try:
             orders.getOrderByID(id)
             return { 'response': 'deleted' }
@@ -116,7 +117,7 @@ def order(id):
 @orderBlueprint.route('/inprogress', methods=['GET'])
 def inProgress():
     if request.method == 'GET':
-        if not isChef(): abort(403) # not authorized
+        if not (isChef() or isDeliveryBoy()): abort(403) # not authorized
         try:
             ordersInProgress = orders.getOrdersInProgress()
             return { 'response': ordersInProgress }

@@ -1,8 +1,20 @@
+.orders{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 80px;
+}
 .order {
     background-color: white;
     padding: 10px;
-    width: 80%;
+    width: 300px;
+    border-radius: 5px;
     margin: 20px auto;
+    transition: hover 2s;
+}
+.order:hover{
+    background-color: pink;
 }
 
 /* modal */

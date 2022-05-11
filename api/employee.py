@@ -11,6 +11,7 @@ def index():
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
+    
     elif request.method == 'DELETE':
         if not isManager(): abort(403)
         try:
@@ -28,8 +29,8 @@ def employee(userID):
             print('error: ', e, '\n')
             abort(500)
     elif request.method == 'DELETE':
+        if not isManager(): abort(403)
         try:
-            if not isManager(): abort(403)
             employees.fireEmployee(userID)
             return { 'response': 'successfully removed employee' }
         except Exception as e:

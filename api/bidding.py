@@ -37,29 +37,29 @@ def index(): # route to handle requests
             abort(500)
 
 @bidsBlueprint.route('/<id>', methods = ['GET', 'DELETE'])
-def bid(bidID):
+def bid(id):
     if request.method == 'GET':
         # if not helpers.isDeliveryBoy(): abort(403)
-        try: return { 'response': bidding.getBidsByID(bidID) }
+        try: return { 'response': bidding.getBidsByID(id) }
         except Exception as e:
             print(e, '\n')
             abort(500)
                 
     elif request.method == 'DELETE':
-        if not helpers.isDeliveryBoy() or not helpers.isManager(): abort(403) # not authorized
+        if not (helpers.isDeliveryBoy() or helpers.isManager()): abort(403) # not authorized
         try: 
-            bidding.deleteBid(bidID)
+            bidding.deleteBid(id)
             return { 'response': 'deleted' }
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
 
 @bidsBlueprint.route('/orderID/<id>', methods = ['GET', 'DELETE'])
-def bidsOnOrder(orderID):
+def bidsOnOrder(id):
     if request.method == 'GET':
-        if not helpers.isManager(): abort(403)
-        
-        try: return { 'response': bidding.getBidsByOrderID(orderID) }
+        if not (helpers.isManager() or helpers.isChef()): abort(403)
+        try:
+            return { 'response': bidding.getBidsByOrderID(id) }
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
@@ -67,9 +67,8 @@ def bidsOnOrder(orderID):
     elif request.method == 'DELETE':
         if not helpers.isManager(): abort(403) # not authorized
         try: 
-            bidding.deleteBidByOrderID(orderID)
+            bidding.deleteBidByOrderID(id)
             return { 'response': 'deleted' }
-        
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
