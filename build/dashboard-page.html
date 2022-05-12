@@ -15,6 +15,26 @@
         <div class="title">
             <h2>You're a chef.</h2>
         </div>
+
+        
+        <div class ="progresscontainer">
+            <div class="progress" id="progress"></div>
+            <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
+            
+            <!-- <div class="progresstext">
+                <h2>Incoming order.</h2>
+                <h2>Preparing order.</h2>
+                <h2>Order ready for delivery.</h2>
+            </div> -->
+
+        </div>
+
+        <button class="stepbtn" id="prev" diabled>Previous Step</button>
+        <button class="stepbtn" id="next" diabled>Next Step</button>
+
+
         <div class="tables">
             <table class="content-table">
                 <thead>
@@ -55,7 +75,7 @@
                 <tr>
                     <td>If you receive an average of less than or equal to a 2.0 rating
                         or at least 3 complaints, you will be demoted.
-                        <button onclick="showStatus()">Check Status</button>
+                        <button class ="tablebtn" onclick="showStatus()">Check Status</button>
                     </td>
                     </div>  
                     </td>
@@ -150,5 +170,6 @@
         <t1> You're a customer. </t1>
     </div>
 {% endif %}
-<script src="/scripts/showstatus.js"></script>
+<!-- <script src="/scripts/showstatus.js"></script> -->
+<script src="/scripts/updateprogress.js"></script>
 {% endblock %}
