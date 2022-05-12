@@ -1,0 +1,45 @@
+{% extends 'dashboard-layout.html' %}
+
+{% block head %}
+    <title>Dashboard: Home</title>
+{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h2>Welcome to Dashboard</h2>
+        <!-- will prob display different stuff here based on employee -->
+    </div>
+
+{% if session.get('employeeType') == 'chef' %}
+    <div>
+        <div class="title">
+            <h2>You're a chef.</h2>
+        </div>
+
+        
+        <div class ="progresscontainer">
+            <div class="progress" id="progress"></div>
+            <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
+            
+            <!-- <div class="progresstext">
+                <h2>Incoming order.</h2>
+                <h2>Preparing order.</h2>
+                <h2>Order ready for delivery.</h2>
+            </div> -->
+
+        </div>
+
+        <button class="stepbtn" id="prev" diabled>Previous Step</button>
+        <button class="stepbtn" id="next" diabled>Next Step</button>
+
+
+{% else %}
+    <div>
+        <t1> You're a customer. </t1>
+    </div>
+{% endif %}
+<!-- <script src="/scripts/showstatus.js"></script> -->
+<script src="/scripts/updateprogress.js"></script>
+{% endblock %}
