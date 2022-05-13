@@ -50,20 +50,20 @@ text-align:  center;
 
 .text  {
 margin-bottom:  10px;
-color:  #000000;
+color:  #e351a8;
 }
 
 
 .circle {
-	border: 1px solid #000000;
-	height: 20px;
-	width: 20px;
+	border: 1px solid #ff72c7;
+	width: 40px;
+    height:40px;
 	border-radius: 100%;
-	color: #000000;
+	color: #ff72c7;
 	display: inline-block;
 	position: relative;
 	transition: background-color 500ms;
-  line-height:20px;
+    line-height:40px;
 }
 
 
@@ -74,13 +74,14 @@ color:  #000000;
 
 
 
-.bullet.completed::after {
-	content: '';
+.circle.completed::after {
+	content:'';
 	position: absolute;
-	right: -60px;
-	bottom: 10px;
+    padding:0.5px;
+	right: -55px;
+	bottom: 15px;
 	height: 1px;
-	width: 54px;
+	width: 40px;
 	background-color: #ff72c7;
 }
 
