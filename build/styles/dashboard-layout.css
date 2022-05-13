@@ -215,9 +215,25 @@ header {
   background-color: rgb(253, 229, 233);
 }
 
-.infosect {
-  width:300px;
-  padding: 30px;
+.container {
+  display:flex;
+  margin-left:20%;
+  padding: 20px;
+
+ 
+}
+
+.item {
+  background-color: white;
+  width:200px;
+  margin-right: 50px;
+  padding: 20px;
+  border-radius:24px;
+  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px rgb(139, 0, 109); 
+  
+  /* width:25%;
+  height:73%;
+  padding: 20px;
   position: fixed;
   top: 60%;
   left: 50%;
@@ -225,18 +241,27 @@ header {
   transition: hover 0.3s;
   background:white;
   border-radius:24px;
-  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px darkblue
+  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px rgb(139, 0, 109); */
 }
 
 button{
   border-radius: 10px;
-  margin: 5px;
+  margin-top:10px;
+  margin-bottom: 10px;
   padding: 10px;
+  margin-left: 6%;
   border: none;
   /* background-color: rgb(245, 245, 245); */
   transition: hover 1s;
+  display:block;
+  text-align: center;
+  cursor:pointer;
 }
 
 button:hover{
-  background-color: pink;
+  background-color: rgb(255, 101, 181);
+  color:white
 }
+
+
+

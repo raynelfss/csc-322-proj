@@ -4,32 +4,46 @@
         <p>Welcome to Dashboard</p>
         <!-- will prob display different stuff here based on employee -->
     </div>
-    <div class="infosect">
-        <div class="perinfo">
-            <h1>Personal Info:</h1>
-            <h2>Full Name:</h2>
+    <div class="container">
+        <div class="item">
+            <h3>Personal Info:</h3>
+            <p>Full Name:</p>
             <input type="text" id="fullname">
-            <h2>Phone Number:</h2>
+            <p>Phone Number:</p>
             <input type="text" id="phone">
             <button>Confirm new information</button>
-
-            <h1>Password Change:</h1>
-            <h2>Enter current password:</h2>
+        </div>
+        
+        <div class="item">
+            <h3>Password Change:</h3>
+            <p>Enter current password:</p>
             <input type="password" id="current">
-            <h2>Enter new password:</h2>
+            <p>Enter new password:</p>
             <input type="password" id="new">
-            <h2>Confirm new password:</h2>
+            <p>Confirm new password:</p>
             <input type="password" id="confirmnew">
             <button>Confirm new password</button>
+        </div>
 
-            <!-- <label for="Name">Full name:</label>
-            <input type="text" id="Name">
-            <label for="Name">Full name:</label>
-            <input type="text" id="Name">
-            <label for="Name">Full name:</label>
-            <input type="text" id="Name"> -->
+        <div class="item">
+            <h3>Create Employee Account:</h3>
+            <div class="employeeselect">
+                <p>Choose Employee Account Type:</p>
+                <select>
+                    <option value="0">Manager</option>
+                    <option value="1">Chef</option>
+                    <option value="2">Delivery</option>
+                </select>
+            </div>
+            <p>Enter username:</p>
+            <input type="text" id="username">
+            <p>Enter password:</p>
+            <input type="password" id="new">
+            <button>Create Employee Account</button>
         </div>
     </div>
+
+
 
 
 {% endblock %}
