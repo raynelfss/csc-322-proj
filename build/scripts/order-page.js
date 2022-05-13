@@ -140,6 +140,6 @@ currentTime();
 
 setInterval(() => { currentTime() }, 1000);
 
-setInterval(() => {
-    location.reload();
+setInterval(() => {  
+    if (!doNotReload){location.reload();}
 }, 10000);

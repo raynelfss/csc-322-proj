@@ -1,6 +1,6 @@
 .order-item img {
     width: 100px;
-    height: 100px;
+    border-radius: 100%;
 }
 
 .displayblock{
@@ -53,9 +53,6 @@
     justify-content: center;
     transition: hover 0.7s;
     padding: 10px;
-}
-.order-item img{
-    border-radius: 100%;
 }
 .order-items{
     display: flex;

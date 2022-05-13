@@ -84,6 +84,7 @@ def getSidebarNav():
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/menu', 'name':'Menu'},
             {'url': '/dashboard/orders', 'name':'Orders'},
+            {'url': '/dashboard/chefprogress', 'name':'Active orders'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isManager():
