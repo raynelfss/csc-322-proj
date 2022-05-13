@@ -1,23 +1,18 @@
 {% extends 'dashboard-layout.html' %}
 {% block head %}
-    <title>Dashboard: Home</title>
+    <title>Dashboard: Active Orders</title>
     <link href="/styles/chefprogress.css" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block body %}
     <div class="title">
-        <h2>Welcome to Dashboard</h2>
+        <h2>Active Orders</h2>
         <!-- will prob display different stuff here based on employee -->
     </div>
 
 {% if session.get('employeeType') == 'chef' %}
-    <div>
-        <div class="title">
-            <h2>You're a chef.</h2>
-        </div>
-
-        
-        <div class ="progresscontainer">
+    <div class="orderlist" id="orderlist">
+        <!-- <div class ="progresscontainer">
             <div class="progress" id="progress"></div>
             <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
             <div class="circle active"><i class="fa-solid fa-circle-check"></i></div>
@@ -31,8 +26,10 @@
 
         </div>
 
-        <button class="stepbtn" id="prev" diabled>Previous Step</button>
-        <button class="stepbtn" id="next" diabled>Next Step</button>
+        <button class="stepbtn" id="prev" disabled>Previous Step</button>
+        <button class="stepbtn" id="next" disabled>Next Step</button> -->
+
+    </div>
 
 
 {% else %}
@@ -42,4 +39,5 @@
 {% endif %}
 <!-- <script src="/scripts/showstatus.js"></script> -->
 <script src="/scripts/updateprogress.js"></script>
+<script src="/scripts/chefprogress-orders.js"></script>
 {% endblock %}

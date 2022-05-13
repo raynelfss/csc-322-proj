@@ -1,7 +1,7 @@
 
 async function autoAssign(id) {
     const allbids = await getBids(id);
-    
+    doNotReload = true;
     if (allbids.length > 0) {   // Checks whether there are bids avalable.
         var smallest = selectSmallest(allbids);
         
@@ -15,6 +15,7 @@ async function autoAssign(id) {
             order.dishIDs = dishes;
             
             updateItem(order.orderID, order);
+            doNotReload = false;
             setTimeout(() => {
                 location.reload();
             }, 1000);

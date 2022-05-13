@@ -53,7 +53,16 @@ def deliverystatus():
         return render_template("dashboard-deliverystat.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/deliverystatus')
 
 @app.route('/dashboard/chefprogress')
-def chefprogress(): return render_template("chefprogress.html", currentUrl = "/chefprogress", nav = helpers.getSidebarNav())
+def chefprogress(): 
+    if helpers.isLoggedIn() and (helpers.isChef() or helpers.isManager()):
+        return render_template("dashboard-chefprogress.html", currentUrl = "/chefprogress", nav = helpers.getSidebarNav())
+    else: return abort(403)
+
+@app.route('/dashboard/chefprogress/<id>')
+def orderstatus(id):
+    if helpers.isLoggedIn() and (helpers.isChef() or helpers.isManager()):
+        return render_template("dashboard-chefprogress-order.html", currentUrl = "/chefprogress", nav = helpers.getSidebarNav())
+    else: return abort(403)
 
 @app.route('/login')
 def login():

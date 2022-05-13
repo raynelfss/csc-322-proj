@@ -1,7 +1,7 @@
 function displaySidebar() {
-    document.getElementsByClassName('sidebar')[0].classList.remove('sidebarHide');
+    document.getElementById('sidebar').style.width = "300px";
 }
 
 function hideSidebar() {
-    document.getElementsByClassName('sidebar')[0].classList.add('sidebarHide');
+    document.getElementById('sidebar').style.width = "0";
 }
