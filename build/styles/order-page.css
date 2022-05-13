@@ -9,12 +9,9 @@ body {
 table {
     position: relative;
     border-radius: 5px 5px 0 0;
-    margin-bottom: 40px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-collapse: collapse;
     overflow: hidden;
-    word-wrap: normal;
-    width: 100%;
+    /* width: 100%; */
 }
 
 th {
@@ -46,11 +43,17 @@ td {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10px 80px;
     border-radius: 10px;
+    margin: 10px 80px;
     background-color: white;
     padding: 10px 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.tablecont{
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
 }
 
 h1 {
