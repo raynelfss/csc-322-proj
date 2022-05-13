@@ -18,7 +18,7 @@ def addBid(employeeID, amount, orderID): # creates bid
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("""INSERT INTO BiddingSystemTable (EmployeeID, 
             Amount, OrderID) VALUES (?,?,?) RETURNING *""",
-            (employeeID, amount, orderID))
+            (employeeID, amount, orderID,))
         bid = [listToDict(row) for row in rows][0]
         return bid
 
