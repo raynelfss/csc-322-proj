@@ -47,14 +47,15 @@ tr {
     width: 350px;
     top: 50%;
     left: 50%;
-    display: flex;
+    display: none;
     transform: translate(-50%, -50%);
     background-color: rgb(255, 230, 244);
     flex-direction: column;
-    justify-content: left;
+    justify-content: center;
     /* align-items: left; */
-    text-align: left;
+    text-align: center;
     padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
 input {
@@ -90,8 +91,13 @@ textarea {
 }
 
 .cover {
-    /* width: 100%;
+    position: fixed;
+    top: 0px; left:0px; bottom: 0px; right: 0px;
+    width: 100%;
     height: 100%;
-    color: rgb(58, 44, 47, 40%); */
+    background-color: rgba(5, 4, 5, 0.3);
     display: none;
 }
+/* #subject{
+    font-size: 30px;
+} */

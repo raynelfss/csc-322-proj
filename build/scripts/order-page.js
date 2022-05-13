@@ -76,7 +76,7 @@ function filltable(data) {
                         break;
                     case 'orderID':
                         column = createElement('td');
-                        let anchor = createElement('a', { href: `/orders/${order[key]}`, text: order[key] })
+                        let anchor = createElement('a', { onclick:`loadOrder(${order[key]})`/*href: `/orders/${order[key]}`*/, text: order[key] })
                         column.appendChild(anchor)
                         break;
                     default:

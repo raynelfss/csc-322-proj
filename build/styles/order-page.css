@@ -45,6 +45,7 @@ td {
     justify-content: center;
     border-radius: 10px;
     margin: 10px 80px;
+    margin-bottom: 40px;
     background-color: white;
     padding: 10px 50px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -56,11 +57,12 @@ td {
     margin-bottom: 40px;
 }
 
-h1 {
+.h1{
     text-align: center;
     margin: 20px 80px;
 }
-h2{
+
+.h2{
     text-align: center;
     font-size: 24px;
     margin: 10px 0px;

@@ -1,0 +1,70 @@
+.order-item img {
+    width: 100px;
+    height: 100px;
+}
+
+.displayblock{
+    display: none;
+    position: fixed;
+    top: 0px; left: 0px; bottom: 0px; right: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.166);
+}
+.ordermodel{
+    display: none;
+    position: fixed;
+    top: 50%;left: 50%;
+    transform: translate(-50%,-50%);
+    flex-direction: column;
+    align-content: center;
+    border-radius: 20px;
+    padding: 20px 10px;
+    background-color: pink;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    
+}
+.ordermodel h1{
+    margin: 10px;
+}
+.ordermodel h2{
+    margin: 10px;
+}
+.ordermodel button{
+    background-color: white;
+}
+.order-container{
+    background-color: white;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 20px;
+    flex: 0 0;
+    width: 350px; height: 500px;
+    overflow-y: scroll;
+}
+.order-item{
+    background-color: rgba(255, 192, 203, 0.5);
+    border-radius: 10px;
+    margin: 10px;
+    width: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: hover 0.7s;
+    padding: 10px;
+}
+.order-item img{
+    border-radius: 100%;
+}
+.order-items{
+    display: flex;
+    flex-direction: column;
+}
+.order-items-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: auto;
+}

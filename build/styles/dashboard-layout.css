@@ -231,6 +231,7 @@ button{
   margin: 5px;
   padding: 10px;
   border: none;
+  /* background-color: rgb(245, 245, 245); */
   transition: hover 1s;
 }
 
