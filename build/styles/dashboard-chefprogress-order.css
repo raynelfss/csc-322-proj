@@ -34,3 +34,87 @@
     flex-wrap: wrap;
     overflow-x: auto;
 }
+
+#stepProgressBar  {
+	display:  flex;
+	justify-content:  space-between;
+	align-items:  flex-end;
+	width:  300px;
+	margin:  0  auto;
+	margin-bottom:  40px;
+}
+
+.step  {
+text-align:  center;
+}
+
+.text  {
+margin-bottom:  10px;
+color:  #000000;
+}
+
+
+.circle {
+	border: 1px solid #000000;
+	height: 20px;
+	width: 20px;
+	border-radius: 100%;
+	color: #000000;
+	display: inline-block;
+	position: relative;
+	transition: background-color 500ms;
+  line-height:20px;
+}
+
+
+.circle.completed  {
+	color:  white;
+	background-color:  #ff72c7;
+}
+
+
+
+.bullet.completed::after {
+	content: '';
+	position: absolute;
+	right: -60px;
+	bottom: 10px;
+	height: 1px;
+	width: 54px;
+	background-color: #ff72c7;
+}
+
+.hidden  {
+	display:  none;
+}
+ 
+button  {
+	padding:  5px  10px;
+	border:  none;
+	transition:  250ms background-color;
+}
+
+button:hover  {
+	cursor:  pointer;
+	background-color:  #ff72c7;
+	color:  white;
+}
+
+button:disabled:hover  {
+	opacity:  0.6;
+	cursor:  not-allowed;
+}
+
+.text-center  {
+	text-align:  center;
+}
+  
+.container  {
+	max-width:  400px;
+	margin:  0  auto;
+	margin-top:  20px;
+	padding:  40px;
+}
+
+
+
