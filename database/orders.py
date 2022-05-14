@@ -82,6 +82,7 @@ def listToDict(order):
         'employeeID': order[6], 'deliveryMethod': order[7],
         'status': order[8],
     }
+#ORDERS HELPERS
 
 def getAmountOfItemsInOrder(id):
     dishstring = getOrderByID(id)['dishIDs']      #getOrderByID returns dictionary, and we access the dishIDs
