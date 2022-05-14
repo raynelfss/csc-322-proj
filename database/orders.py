@@ -82,3 +82,8 @@ def listToDict(order):
         'employeeID': order[6], 'deliveryMethod': order[7],
         'status': order[8],
     }
+
+def getAmountOfItemsInOrder(id):
+    dishstring = getOrderByID(id)['dishIDs']      #getOrderByID returns dictionary, and we access the dishIDs
+    dishes = dishstring.split(',')            #I think this returns an array of dishes
+    return len(dishes)      #return amount which is just the length
