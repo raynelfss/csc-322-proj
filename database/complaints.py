@@ -58,7 +58,7 @@ def deleteByComplainee(complaineeID): # shouldn't this be called 'dispute'??
 
 def updateComplaint(complaintID, message):
     with DatabaseConnection('./database/database.db') as cursor:
-        cursor.execute("""UPDATE CustomerTable SET (message) VALUES(?) WHERE ComplaintID=?""", 
+        cursor.execute("""UPDATE CustomerTable SET Message=? WHERE ComplaintID=?""", 
             (message, complaintID,))
 
 def listToDict(complaint):

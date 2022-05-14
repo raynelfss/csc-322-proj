@@ -22,7 +22,7 @@ def getDiscussions():
 def addDiscussion(subject, creatorID):
     with DatabaseConnection('./database/database.db') as cursor:
         rows = cursor.execute("""INSERT INTO ComplaintSystemTable (Subject=?, CreatorID=?) RETURNING *""",
-            (subject,creatorID))
+            (subject,creatorID,))
         discussion = [listToDictID(row) for row in rows][0]
         return discussion['discussionID']  #should return the discussion ID
 

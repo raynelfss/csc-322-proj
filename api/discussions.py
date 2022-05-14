@@ -3,8 +3,7 @@ from database import discussions, threads
 from helpers import isCustomer, isManager
 
 complaintBlueprint = Blueprint('app_discussions', __name__, url_prefix = '/discussions')
-
-@complaintBlueprint.route('/', methods = ['GET', 'POST','DELETE'])
+@complaintBlueprint.route('/', methods = ['GET', 'POST', 'DELETE'])
 def index():
     if request.method == 'GET':
         try: return { 'response': discussions.getDiscussions() }
@@ -32,7 +31,7 @@ def index():
             print('error: ', e, '\n')
             abort(500) # returns internal server error
 
-@complaintBlueprint.route('/<id>', methods = ['GET','DELETE'])
+@complaintBlueprint.route('/<id>', methods = ['GET', 'DELETE'])
 def discussion(id):
     if request.method =='GET':
         try:
