@@ -37,7 +37,7 @@ async function postBid(orderID) {
 function createOrder(order) {
     const orderDiv = createElement('div', { class: 'order' });
     ['address', 'datetime'].forEach(field => {
-        const element = createElement('p', { text: order[field] });
+        const element = createElement('p', { text: `${field.charAt(0).toUpperCase()+ field.slice(1)}: ${order[field]}` });
         orderDiv.appendChild(element);
     });
     const button = createElement('button', { text: 'Bid', onclick: `openBidModal(${order.orderID})` });
@@ -50,8 +50,10 @@ async function loadOrders() {
     const ordersDiv = document.getElementsByClassName('orders')[0];
     if (orders.length > 0) {
         orders.forEach(order => {
-            const orderDiv = createOrder(order);
-            ordersDiv.appendChild(orderDiv);
+            if (order.deliveryMethod == "delivery" && order.employeeID == null) {
+                const orderDiv = createOrder(order);
+                ordersDiv.appendChild(orderDiv);
+            }
         })
     }
     else {

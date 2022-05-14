@@ -1,8 +1,8 @@
 function addElementtoTable() {        // Function adds an element to the item bar. Uses createElement() function.
-    let data = parseIntoDict()
-    console.log(data)
-    addtoDB(data)
-    closeDiag("cover")
+    let data = parseIntoDict();
+    console.log(data);
+    addtoDB(data);
+    closeDiag("cover");
 }
 
 function createRow(item) {
@@ -55,15 +55,17 @@ async function getfromDBInd(id) {
 }
 
 function openDiag(motive, buttonText, id = false) {
-    let actbutton = document.getElementById("editorcreate")
-    actbutton.innerHTML = buttonText
+    let actbutton = document.getElementById("editorcreate");
+    actbutton.innerHTML = buttonText;
 
-    document.getElementById("subject").innerHTML = motive
+    document.getElementById("subject").innerHTML = motive;
 
-    let diag = document.getElementById('cover')
-    if (id) { actbutton.onclick = function () { editItem(id) } }
-    else { actbutton.onclick = addElementtoTable }
-    diag.style.display = 'block'
+    let cover = document.getElementById('cover');
+    let diag = document.getElementById('creatediv');
+    if (id) { actbutton.onclick = function () { editItem(id); } }
+    else { actbutton.onclick = addElementtoTable; }
+    cover.style.display = 'block';
+    diag.style.display = 'flex';
 
     // let
 }
@@ -72,9 +74,10 @@ function closeDiag(name) {
     ['dishName', 'dishDescription', 'price', 'imageURL'].forEach(field => {
         document.getElementById(field).value = '';
     })
-
-    let diag = document.getElementById(name)
-    diag.style.display = 'none'
+    let cover = document.getElementById('cover');
+    let diag = document.getElementById(name);
+    diag.style.display = 'none';
+    cover.style.display = 'none';
 }
 
 async function displayItems() {

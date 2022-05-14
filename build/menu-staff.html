@@ -23,21 +23,20 @@
             <th></th>
         </tr>
     </table>
-    <div class="cover" id="cover">
-        <div class="create-edit", id="creatediv">
-            <h3 id="subject">Create new item:</h3>
-            <label for="dishName">Name of item</label>
-            <input type="text" id="dishName" name="dishName"> <br>
-            <label for="dishDescription">Description:</label>
-            <textarea id="dishDescription" name="dishDescription" rows="4" maxlength="250" inputmode="latin" ></textarea> <br>
-            <label for="imageURL">Image link:</label>
-            <input type="url" id="imageURL" name="imageURL"> <br>
-            <label for="price">Price:</label>
-            <input type="text" id="price" name="price"> <br>
-            <div id="buttons">
-                <button onclick="addElementtoTable()", id="editorcreate">Add</button>
-                <button onclick="closeDiag('cover')">Cancel</button>
-            </div>
+    <div class="cover" id="cover" onclick="closeDiag('creatediv')"></div>
+    <div class="create-edit", id="creatediv">
+        <h1 id="subject">Create new item:</h3>
+        <label for="dishName">Name of item</label>
+        <input type="text" id="dishName" name="dishName" placeholder="Milk Tea"> <br>
+        <label for="dishDescription">Description:</label>
+        <textarea id="dishDescription" name="dishDescription" rows="4" maxlength="250" inputmode="latin" placeholder="Traditional milk tea."></textarea> <br>
+        <label for="imageURL">Image link:</label>
+        <input type="url" id="imageURL" name="imageURL" placeholder="https://img.buzzfeed.com/thumbnailer-prod-us-east-1/8f1e6c865e5b4ef0a1f8d15b3f676202/BFV69042_HowToMakeBobaFromScratch_JP_Final_YT.jpg?resize=1200:*&output-format=jpg&output-quality=auto"> <br>
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" placeholder="9.99"> <br>
+        <div id="buttons">
+            <button onclick="addElementtoTable()", id="editorcreate">Add</button>
+            <button onclick="closeDiag('creatediv')">Cancel</button>
         </div>
     </div>
     <script src="/scripts/menu-staff.js"></script>

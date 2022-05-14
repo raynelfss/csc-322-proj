@@ -52,6 +52,18 @@ def deliverystatus():
     if helpers.isLoggedIn():
         return render_template("dashboard-deliverystat.html", nav = helpers.getSidebarNav(), currentUrl = '/dashboard/deliverystatus')
 
+@app.route('/dashboard/chefprogress')
+def chefprogress(): 
+    if helpers.isLoggedIn() and (helpers.isChef() or helpers.isManager()):
+        return render_template("dashboard-chefprogress.html", currentUrl = "/chefprogress", nav = helpers.getSidebarNav())
+    else: return abort(403)
+
+@app.route('/dashboard/chefprogress/<id>')
+def orderstatus(id):
+    if helpers.isLoggedIn() and (helpers.isChef() or helpers.isManager()):
+        return render_template("dashboard-chefprogress-order.html", currentUrl = "/chefprogress", nav = helpers.getSidebarNav())
+    else: return abort(403)
+
 @app.route('/login')
 def login():
     if helpers.isLoggedIn(): return redirect('/') 
@@ -72,11 +84,8 @@ def checkout():
     if not helpers.isCustomer(): return render_template("checkout.html", login = True)
     return render_template("checkout.html", login = False)
 
-@app.route('/orderhistory')
+@app.route('/dashboard/orderhistory')
 def orderhistory(): return render_template("orderhistory.html", currentUrl = "/orderhistory", nav = helpers.getNav())
-
-@app.route('/settings')
-def dashboardsettings(): return render_template("dashboard-settings.html", currentUrl = "/settings", nav = helpers.getNav())
         
 @app.route('/orders/<id>')
 def order(id): return render_template("order.html")

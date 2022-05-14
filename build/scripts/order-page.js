@@ -1,3 +1,4 @@
+var doNotReload = false;
 // Functions for the clock
 function currentTime() {
     let clock = document.getElementById("currentTime");
@@ -76,7 +77,7 @@ function filltable(data) {
                         break;
                     case 'orderID':
                         column = createElement('td');
-                        let anchor = createElement('a', { href: `/orders/${order[key]}`, text: order[key] })
+                        let anchor = createElement('a', { onclick:`loadOrder(${order[key]})`, href: "javascript:void(0)", text: order[key] })
                         column.appendChild(anchor)
                         break;
                     default:
@@ -139,3 +140,6 @@ currentTime();
 
 setInterval(() => { currentTime() }, 1000);
 
+setInterval(() => {  
+    if (!doNotReload){location.reload();}
+}, 10000);

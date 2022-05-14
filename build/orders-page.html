@@ -4,31 +4,48 @@
 {% block head %}
     <title>Active Orders</title>
     <link href="/styles/order-page.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles/order-page-orders.css" rel="stylesheet" type="text/css"/>
 {% endblock %}
 
 {% block body %}
-<h1>Active orders:</h1>
-<div class="whitebox">
-    <div class="header">
-        <h2>Current time:</h2>
-        <h2 id="currentTime"></h2>
+    <h1 class="h1">Active orders:</h1>
+    <div class="whitebox">
+        <div class="header">
+            <h2 class="h2">Current time:</h2>
+            <h2 class="h2" id="currentTime"></h2>
+        </div>
+        <div class="tablecont">
+            <table class="ptable", id="ptable">
+                <tr>
+                    <th>OrderID</th>
+                    <th>Items</th>
+                    <th>CustomerID</th>
+                    <th>Address</th>
+                    <th>Total Price</th>
+                    <th>Time Placed</th>
+                    <th>Delivery Person</th>
+                    <th>Delivery Method</th>
+                    <th>Order Status</th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
     </div>
-    <table class="ptable", id="ptable">
-        <tr>
-            <th>OrderID</th>
-            <th>Items</th>
-            <th>CustomerID</th>
-            <th>Address</th>
-            <th>Total Price</th>
-            <th>Time Placed</th>
-            <th>Delivery Person</th>
-            <th>Delivery Method</th>
-            <th>Order Status</th>
-            <th></th>
-        </tr>
-    </table>
+    <div class="displayblock" id="displayblock" onclick="closeModel()">
+    </div>
+    <div class="ordermodel" id="ordermodel" onclick="">
+        <div class="order-container">
+            <h1 class="order-id"></h1>
+            <div class="order-items" id="order-items"></div>
+            <div class="order-cost" id="order-cost"></div>
+            <div class="order-status" id="order-status"></div>
+        </div>
+        <div>
+            <button onclick="closeModel()">Close</button>
+        </div>
+    </div>
     <script src="/scripts/order-page.js"></script>
-    <script src="/scripts/bidpicking.js"></script>
-</div>
+    <script src="/scripts/order-page-bidpicking.js"></script>
+    <script src="/scripts/order-page-orders.js"></script>
 {% endblock %}
 

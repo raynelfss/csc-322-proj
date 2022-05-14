@@ -64,11 +64,11 @@ def getOrdersBycustomerID(id): # returns all orders of one customer
         orders = [listToDict(row) for row in rows]
         return orders
 
-def updateOrder(id, dishIDs, customerID, address, cost, datetime, deliveryMethod, status):
+def updateOrder(id, dishIDs, customerID, address, cost, datetime, deliveryMethod, employeeId, status):
     with DatabaseConnection('./database/database.db') as cursor:
         cursor.execute("""UPDATE OrderTable SET DishIDs=?, CustomerID=?, Address=?, Cost=?,
-            Datetime=?, DeliveryMethod=?, Status=? WHERE OrderID=?""",
-            (dishIDs, customerID, address, cost, datetime, deliveryMethod, status, id,))
+            Datetime=?, EmployeeID=?, DeliveryMethod=?, Status=? WHERE OrderID=?""",
+            (dishIDs, customerID, address, cost, datetime, employeeId, deliveryMethod, status, id,))
 
 def deleteOrder(id):
     with DatabaseConnection('./database/database.db') as cursor:

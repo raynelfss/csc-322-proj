@@ -80,14 +80,11 @@ def order(id):
         try:
             data = request.json
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
-            print(dishes)
-            print(data['customerID'])
             
             price = calcPrices( data['dishIDs'], data['deliveryMethod'] )
-            print(price)
             if (isManager() or isChef()) and data['status'] == 'cancelled': 
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
-                    data['datetime'], data['deliveryMethod'], data['status'])
+                    data['datetime'], data['deliveryMethod'], data['employeeID'], data['status'])
                 balance = getBalance(data['customerID'])['balance']
                 spent = getMoneySpent(data['customerID'])['balance']
                 balance = balance + price
@@ -97,7 +94,7 @@ def order(id):
             
             else:
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
-                data['datetime'], data['deliveryMethod'], data['status'])
+                data['datetime'], data['deliveryMethod'], data['employeeID'], data['status'])
             
             return { 'response': orders.getOrderByID(id) }
         except Exception as e:

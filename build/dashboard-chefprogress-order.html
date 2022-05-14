@@ -1,0 +1,48 @@
+{% extends 'dashboard-layout.html' %}
+{% block head %}
+    <title>Dashboard: Home</title>
+    <link href="/styles/dashboard-chefprogress-order.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h2>Welcome to Dashboard</h2>
+        <!-- will prob display different stuff here based on employee -->
+    </div>
+
+    {% if session.get('employeeType') == 'chef' %}
+        <div class="order-container" id="order-container">
+            <h1 class="order-id"></h1>
+            <div class="order-items"></div>
+            <div class="order-cost"></div>
+            <div class="order-status"></div>
+
+            <h2>Progress Bar</h2>
+            <div id="stepProgressBar">
+                <div class="step">
+                    <p class="text">Incoming Order</p>
+                    <div class="circle">1</div>
+                </div>
+                <div class="step">
+                    <p class="text">Currently Making Order</p>
+                    <div class="circle">2</div>
+                </div>
+                <div class="step">
+                    <p class="text">Order Confirmed</p>
+                    <div class="circle">3</div>
+                </div>
+            </div>
+            <div id="main">
+                <p id="content"  class="text-center">Step 1</p>
+                <button id="previousBtn" >Previous</button>
+                <button id="nextBtn">Next</button>
+            </div>
+            </div>
+        </div>
+        
+
+
+        
+    {% endif %}
+    <script src="/scripts/dashboard-chefprogress-order.js"></script>
+{% endblock %}

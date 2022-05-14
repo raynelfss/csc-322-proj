@@ -84,6 +84,7 @@ def getSidebarNav():
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/menu', 'name':'Menu'},
             {'url': '/dashboard/orders', 'name':'Orders'},
+            {'url': '/dashboard/chefprogress', 'name':'Active orders'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isManager():
@@ -108,6 +109,7 @@ def getSidebarNav():
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/wallet', 'name' : 'Wallet'},
+            {'url': '/dashboard/orderhistory', 'name' : 'Order History'},
             {'url': '/dashboard/settings', 'name' : 'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]

@@ -39,11 +39,13 @@ header {
     position: fixed;
     top: 0;
     left: 0;
-    width: 300px;
-    height: 100vh;
-    background-color: #3F829D;
+    width: 0;
+    height: 100%;
+    background-color: pink;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
     z-index: 100;
+    transition: 0.5s;
+    overflow-x: hidden;
 }
 
 .sidebarHide {
@@ -198,7 +200,7 @@ header {
     display:block;
 }
 
-button {
+.tablebtn {
   background-color: rgb(255, 255, 255);
   border: 1px solid rgb(66, 51, 54);
   border-radius: 10px;
@@ -209,13 +211,29 @@ button {
   margin-top:10px;
 }
 
-button:hover {
+.tablebtn:hover {
   background-color: rgb(253, 229, 233);
 }
 
-.infosect {
-  width:300px;
-  padding: 30px;
+.container {
+  display:flex;
+  margin-left:20%;
+  padding: 20px;
+
+ 
+}
+
+.item {
+  background-color: white;
+  width:200px;
+  margin-right: 50px;
+  padding: 20px;
+  border-radius:24px;
+  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px rgb(139, 0, 109); 
+  
+  /* width:25%;
+  height:73%;
+  padding: 20px;
   position: fixed;
   top: 60%;
   left: 50%;
@@ -223,11 +241,27 @@ button:hover {
   transition: hover 0.3s;
   background:white;
   border-radius:24px;
-  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px darkblue
+  box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px rgb(139, 0, 109); */
 }
 
-.perinfo {
-  text-align: left;
-  font-size: 70%;
-
+button{
+  border-radius: 10px;
+  margin-top:10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  margin-left: 6%;
+  border: none;
+  /* background-color: rgb(245, 245, 245); */
+  transition: hover 1s;
+  display:block;
+  text-align: center;
+  cursor:pointer;
 }
+
+button:hover{
+  background-color: rgb(255, 101, 181);
+  color:white
+}
+
+
+
