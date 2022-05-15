@@ -19,7 +19,7 @@ function displayLocationForm() {
 }
 
 const createSelectField2 = (id, quantity) => {
-    const select = createElement('select', { onchange: `handleSelect('${id}')`, id: `${id}-quantity` });
+    const select = createElement('select', { class: 'item-select', onchange: `handleSelect('${id}')`, id: `${id}-quantity` });
     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         .forEach(value => {
             const option = createElement('option', { value, text: value, selected: value == quantity });
@@ -36,7 +36,7 @@ function createCheckoutItem(item) {
     const name = createElement('p', { text: item.dishName })
     const price = createElement('p', { text: item.price });
     appendChildren(infoContainer, [name, price]);
-    appendChildren(checkoutItem, [select, infoContainer, img]);
+    appendChildren(checkoutItem, [img, infoContainer, select]);
     return checkoutItem;
 }
 

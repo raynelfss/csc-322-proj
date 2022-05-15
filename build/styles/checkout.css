@@ -1,32 +1,88 @@
 .checkout-container {
-    max-width: 1000px;
-    background-color: rgb(232, 232, 232);
+    max-width: 600px;
+    background-color: rgb(246, 246, 246);
     margin: 20px auto;
     padding: 20px;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
-.delivery-section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+.checkouttitle {
+    text-align: left;
+    margin-left: 30px;
+}
+.items-section {
+    text-align: left;
+    margin:10px 30px;
 }
 
-.address-section {
-    display: none;
+.checkout-items {
+    display:flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
 }
 
 .checkout-item {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    text-align: left;
+    margin: 10px;
+    justify-content: space-between;
+    padding:10px;
+    background-color:rgb(235, 209, 209);
+    border-radius:10px;
+    
 }
 
 .checkout-item img {
     width: 100px;
     height: 100px;
+    border-radius: 10px;
+    margin:10px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+    
 }
+
+.item-select {
+    margin:10px;
+    margin-top:15px;
+}
+
+.delivery-section {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 30px;
+    
+}
+
+.address-section {
+    display: none;
+    flex-direction: column;
+    text-align: left;
+}
+
+.pricetext {
+    text-align: left;
+    margin-left: 30px;
+}
+
+#checkout-button {
+    color:white;
+    background-color: #f46b8b;
+    border:none;
+    border-radius: 20px;
+    height: 30px;
+    width:100px;
+    font-size:13px;
+    cursor:pointer;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin:20px;
+    margin-left:-420px;
+  
+}
+
+#checkout-button:hover {
+    background-color: #d74265;
+}
+

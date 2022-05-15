@@ -8,13 +8,13 @@
 {% if session.get('loggedIn') == True %}
 {% block body %}
     <div class="checkout-container">
-        <h1>Checkout</h1>
+        <h1 class="checkouttitle">Checkout</h1>
         <div class="items-section">
             <!--Cart items here-->
-            <h2>Items</h2>
+            <h2>Items:</h2>
         </div>
         <div class="delivery-section">
-            <h2>Delivery Method</h2>
+            <h2>Delivery Method:</h2>
             <label>
                 <input type="radio" name="deliveryMethod" value="pickUp" checked onclick="handleClick(event)"/>
                 Pick Up
@@ -45,8 +45,8 @@
             </div>
             <!--Delivery method here-->
         </div>
-        <div>
-            <h2>Price</h2>
+        <div class="pricetext">
+            <h2>Price:</h2>
             <p>subtotal: $<span id="subtotal"></span></p>
             <p>tax: $<span id="taxes"></span></p>
             <p>delivery fee: $<span id="deliveryFee"></span></p>

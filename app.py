@@ -81,8 +81,8 @@ def register():
 
 @app.route('/checkout')
 def checkout():
-    if not helpers.isCustomer(): return render_template("checkout.html", login = True)
-    return render_template("checkout.html", login = False)
+    if not helpers.isCustomer(): return render_template("checkout.html", login = True, currentUrl = "/checkout", nav = helpers.getNav())
+    return render_template("checkout.html", login = False, currentUrl = "/checkout", nav = helpers.getNav())
 
 @app.route('/aftercheckout')
 def aftercheckout():
