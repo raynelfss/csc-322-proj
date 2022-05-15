@@ -84,6 +84,11 @@ def checkout():
     if not helpers.isCustomer(): return render_template("checkout.html", login = True)
     return render_template("checkout.html", login = False)
 
+@app.route('/aftercheckout')
+def aftercheckout():
+    if not helpers.isCustomer(): return render_template("aftercheckout.html", login = True, currentUrl = "/aftercheckout", nav = helpers.getNav())
+    return render_template("aftercheckout.html", login = False, currentUrl = "/aftercheckout", nav = helpers.getNav())
+
 @app.route('/dashboard/orderhistory')
 def orderhistory(): return render_template("orderhistory.html", currentUrl = "/orderhistory", nav = helpers.getNav())
         

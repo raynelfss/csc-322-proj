@@ -2,7 +2,7 @@ from flask import Blueprint, abort, request, session
 from database import orders, customers
 from helpers import isChef, isDeliveryBoy, isLoggedIn, isManager, isCustomer
 from database.shoppingCart import calcPrices, getDishes
-from database.customers import getBalance, getMoneySpent, updateBalance, updateMoneySpent
+from database.customers import getBalance, getMoneySpent, getNumOfOrders ,updateBalance, updateMoneySpent, updateNumOrders
 from datetime import datetime
 
 orderBlueprint = Blueprint('app_order', __name__, url_prefix = '/order')
@@ -87,10 +87,13 @@ def order(id):
                     data['datetime'], data['deliveryMethod'], data['employeeID'], data['status'])
                 balance = getBalance(data['customerID'])['balance']
                 spent = getMoneySpent(data['customerID'])['balance']
+                numOrders = getNumOfOrders(data['customerID'])['balance']
                 balance = balance + price
-                spent = spent - price
+                spent = spent - price if spent - price >= 0 else 0
+                numOrders = numOrders - 1 if numOrders >= 0 else 0
                 updateBalance(data['customerID'], balance)
                 updateMoneySpent(data['customerID'], spent)
+                updateNumOrders(data['customerID'], numOrders);
             
             else:
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
