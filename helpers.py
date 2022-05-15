@@ -83,8 +83,8 @@ def getSidebarNav():
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/menu', 'name':'Menu'},
-            {'url': '/dashboard/orders', 'name':'Orders'},
             {'url': '/dashboard/chefprogress', 'name':'Active orders'},
+            {'url': '/dashboard/settings', 'name':'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isManager():
@@ -92,16 +92,17 @@ def getSidebarNav():
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/menu', 'name':'Menu'},
-            {'url': '/dashboard/orders', 'name':'Orders'},
+            {'url': '/dashboard/orders', 'name':'Active orders'},
+            {'url': '/dashboard/settings', 'name':'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isDeliveryBoy():
-        print("I'm here!")
         return [
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/bid', 'name':'Biddings'},
-            {'url': '/dashboard/deliverystatus', 'name':'Delivery Status'}, 
+            {'url': '/dashboard/deliverystatus', 'name':'Delivery Status'},
+            {'url': '/dashboard/settings', 'name':'Settings'}, 
             {'url': '/logout', 'name':'Logout'}, 
         ]
     elif isCustomer():

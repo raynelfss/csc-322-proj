@@ -1,10 +1,14 @@
 {% extends 'dashboard-layout.html' %}
+{% block head %}
+    <link rel="stylesheet" href="/styles/dashboard-settings.css">
+{% endblock %}
 {% block body %}
     <div>
-        <p>Welcome to Dashboard</p>
+        <h1>Account Settings</h1>
         <!-- will prob display different stuff here based on employee -->
     </div>
     <div class="container">
+        {% if session.get('userType') == 'customer' %}
         <div class="item">
             <h3>Personal Info:</h3>
             <p>Full Name:</p>
@@ -13,6 +17,7 @@
             <input type="text" id="phone">
             <button>Confirm new information</button>
         </div>
+        {% endif %}
         
         <div class="item">
             <h3>Password Change:</h3>
@@ -25,22 +30,24 @@
             <button>Confirm new password</button>
         </div>
 
-        <div class="item">
-            <h3>Create Employee Account:</h3>
-            <div class="employeeselect">
-                <p>Choose Employee Account Type:</p>
-                <select>
-                    <option value="0">Manager</option>
-                    <option value="1">Chef</option>
-                    <option value="2">Delivery</option>
-                </select>
+        {% if session.get('employeeType') == 'manager' %}
+            <div class="item">
+                <h3>Create Employee Account:</h3>
+                <div class="employeeselect">
+                    <p>Choose Employee Account Type:</p>
+                    <select>
+                        <option value="0">Manager</option>
+                        <option value="1">Chef</option>
+                        <option value="2">Delivery</option>
+                    </select>
+                </div>
+                <p>Enter username:</p>
+                <input type="text" id="username">
+                <p>Enter password:</p>
+                <input type="password" id="unew">
+                <button>Create Employee Account</button>
             </div>
-            <p>Enter username:</p>
-            <input type="text" id="username">
-            <p>Enter password:</p>
-            <input type="password" id="new">
-            <button>Create Employee Account</button>
-        </div>
+        {% endif %}
     </div>
 
 

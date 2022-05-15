@@ -36,7 +36,7 @@ body {
 .navbuttons{
     text-decoration: none;
     color: white;
-    transition: hover 0.3s;
+    transition: hover, 0.3s;
     padding: 5px 40px;
 }
 

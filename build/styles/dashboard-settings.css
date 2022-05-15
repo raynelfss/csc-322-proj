@@ -1,0 +1,36 @@
+.container {
+    display:flex;
+    justify-content: center;
+    /* margin-left:20%; */
+    padding: 20px; 
+}
+  
+.item {
+    background-color: white;
+    width:200px;
+    margin: 10px 25px;
+    padding: 20px;
+    border-radius:24px;
+    box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px rgb(139, 0, 109); 
+    
+    /* width:25%;
+    height:73%;
+    padding: 20px;
+    */
+}
+
+button{
+    margin-top:10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    margin-left: 6%;
+    /* background-color: rgb(245, 245, 245); */
+    display:block;
+    text-align: center;
+    cursor:pointer;
+}
+
+button:hover{
+    background-color: rgb(255, 101, 181);
+    color:white
+}
