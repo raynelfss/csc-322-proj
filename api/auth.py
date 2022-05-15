@@ -1,7 +1,7 @@
 from passlib.hash import sha256_crypt
 from flask import Blueprint, abort, request, session, redirect
 from database import auth, customers, employees
-from helpers import isLoggedIn
+from helpers import isLoggedIn, isManager
 authBlueprint = Blueprint('app_login', __name__, url_prefix = '/auth')
 
 @authBlueprint.route('/login', methods = ['POST'])
@@ -58,6 +58,18 @@ def register():
             print('error: ', e, '\n')
             abort(500)
 
+@authBlueprint.route('/hire', methods = ['POST']) # register employees
+def hire():
+    if not (isLoggedIn() and isManager()): abort(403)
+    if request.method == 'POST':
+        try:
+            data = request.json
+            passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
+            employee = employees.createEmployee(data['username'], passwordHash, data['employeeType'])
+            return { 'response': employee }
+        except Exception as e:
+            print('error: ', e, '\n')
+            abort(500)
 
 
 
