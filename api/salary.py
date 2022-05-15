@@ -13,9 +13,13 @@ def index():
             abort(500)
     
     elif request.method == 'POST':
-        data = request.json
-        salaries.addSalary(data['employeeID'], data['salary'])
-        return { 'response': 'successfully added employee salary'}
+        try:
+            data = request.json
+            salaries.addSalary(data['employeeID'], data['salary'])
+            return { 'response': 'successfully added employee salary'}
+        except Exception as e:
+            print('error: ', e, '\n')
+            abort(500)          
 
     elif request.method == 'DELETE':
         try:
