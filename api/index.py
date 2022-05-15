@@ -3,6 +3,7 @@ from flask import Blueprint
 from api.auth import authBlueprint
 from api.bidding import bidsBlueprint
 from api.complaint import complaintBlueprint
+from api.contact import contactBluePrint
 from api.customer import customerBlueprint
 from api.employee import employeeBlueprint
 from api.menu import menuBlueprint 
@@ -20,6 +21,7 @@ def index(): return 'All api calls should be made to this prefix'
 apiBlueprint.register_blueprint(authBlueprint)
 apiBlueprint.register_blueprint(bidsBlueprint)
 apiBlueprint.register_blueprint(complaintBlueprint)
+apiBlueprint.register_blueprint(contactBluePrint)
 apiBlueprint.register_blueprint(customerBlueprint)
 apiBlueprint.register_blueprint(employeeBlueprint)
 apiBlueprint.register_blueprint(menuBlueprint)
