@@ -1,7 +1,6 @@
-from crypt import methods
-from flask import Blueprint, abort, request, session
+from flask import Blueprint, abort, request
 from database import contacts
-from helpers import isCustomer, isManager
+from helpers import isManager
 
 contactBluePrint = Blueprint('app_contacts', __name__, url_prefix = '/contacts')
 @contactBluePrint.route('/', methods = ['GET', 'POST', 'DELETE'])
