@@ -6,15 +6,28 @@ body {
     text-align: center;
 }
 
+.whitebox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 10px 80px;
+    margin-bottom: 40px;
+    background-color: white;
+    padding: 10px 50px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+.tablecont{
+    overflow-x: auto;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    margin-bottom: 40px;
+}
+
+
 table {
     position: relative;
-    border: 2px solid rgb(133, 126, 127);
     border-radius: 5px;
-    width: 80%;
-    left: 50%;
-    transform: translate(-50%, 0%);
-    margin-bottom: 40px;
-    /* overflow: hidden; */
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border-collapse: collapse;
     overflow: hidden;
@@ -22,6 +35,8 @@ table {
 
 th {
     color: black;
+    padding: 10px;
+    border-collapse: collapse;
     padding: 10px;
 }
 

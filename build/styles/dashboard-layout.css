@@ -234,7 +234,7 @@ button{
   padding: 10px;
   border: none;
   /* background-color: rgb(245, 245, 245); */
-  transition: 1s;
+  transition: 0.3s;
 }
 
 button:hover{
