@@ -33,6 +33,7 @@ def login():
             elif (user['role'] == 'customer'):
                 customer = customers.getCustomerByUserID(user['userID'])
                 session['customerID'] = customer['customerID']
+                session['customerName'] = customer['name']
             return redirect('/') # redirects to homepage
 
         except Exception as e:
@@ -82,10 +83,10 @@ def hire():
             print('error: ', e, '\n')
             abort(500)
 
-@authBlueprint.route('/password', methods = ['POST']) # Allows any account to change its password
+@authBlueprint.route('/password', methods = ['PUT']) # Allows any account to change its password
 def passwordchange():
     if not isLoggedIn(): abort(403)
-    if request.method == 'POST':
+    if request.method == 'PUT':
         try:
             data = request.json
             user = auth.getUserByUsername(session['userName'])

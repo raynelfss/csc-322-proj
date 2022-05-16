@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, request, session
 from database import customers
-from helpers import isManager
+from helpers import isLoggedIn, isManager
 
 customerBlueprint = Blueprint('app_customer', __name__, url_prefix = '/customer')
 
@@ -51,4 +51,26 @@ def customer(customerID):
             return { 'response': 'successfully deleted customer info' }
         except Exception as e:
             print('error: ', e, '\n')
+            abort(500)
+
+@customerBlueprint.route('/editcustomer', methods = ['GET', 'PUT'])
+def updateCustomer():
+    if not isLoggedIn(): abort(403)
+    if request.method == 'GET':
+        try:
+            customer = customers.getCustomerByUserID(session['userID'])
+            return {'response': {'name' : customer['name'], 'number' : customer['phoneNumber']}}
+        except Exception as e:
+            print('error:', e, '\n')
+            abort(500)   
+    elif request.method == 'PUT':
+        try:
+            data = request.json
+            customer = customers.getCustomerByUserID(session['userID'])
+            customers.updateCustomer(customer['customerID'], data['name'], data['number'],
+            customer['vipStatus'], customer['balance'], customer['numberOfOrders'], customer['moneySpent'],
+            customer['shoppingCartID'], customer['karen'], customer['demotionPoints'])
+            return {'response' : { 'name': customers.getCustomerByUserID(session['userID'])['name'], 'number' : customers.getCustomerByUserID(session['userID'])['phoneNumber']}}
+        except Exception as e:
+            print('error:', e, '\n')
             abort(500)

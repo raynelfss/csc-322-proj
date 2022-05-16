@@ -14,8 +14,8 @@
             <p>Full Name:</p>
             <input type="text" id="fullname">
             <p>Phone Number:</p>
-            <input type="text" id="phone">
-            <button>Confirm new information</button>
+            <input type="tel" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            <button onclick="updateCustomerInfo()">Confirm new information</button>
         </div>
         {% endif %}
         
