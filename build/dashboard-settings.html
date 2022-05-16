@@ -55,4 +55,5 @@
     </div>
     <script src="/scripts/dashboard-settings.js"></script>
     {% if session.get('employeeType') == 'manager' %}<script src="/scripts/dashboard-settings-createAccount.js"></script> {% endif %}
+    {% if session.get('userType') == 'customer' %}<script src="/scripts/dashboard-settings-customer.js"></script> {% endif %}
 {% endblock %}

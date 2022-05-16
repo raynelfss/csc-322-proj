@@ -48,5 +48,5 @@ function reload() {
 reload();
 
 setInterval(() => {
-    reload();
+    if (!doNotReload) reload();
 }, 10000);

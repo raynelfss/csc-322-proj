@@ -1,0 +1,53 @@
+{% extends 'dashboard-layout.html' %}
+{% block head %}
+    <title>Dashboard: Active Orders</title>
+    <link href="/styles/dashboard-customerorders.css" rel="stylesheet" type="text/css">
+    <link href="/styles/order-page-orders.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+{% endblock %}
+
+{% block body %}
+    <div class="title">
+        <h2>Order History</h2>
+        <!-- will prob display different stuff here based on employee -->
+    </div>
+    <div class="orderlist" id="orderlist"></div>
+    <div class="displayblock" id="displayblock" onclick="closeModel()">
+    </div>
+    <div class="ordermodel" id="ordermodel" onclick="">
+        <div class="order-container">
+            <h1 class="order-id"></h1>
+            <div class="order-items" id="order-items"></div>
+            <div class="order-cost" id="order-cost"></div>
+            <div class="order-status" id="order-status"></div>
+            <div class="ratingscontainer">
+                <div class ="stars">
+                    <input type="radio" name="rate" id ="rate5">
+                    <label for="rate5" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id ="rate4">
+                    <label for="rate4" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id ="rate3">
+                    <label for="rate3" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id ="rate2">
+                    <label for="rate2" class="fas fa-star"></label>
+                    <input type="radio" name="rate" id ="rate1">
+                    <label for="rate1" class="fas fa-star"></label>
+                </div>
+                <form action="#">
+                    <div class="textarea">
+                        <textarea cols="30"></textarea>
+                    </div>
+                    <div class="btn">
+                        <button type="submit">Submit Rating</button>
+                    </div>
+                </form>
+            </div> 
+        </div>
+        <div>
+            <button onclick="closeModel()">Close</button>
+        </div>
+    </div>
+<!-- <script src="/scripts/showstatus.js"></script> -->
+<script src="/scripts/dashboard-customerorders.js"></script>
+<script src="/scripts/order-page-orders.js"></script>
+{% endblock %}

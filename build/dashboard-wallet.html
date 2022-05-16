@@ -20,12 +20,11 @@
                 <t1 id="balance" class="balance">$0.00</t1>
             </div>
             <div class='accountinfo'>
-                <p>Account #:</p>
-                <p>Name: </p>
+                <p>Account #: {{session.get('customerID')}}</p>
+                <p>Name: {{session.get('customerName')}}</p>
             </div>
             <div class="options">
                 <button onclick="openModel('depositmodel')">Make a deposit</button>
-                <button>Use a coupon</button>
             </div>
         </div>
     </div>
@@ -35,8 +34,8 @@
         <label for="depositamount">Amount to deposit:</label>
         <input type="number" name="depositamount" placeholder="1.00" min="1.00" step="0.01" max="1000" id="depositamount">
         <div>
-            <p>Account #: </p>
-            <p>Name: </p>
+            <p>Account #: {{session.get('customerID')}}</p>
+            <p>Name: {{session.get('customerName')}}</p>
             <p class="success">Your transfer was successful</p>
             <p class="success">Reloading...</p>
         </div>

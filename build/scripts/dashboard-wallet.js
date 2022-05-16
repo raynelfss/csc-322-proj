@@ -1,15 +1,12 @@
 async function displayAccountBalance() {      // Displays current balance availale in account
     const balance = document.getElementById("balance");
     const currBalance = await getBalance();
-    // console.log(balance);
-    console.log(parseBalance(currBalance['balance']))
     balance.innerText = parseBalance(currBalance['balance']);
 }
 
 async function getBalance() {   // Gets balance from the SQL Server
     const response = await fetch('/api/wallet/');
     const data = await response.json();
-    console.log(data['response']);
     return data['response'];
 }
 
@@ -21,7 +18,6 @@ function openModel(modelName) { // Opens a selected modal.
     const back = document.getElementById('displayblock');
     back.onclick = function() {closeModel(modelName);};
     back.style.display = "block";
-    console.log(back);
     const model = document.getElementById(modelName);
     model.style.display = "flex";
 }
@@ -40,7 +36,6 @@ async function deposit() {
             setTimeout(() => {
                 depositToDB(amount);
                 let success = document.getElementsByClassName('success');
-                console.log(success)
                 Array.from(success).forEach(element => {
                     element.style.display = 'block'
                 });
@@ -65,6 +60,5 @@ async function depositToDB(amount) {
         body: JSON.stringify({'balance' : amount}),
     });
     const data = await response.json();
-    console.log("New balance is:", data['response'])
 }
 displayAccountBalance()

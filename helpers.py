@@ -110,7 +110,7 @@ def getSidebarNav():
             {'url': '/', 'name': 'Home'},
             {'url': '/dashboard', 'name': 'Dashboard'},
             {'url': '/dashboard/wallet', 'name' : 'Wallet'},
-            {'url': '/dashboard/orderhistory', 'name' : 'Order History'},
+            {'url': '/dashboard/order-history', 'name' : 'Order History'},
             {'url': '/dashboard/settings', 'name' : 'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]

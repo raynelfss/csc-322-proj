@@ -64,6 +64,12 @@ def orderstatus(id):
         return render_template("dashboard-chefprogress-order.html", currentUrl = "/chefprogress", nav = helpers.getSidebarNav())
     else: return abort(403)
 
+@app.route('/dashboard/order-history')
+def order_history(): 
+    if helpers.isLoggedIn() and (helpers.isCustomer()):
+        return render_template("dashboard-customerorders.html", currentUrl = "/order-history", nav = helpers.getSidebarNav())
+    else: return abort(403)
+
 @app.route('/login')
 def login():
     if helpers.isLoggedIn(): return redirect('/') 

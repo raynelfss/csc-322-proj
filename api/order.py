@@ -123,4 +123,15 @@ def inProgress():
             return { 'response': ordersInProgress }
         except Exception as e:
             print('error: ', e, '\n')
-            abort(500)   
+            abort(500)
+
+@orderBlueprint.route('/fromcustomer', methods=['GET'])
+def byCustomer():    
+    if request.method == 'GET':
+        if not (isLoggedIn() and isCustomer()): abort(403)
+        try:
+            ordersfromCustomer = orders.getOrdersBycustomerID(session['customerID'])
+            return {'response' : ordersfromCustomer}
+        except Exception as e:
+            print('error: ', e, '\n')
+            abort(500)
