@@ -91,8 +91,8 @@ def checkout():
         return render_template("checkout.html", login = True, currentUrl = "/checkout", nav = helpers.getNav())
     return render_template("checkout.html", login = False, currentUrl = "/checkout", nav = helpers.getNav())
 
-@app.route('/aftercheckout')
-def aftercheckout():
+@app.route('/checkout/<id>')
+def aftercheckout(id):
     if not helpers.isCustomer(): 
         return render_template("aftercheckout.html", login = True, currentUrl = "/aftercheckout", nav = helpers.getNav())
     return render_template("aftercheckout.html", login = False, currentUrl = "/aftercheckout", nav = helpers.getNav())

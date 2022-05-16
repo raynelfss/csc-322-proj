@@ -1,8 +1,7 @@
 
 .orderlist{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-direction: column-reverse;
     justify-content: center;
     padding: 20px 80px;
     transition: 1s;

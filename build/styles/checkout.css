@@ -86,3 +86,18 @@
     background-color: #d74265;
 }
 
+.login {
+    /* border: 0; */
+    text-align: center;
+    background-color: white;
+    padding: 10px 10px;
+    width: 80px;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.login:hover{
+    background: #719fd1;
+}

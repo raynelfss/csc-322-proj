@@ -130,8 +130,8 @@ function updateItemQuantity(dishID, newQuantity) {
 
 function getCartTotal(items) {
     let total = 0;
-    items.forEach(item => { total += item.price * item.quantity; });
-    return total;
+    items.forEach(item => { total += Number(item.price) * Number(item.quantity); });
+    return Number(total.toFixed(2));
 }
 
 function clearCart() {

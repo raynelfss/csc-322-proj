@@ -10,28 +10,37 @@
 {% endblock %}
 
 {% block body %}
-<div class="title">
-    <i class="fas fa-check-circle" style="font-size:40px;color:rgb(209, 47, 85);"></i>
-    <h2>OrderID goes here</h2>
-</div>
+
 
 <div class="allcontainers">
-    <div class="container">
-        <div class="map">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.360389458203!2d-73.95146108459174!3d40.82004707932034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f6657fa896f5%3A0xa785a9c0ac09561a!2sThe%20City%20College%20of%20New%20York!5e0!3m2!1sen!2sus!4v1652644102892!5m2!1sen!2sus" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            <div class="maptext">
-                <h2>Thank you for your order!</h2>
-                <h3>Your order is confirmed.</h3>
-                <p>We've accepted your order and we're getting it ready. 
-                Come back to the page for updates on your order!
-                </p>
+    <div class="leftinfo">
+        <div class="title">
+            <i class="fas fa-check-circle" style="font-size:40px;color:rgb(209, 47, 85);"></i>
+            <h2 id="Order-ID">Your order has been placed.</h2>
+        </div>
+        <div class="container">
+            <div class="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3019.360389458203!2d-73.95146108459174!3d40.82004707932034!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c2f6657fa896f5%3A0xa785a9c0ac09561a!2sThe%20City%20College%20of%20New%20York!5e0!3m2!1sen!2sus!4v1652644102892!5m2!1sen!2sus" width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="maptext">
+                    <h2>Thank you for your order!</h2>
+                    <h3>Your order is confirmed.</h3>
+                    <p>We've accepted your order and we're getting it ready. 
+                    Come back to the page for updates on your order!
+                    </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="rightcontainer">
         <h3>Container for Raynel...jazzy!</h3>
+        <div class="order-container">
+            <h1 class="order-id"></h1>
+            <div class="order-items" id="order-items"></div>
+            <div class="order-cost" id="order-cost"></div>
+            <div class="order-status" id="order-status"></div>
+        </div>
     </div>
 
 </div>
-  
+<script src="/scripts/aftercheckout.js"></script>
 {% endblock %}

@@ -87,13 +87,14 @@ function calculateCartPrice(subtotal, isDelivery) {
     taxes = subtotal * 0.08875;
     isDelivery && (deliveryFee = 7.99);
     total = subtotal + taxes + deliveryFee;
+    console.log({ subtotal, taxes, deliveryFee, total })
     return { subtotal, taxes, deliveryFee, total };
 }
 
 function loadPrice() {
     let cart = getCart();
     console.log(cart);
-    let prices = calculateCartPrice(cart.total, isDelivery);
+    let prices = calculateCartPrice(Number(cart.total), isDelivery);
     Object.keys(prices).forEach(priceType => {
         document.getElementById(priceType).textContent = prices[priceType].toFixed(2);
     })
@@ -131,10 +132,12 @@ async function checkout() {
         },
         body: data
     });
-    
+    const order = await response.json();
+    setTimeout(() => {
+        location.replace(`/checkout/${order['response'].orderID}`);
+    }, 3000);
     clearCart();
 }
 
 // clean up unnessary functions and code later
 loadCheckoutCart();
-document.getElementById('checkout-button').addEventListener('click', checkout);
