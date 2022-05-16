@@ -1,3 +1,4 @@
+from tkinter.tix import Tree
 from passlib.hash import sha256_crypt
 from flask import Blueprint, abort, request, session, redirect
 from database import auth, customers, employees
@@ -65,8 +66,17 @@ def hire():
         try:
             data = request.json
             passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
-            employee = employees.createEmployee(data['username'], passwordHash, data['employeeType'])
-            return { 'response': employee }
+            userList = auth.getAllUsers()
+            exists = False
+
+            for i in userList:
+                if i['username'] == data['username']: exists = True;
+            
+            if not exists:
+                employee = employees.createEmployee(data['username'], passwordHash, data['employeeType'])
+                return { 'response': employee }
+            else:
+                return { 'response' : 'exists'}
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)

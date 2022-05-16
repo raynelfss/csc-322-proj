@@ -21,11 +21,11 @@
         
         <div class="item">
             <h3>Password Change:</h3>
-            <p>Enter current password:</p>
+            <label for="current">Enter current password:</label>
             <input type="password" id="current">
-            <p>Enter new password:</p>
+            <label for="new">Enter new password:</label>
             <input type="password" id="new">
-            <p>Confirm new password:</p>
+            <label for="confirmnew">Confirm new password:</label>
             <input type="password" id="confirmnew">
             <button>Confirm new password</button>
         </div>
@@ -35,22 +35,22 @@
                 <h3>Create Employee Account:</h3>
                 <div class="employeeselect">
                     <p>Choose Employee Account Type:</p>
-                    <select>
+                    <select onchange="selectHandler()" id="employeeselector">
                         <option value="0">Manager</option>
                         <option value="1">Chef</option>
                         <option value="2">Delivery</option>
                     </select>
                 </div>
-                <p>Enter username:</p>
+                <label for="username">Enter username:</label>
                 <input type="text" id="username">
-                <p>Enter password:</p>
+                <label for="unew">Enter password:</label>
                 <input type="password" id="unew">
-                <button>Create Employee Account</button>
+                <label for="unewconfirm">Confirm password:</label>
+                <input type="password" id="unewconfirm">
+                <p class="donotmatch">Passwords do not match</p>
+                <button = onclick="createUser()">Create Employee Account</button>
             </div>
         {% endif %}
     </div>
-
-
-
-
+    {% if session.get('employeeType') == 'manager' %}<script src="/scripts/dashboard-settings-createAccount.js"></script> {% endif %}
 {% endblock %}

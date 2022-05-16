@@ -17,6 +17,12 @@ def getUserByUsername(username): # looks for existing users
         if users: return users[0] # returns a user's info based on the username
         return ''
 
+def getAllUsers():
+    with DatabaseConnection('./database/database.db') as cursor:
+        rows = cursor.execute("""SELECT * FROM AuthenticationTable""")
+        users = [listToDict(row) for row in rows]
+        if users: return users
+        return ''
 
 # use createCustomer to register new customers
 def addUser(username, password, role): # registers new users

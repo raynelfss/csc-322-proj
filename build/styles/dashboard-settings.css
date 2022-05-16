@@ -1,15 +1,20 @@
 .container {
     display:flex;
     justify-content: center;
+    flex-wrap: wrap;
     /* margin-left:20%; */
-    padding: 20px; 
+    padding: 20px;
+    margin-bottom: 40px; 
 }
   
 .item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     background-color: white;
     width:200px;
     margin: 10px 25px;
-    padding: 20px;
+    padding: 30px;
     border-radius:24px;
     box-shadow: 1px 1px 2px rgb(219, 179, 179), 0 0 25px rgb(255, 132, 152), 0 0 5px rgb(139, 0, 109); 
     
@@ -33,4 +38,10 @@ button{
 button:hover{
     background-color: rgb(255, 101, 181);
     color:white
+}
+
+.donotmatch{
+    display : none;
+    font-size: 12px;
+    color : red;
 }

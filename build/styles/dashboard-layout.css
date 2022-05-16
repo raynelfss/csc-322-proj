@@ -248,5 +248,7 @@ input, textarea{
   padding: 5px;
 }
 
-
-
+label{
+  display: inline-block;
+  margin: 10px;
+}
