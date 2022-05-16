@@ -1,4 +1,3 @@
-from tkinter.tix import Tree
 from passlib.hash import sha256_crypt
 from flask import Blueprint, abort, request, session, redirect
 from database import auth, customers, employees
@@ -8,7 +7,6 @@ authBlueprint = Blueprint('app_login', __name__, url_prefix = '/auth')
 @authBlueprint.route('/login', methods = ['POST'])
 def login():
     if isLoggedIn(): redirect('/')
-    
     if request.method == 'POST':
         try: 
             data = request.json # get user from db
@@ -49,14 +47,14 @@ def register():
             passwordHash = sha256_crypt.encrypt(data['password']) # hashes password
             userID, customerID = customers.createCustomer(data['username'],
                 passwordHash, data['name'], data['phoneNumber'])
+            
             session['loggedIn'] = True
             session['userType'] = 'customer'
             session['userID'] = userID
             session['customerID'] = customerID
             print('Registered')
-            
+
             return redirect('/') # redirects to homepage
-        
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
@@ -71,14 +69,14 @@ def hire():
             userList = auth.getAllUsers()
             exists = False
 
-            for i in userList:
-                if i['username'] == data['username']: exists = True;
+            for i in userList: 
+                if i['username'] == data['username']: exists = True
             
             if not exists:
                 employee = employees.createEmployee(data['username'], passwordHash, data['employeeType'])
                 return { 'response': employee }
-            else:
-                return { 'response' : 'exists'}
+            else: return { 'response': 'exists' }
+
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)
@@ -91,14 +89,18 @@ def passwordchange():
             data = request.json
             user = auth.getUserByUsername(session['userName'])
             correct = sha256_crypt.verify(data['password'], user['passwordHash'])
-            if not correct: return {'response' : 'wrongpassword'}
-
+            
+            if not correct: return { 'response': 'wrongpassword' }
+            
             new_pass = sha256_crypt.encrypt(data['newPassword'])
             auth.updatePasswordByID(session['userID'], new_pass)
             
             test_user = auth.getUserByUsername(session['userName'])
             session.clear()
-            return {'response' : sha256_crypt.verify(data['newPassword'], test_user['passwordHash'])}          
+            
+            verified = sha256_crypt.verify(data['newPassword'], test_user['passwordHash'])
+            return { 'response': verified }
+                      
         except Exception as e:
             print('error:', e, '\n')
             abort(500)

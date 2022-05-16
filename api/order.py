@@ -85,15 +85,19 @@ def order(id):
             if (isManager() or isChef()) and data['status'] == 'cancelled': 
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
                     data['datetime'], data['deliveryMethod'], data['employeeID'], data['status'])
+                
                 balance = getBalance(data['customerID'])['balance']
                 spent = getMoneySpent(data['customerID'])['balance']
+                
                 numOrders = getNumOfOrders(data['customerID'])['balance']
                 balance = balance + price
+                
                 spent = spent - price if spent - price >= 0 else 0
                 numOrders = numOrders - 1 if numOrders >= 0 else 0
+                
                 updateBalance(data['customerID'], balance)
                 updateMoneySpent(data['customerID'], spent)
-                updateNumOrders(data['customerID'], numOrders);
+                updateNumOrders(data['customerID'], numOrders)
             
             else:
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
@@ -109,7 +113,6 @@ def order(id):
         try:
             orders.getOrderByID(id)
             return { 'response': 'deleted' }
-        
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)    
@@ -131,7 +134,7 @@ def byCustomer():
         if not (isLoggedIn() and isCustomer()): abort(403)
         try:
             ordersfromCustomer = orders.getOrdersBycustomerID(session['customerID'])
-            return {'response' : ordersfromCustomer}
+            return {'response': ordersfromCustomer }
         except Exception as e:
             print('error: ', e, '\n')
             abort(500)

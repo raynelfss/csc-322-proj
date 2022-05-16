@@ -20,8 +20,7 @@ def isLoggedIn():
     return (session.get('loggedIn') == True 
     and session.get('loggedIn') == True)
 
-def isEmployee():
-    return session.get('userType') == 'employee' 
+def isEmployee(): return session.get('userType') == 'employee' 
     
 def isChef():
     return (session.get('loggedIn') == True
@@ -87,6 +86,7 @@ def getSidebarNav():
             {'url': '/dashboard/settings', 'name':'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
+        
     elif isManager():
         return [
             {'url': '/', 'name': 'Home'},
@@ -96,6 +96,7 @@ def getSidebarNav():
             {'url': '/dashboard/settings', 'name':'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
+
     elif isDeliveryBoy():
         return [
             {'url': '/', 'name': 'Home'},
@@ -105,6 +106,7 @@ def getSidebarNav():
             {'url': '/dashboard/settings', 'name':'Settings'}, 
             {'url': '/logout', 'name':'Logout'}, 
         ]
+
     elif isCustomer():
         return [
             {'url': '/', 'name': 'Home'},
@@ -114,5 +116,4 @@ def getSidebarNav():
             {'url': '/dashboard/settings', 'name' : 'Settings'},
             {'url': '/logout', 'name':'Logout'}, 
         ]
-
     else: return []

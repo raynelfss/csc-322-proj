@@ -87,12 +87,14 @@ def register():
 
 @app.route('/checkout')
 def checkout():
-    if not helpers.isCustomer(): return render_template("checkout.html", login = True, currentUrl = "/checkout", nav = helpers.getNav())
+    if not helpers.isCustomer(): 
+        return render_template("checkout.html", login = True, currentUrl = "/checkout", nav = helpers.getNav())
     return render_template("checkout.html", login = False, currentUrl = "/checkout", nav = helpers.getNav())
 
 @app.route('/aftercheckout')
 def aftercheckout():
-    if not helpers.isCustomer(): return render_template("aftercheckout.html", login = True, currentUrl = "/aftercheckout", nav = helpers.getNav())
+    if not helpers.isCustomer(): 
+        return render_template("aftercheckout.html", login = True, currentUrl = "/aftercheckout", nav = helpers.getNav())
     return render_template("aftercheckout.html", login = False, currentUrl = "/aftercheckout", nav = helpers.getNav())
 
 @app.route('/dashboard/orderhistory')
