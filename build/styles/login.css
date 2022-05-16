@@ -1,19 +1,21 @@
 body {
     font-family: sans-serif;
-    background: linear-gradient(-90deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
-    position:relative;
+    background: linear-gradient(-45deg, #71b7e6, #9b59b6, #EE7752, #E73C7E);
+    background-size: 400% 400%;
+    background-attachment: fixed;
     animation: change 10s alternate infinite;
+    text-align: center;
 }
 
 @keyframes change{
-    0%{
+    0% {
         background-position: 0% 50%;
     }
-    50%{
+    50% {
         background-position: 100% 50%;
     }
-    100%{
-        background-position: 0 50%;
+    100% {
+        background-position: 0% 50%;
     }
 }
 .container {
