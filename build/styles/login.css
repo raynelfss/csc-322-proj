@@ -28,19 +28,20 @@ body {
     transition: hover 0.3s;
     background:white;
     border-radius:24px;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
-.box h3 {
-    color:#616161;
+.box .h3 {
+    color:#262626;
     font-weight: 700%;
-    padding-left:38px;
+    padding-left:2px;
 
 
 
 }
 
-.box p{
-    padding-left: 38px;
+.box .p{
+    padding-left: 4px;
     color:#616161;
     margin-bottom:-15px;
 }
@@ -55,8 +56,9 @@ body {
     width: 220px;
     outline: none;
     color: black;
-    border-radius: 24px;
+    border-radius: 10px;
     transition: 0.25px;
+    margin-right:80px;
 
 }
 
@@ -117,21 +119,22 @@ body {
     background: none;
     display: block;
     margin: 20px auto;
-    margin-left:37px;
+    margin-left:2px;
     text-align: center;
-    background-color: #4284c9;
+    background-color: #ff6581;
     padding: 10px 10px;
     width: 80px;
     outline: none;
     color: White;
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
 
 }
 
 .login:hover{
-    background: #719fd1;
+    background-color: #c9465e;
 }
 
 .register {
@@ -139,19 +142,21 @@ body {
     background: none;
     display: block;
     margin: 20px auto;
-    margin-left:37px;
+    margin-left:2px;
     text-align: center;
-    background-color: #4284c9;
+    background-color: #ff6581;
     padding: 10px 10px;
     width: 80px;
     outline: none;
     color: White;
-    border-radius: 10px;
+    border-radius: 15px;
     cursor: pointer;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .register:hover{
-    background: #719fd1;
+    background-color: #c9465e;
+    ;
 }
 
 .buttons{
@@ -162,3 +167,4 @@ body {
     margin-left: 50%;
     transform: translate(-50%,0);
 }
+
