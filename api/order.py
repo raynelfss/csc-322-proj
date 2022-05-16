@@ -82,7 +82,7 @@ def order(id):
             dishes = ','.join( [ str(dishID) for dishID in data['dishIDs'] ] )
             
             price = calcPrices( data['dishIDs'], data['deliveryMethod'] )
-            if (isManager() or isChef()) and data['status'] == 'cancelled': 
+            if ((isManager() or isChef()) and data['status'] == 'cancelled'): 
                 orders.updateOrder(id, dishes, data['customerID'], data['address'], price,
                     data['datetime'], data['deliveryMethod'], data['employeeID'], data['status'])
                 

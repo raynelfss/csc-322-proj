@@ -59,7 +59,7 @@ def updateCustomer():
     if request.method == 'GET':
         try:
             customer = customers.getCustomerByUserID(session['userID'])
-            return {'response': {'name' : customer['name'], 'number' : customer['phoneNumber']}}
+            return { 'response': { 'name': customer['name'], 'number': customer['phoneNumber'] } }
         except Exception as e:
             print('error:', e, '\n')
             abort(500)   
@@ -67,10 +67,15 @@ def updateCustomer():
         try:
             data = request.json
             customer = customers.getCustomerByUserID(session['userID'])
+            
             customers.updateCustomer(customer['customerID'], data['name'], data['number'],
             customer['vipStatus'], customer['balance'], customer['numberOfOrders'], customer['moneySpent'],
             customer['shoppingCartID'], customer['karen'], customer['demotionPoints'])
-            return {'response' : { 'name': customers.getCustomerByUserID(session['userID'])['name'], 'number' : customers.getCustomerByUserID(session['userID'])['phoneNumber']}}
+            
+            name = customers.getCustomerByUserID(session['userID'])['name']
+            number = customers.getCustomerByUserID(session['userID'])['phoneNumber']
+            return { 'response': { 'name': name, 'number' : number } }
+
         except Exception as e:
             print('error:', e, '\n')
             abort(500)

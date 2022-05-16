@@ -16,7 +16,9 @@ def index():
         if not isCustomer(): abort(403) 
         try:
             data = request.json
-            threads.addComment( data['CommentorID'], data['DiscussionID'], data['Comment'], data['Flag'] )
+            threads.addComment( data['CommentorID'], data['DiscussionID'],
+                data['Comment'], data['Flag']
+            )
             return { 'response': 'successfully posted discussion' }
         except Exception as e:
             print('error: ', e, '\n')
