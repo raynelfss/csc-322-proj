@@ -29,7 +29,7 @@ function parseData() {      // Returns dict with user data
 function getPassword() {        // gets the password from document
     let pass = document.getElementById("unew").value;
     let conf = document.getElementById("unewconfirm").value;
-    let donotmatch = document.getElementsByClassName("donotmatch")[0];
+    let donotmatch = document.getElementsByClassName("donotmatch")[1];
 
     if (pass == conf) {
         donotmatch.style.display = "none";

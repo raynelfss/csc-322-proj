@@ -22,7 +22,8 @@ def login():
             session['loggedIn'] = True
             session['userID'] = user['userID']
             session['userType'] = user['role']
-            
+            session['userName'] = user['username']
+
             if (user['role'] == 'employee'):
                 # get employeeType
                 employee = employees.getEmployee(user['userID'])
@@ -79,6 +80,26 @@ def hire():
                 return { 'response' : 'exists'}
         except Exception as e:
             print('error: ', e, '\n')
+            abort(500)
+
+@authBlueprint.route('/password', methods = ['POST']) # Allows any account to change its password
+def passwordchange():
+    if not isLoggedIn(): abort(403)
+    if request.method == 'POST':
+        try:
+            data = request.json
+            user = auth.getUserByUsername(session['userName'])
+            correct = sha256_crypt.verify(data['password'], user['passwordHash'])
+            if not correct: return {'response' : 'wrongpassword'}
+
+            new_pass = sha256_crypt.encrypt(data['newPassword'])
+            auth.updatePasswordByID(session['userID'], new_pass)
+            
+            test_user = auth.getUserByUsername(session['userName'])
+            session.clear()
+            return {'response' : sha256_crypt.verify(data['newPassword'], test_user['passwordHash'])}          
+        except Exception as e:
+            print('error:', e, '\n')
             abort(500)
 
 

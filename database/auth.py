@@ -30,6 +30,10 @@ def addUser(username, password, role): # registers new users
         cursor.execute("""INSERT INTO login (Username, Password, Role)
             VALUES (?,?, ?)""", (username, password, role,))
 
+def updatePasswordByID(userID, newPassword):
+    with DatabaseConnection('./database/database.db') as cursor:
+        cursor.execute("""UPDATE AuthenticationTable SET PasswordHash=? Where UserID=?""", (newPassword, userID,))
+
 def listToDict(user):
     return {
         'userID': user[0], 'username': user[1],

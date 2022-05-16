@@ -27,7 +27,8 @@
             <input type="password" id="new">
             <label for="confirmnew">Confirm new password:</label>
             <input type="password" id="confirmnew">
-            <button>Confirm new password</button>
+            <button onclick="changePassword()">Confirm new password</button>
+            <p class="donotmatch">Passwords do not match</p>
         </div>
 
         {% if session.get('employeeType') == 'manager' %}
@@ -52,5 +53,6 @@
             </div>
         {% endif %}
     </div>
+    <script src="/scripts/dashboard-settings.js"></script>
     {% if session.get('employeeType') == 'manager' %}<script src="/scripts/dashboard-settings-createAccount.js"></script> {% endif %}
 {% endblock %}
