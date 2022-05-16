@@ -41,28 +41,30 @@
     padding: 20px;
     justify-content: center;
 }
-.stars{
-    /* width: 20%; */
-    display: flex;
-    flex-direction: row;
+
+
+.stars {
+    text-align: center;
+    padding-right: 20px;
 }
+
 .stars input {
     display:none;
+    
 }
 
 .stars label{
     font-size: 30px;
     color: #444;
-    /* padding: 10px; */
-    /* float:right; */
+    float:right;
     transition: all 0.2s ease;
-    text-align: center;
-    /* margin-right: 40px; */
+    
 }
 
 .stars input:not(:checked) ~ label:hover,
 .stars input:not(:checked) ~ label:hover ~label{
     color:#fd4;
+    
 }
 input:checked ~ label{
     color:#fd4;
@@ -87,6 +89,22 @@ input#rate5:checked ~ label{
     color:#fe7;
     text-shadow: 0 0 20px #952;
 }
+input#rate1:checked ~ form header:before{
+    content:"I hate it."
+}
+input#rate2:checked ~ form header:before{
+    content:"I dislike it."
+}
+input#rate3:checked ~ form header:before{
+    content:"It was okay."
+}
+input#rate4:checked ~ form header:before{
+    content:"It was good."
+}
+input#rate5:checked ~ form header:before{
+    content:"It was excellent."
+}
+
 form header{
     /* width:100%; */
     font-size: 25px;
@@ -97,8 +115,10 @@ form header{
 }
 form .textarea{
     height: 50px;
+    margin-left: 20px;
     /* width: 100%; */
-    overflow: hidden;
+    
+
   }
 form .textarea textarea{
     /* width: 100%;
@@ -113,8 +133,17 @@ form .textarea textarea{
   .textarea textarea:focus{
     border-color: #444;
   }
-  button {
-      cursor:pointer;
-  }
+  
+.btn .submitrating {
+    margin-top: 80px;
+    margin-left:20px;
+    cursor:pointer;
+    border-radius: 15px;
+    background-color: rgb(255, 94, 137);
+    color:white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
 
- 
+.btn .submitrating:hover {
+    background-color: rgb(171, 44, 78);
+}
