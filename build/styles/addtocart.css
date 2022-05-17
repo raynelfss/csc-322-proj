@@ -1,17 +1,19 @@
 .item-info{
-    background-color: white;
-    width: 500px;
-    height:500px;
+    background-color: pink;
+    width: 540px;
+    height:540px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: none;
-    border-radius: 10px;
+    border-radius: 20px;
+    padding: 20px;
 }
 
 .item-img{
     width: 200px;
+    border-radius: 100%;
 }
 
 .scroll {
@@ -20,7 +22,9 @@
     background: rbg(11, 11, 114);
     overflow:hidden;
     overflow-y:scroll;
-    
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 .stars input {
