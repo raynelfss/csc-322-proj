@@ -64,7 +64,6 @@ def getNav():
         return [
             {'url': '/', 'name': 'Home'},
             {'url': '/menu', 'name': 'Menu'},
-            {'url': '/about', 'name': 'About'},
             {'url': '/dashboard', 'name' : 'Dashboard'},
             {'url': '/logout', 'name': 'Logout'},
         ]
@@ -72,7 +71,6 @@ def getNav():
         return [
             {'url': '/', 'name': 'Home'},
             {'url': '/menu', 'name': 'Menu'},
-            {'url': '/about', 'name': 'About'},
             {'url': '/login', 'name': 'Login'},  
         ]
 

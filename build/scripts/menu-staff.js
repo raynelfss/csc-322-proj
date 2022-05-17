@@ -2,7 +2,7 @@ function addElementtoTable() {        // Function adds an element to the item ba
     let data = parseIntoDict();
     console.log(data);
     addtoDB(data);
-    closeDiag("cover");
+    closeDiag("creatediv");
 }
 
 function createRow(item) {
