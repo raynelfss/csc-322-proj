@@ -19,7 +19,13 @@ body {
 .container {
     /* margin-top:50px;
     margin-left:50px; */
-    width:300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 300px;
+    /* height: 450px; */
+    /* overflow-y: scroll; */
+    /* overflow-x: hidden; */
     padding: 30px;
     position: fixed;
     top: 50%;
@@ -31,6 +37,10 @@ body {
     box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
+.box{
+    display: flex;
+    flex-direction: column;
+}
 .box .h3 {
     color:#262626;
     font-weight: 700%;
@@ -41,27 +51,27 @@ body {
 .box .p{
     padding-left: 4px;
     color:#616161;
-    margin-bottom:-15px;
+    margin-bottom:10px;
 }
 
 .box input[type = "text"], .box input[type = "password"] {
     background: none;
-    display: block;
-    margin: 20px auto;
+    /* display: block; */
+    margin: 10px 0px;
     text-align: left;
     border: 1px solid gray;
-    padding: 14 px 10px;
-    width: 220px;
+    padding: 4px 10px;
+    /* width: 220px; */
     outline: none;
     color: black;
     border-radius: 10px;
     transition: 0.25px;
-    margin-right:80px;
+    /* margin-right:80px; */
 
 }
 
 .box input[type = "text"]:focus, .box input[type = "password"]:focus {
-    width: 220px;
+    /* width: 220px; */
     border-color: black;
     border-width: 2px;
 
