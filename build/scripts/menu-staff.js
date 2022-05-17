@@ -111,7 +111,7 @@ function editItem(id) {
     let item = parseIntoDict();
     console.log(id, item);
     sendEdittoDB(id, item);
-    closeDiag('cover');
+    closeDiag('creatediv');
 }
 
 async function editDiag(id) {
